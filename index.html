@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 
 <head>
@@ -344,7 +344,7 @@
               <div class="ia-serit-baslik" data-panel="emeklimaasodemegunleri">AYLIK ÖDEME GÜNLERİ</div>
               <div class="ia-serit-baslik" data-panel="dulyetimayligi">EŞİ VE ANNE/BABASI ÖLEN DUL</div>
               <div class="ia-serit-baslik" data-panel="haksahipligi">HAK SAHİPLİĞİ ORANLARI</div>
-
+              <div class="ia-serit-baslik" data-panel="gk">AYLIK KESİLME DURUMLARI</div>
             </div>
           </li>
 
@@ -845,20 +845,10 @@
     const portalData = {
       "SGK Kopyala yapıştır": [
         { konu: "Acil Hal Uygulaması ve İlave Ücretler", metin: ` Acil Hal Tanımı: Ani gelişen hastalık, kaza veya yaralanma nedeniyle ilk 24 saat içinde başvurulan; müdahale edilmemesi halinde hayatı veya bir uzvu kaybetme riski taşıyan durumlardır. Hastanın acil servislerde 24 saat içinde stabilizasyonu esastır.\n\n Kırmızı ve Sarı Alan: Hayatı tehdit eden veya uzuv kaybı potansiyeli taşıyan durumlardır. Sunulan tüm sağlık hizmetleri için taburcu edilinceye kadar hiçbir ilave ücret talep edilemez.\n\n Yeşil Alan: Hekim bakımı gerektirse de uzun süre bekleyebilecek durumlardır. İlave ücret talep edilebilir.\n\n Bilgilendirme Zorunluluğu: Müdahale sonrası acil halin sona erdiğine dair hastaya/yakınına "Acil Halin Sona Ermesine İlişkin Bilgilendirme Formu" imza karşılığı verilmeden ilave ücret talep edilemez.` },
-        {
-          konu: "Analık, Doğum ve Emzirme İşlemleri", metin: `Doğum (Analık) İzni ve Rapor Parası: Anneler bebek doğmadan önce 8 hafta ve doğduktan sonra 16 hafta olmak üzere izin kullanırlar
-. İkiz veya üçüz bebeklerde doğum öncesindeki bu izne 2 hafta daha eklenir
-. Doktor onay verirse anneler kendini iyi hissediyorsa doğuma 2 hafta kalana kadar işe gidebilirler
-. Annelerin çalışmadıkları bu günlerde devletten (SGK) rapor parası alabilmesi için, doğumdan önceki son 1 yıl içinde en az 90 gün sigortasının yatmış olması gerekir \n\nEmzirme Ödeneği (Süt Parası): Bebek canlı olarak doğduğunda, devlet anneye (veya anne sigortalı değilse sigortalı babaya) tek seferlik bir yardım öder
-. 2026 yılı için bu yardım tutarı 1.621 TL'dir
-. Bu parayı alabilmek için doğumdan önceki son 1 yıl içinde en az 120 gün sigortanın ödenmiş olması lazımdır \n\n Analık Halinde Sağlık: Gebelik süresince ve periyodik kontrollerde, kişinin GSS prim borcu olsa veya provizyonu kapalı olsa dahi sağlık hizmetlerinden yararlanması mümkündür.` },
+        { konu: "Analık, Doğum ve Emzirme İşlemleri", metin: `Doğum (Analık) İzni ve Rapor Parası: Anneler bebek doğmadan önce 8 hafta ve doğduktan sonra 16 hafta olmak üzere izin kullanırlar\n- İkiz veya üçüz bebeklerde doğum öncesindeki bu izne 2 hafta daha eklenir\n- Doktor onay verirse anneler kendini iyi hissediyorsa doğuma 2 hafta kalana kadar işe gidebilirler\n- Annelerin çalışmadıkları bu günlerde devletten (SGK) rapor parası alabilmesi için, doğumdan önceki son 1 yıl içinde en az 90 gün sigortasının yatmış olması gerekir \n\nEmzirme Ödeneği (Süt Parası): Bebek canlı olarak doğduğunda, devlet anneye (veya anne sigortalı değilse sigortalı babaya) tek seferlik bir yardım öder\n- 2026 yılı için bu yardım tutarı 1.621 TL'dir\n- Bu parayı alabilmek için doğumdan önceki son 1 yıl içinde en az 120 gün sigortanın ödenmiş olması lazımdır \n\n Analık Halinde Sağlık: Gebelik süresince ve periyodik kontrollerde, kişinin GSS prim borcu olsa veya provizyonu kapalı olsa dahi sağlık hizmetlerinden yararlanması mümkündür.` },
         { konu: "Bakmakla Yükümlü Olunan Kişiler", metin: `Bakmakla yükümlü olunan kişiler, bir sigortalının üzerinden sağlık hizmeti alabilen aile üyeleridir.\n\nKimler bakmakla yükümlü olunan kişidir?\n Eşi: Sigortalı kişinin resmi nikahlı kocası veya karısı.\n Çocukları: Evli olmayan, bir işte çalışmayan ve kendi maaşı olmayan çocuklardır. Bu hak, okumayanlarda 18, lisedekilerde 20, üniversitedekilerde 25 yaşına kadar devam eder. Engelli çocuklar için yaş sınırı yoktur.\n Anne ve Babası: Geçimi sigortalı çocuğu tarafından sağlanan ve geliri asgari ücretten az olan anne ile babadır.\n\nKimler bu kapsamda sayılmaz?\n Bir işte çalışıp kendi sigortası olanlar.\n Kendisine emekli maaşı veya gelir bağlananlar.\n Yaş sınırını dolduran veya evlenen çocuklar.\n Geliri yüksek olan anne ve babalar.` },
         { konu: "Borçlanma İşlemleri (Askerlik, Doğum, Yurt Dışı)", metin: ` Askerlik Borçlanması: Askerlik süresi ilk sigorta girişinden önce ise borçlanılan gün kadar işe başlama tarihi geriye çekilir. Askerlik sonrası sigorta girişi olanlarda ise işe başlama tarihi değişmez, sadece prim gün sayısına eklenir.\n\n Doğum Borçlanması: Sigorta başlangıcından sonra gerçekleşen doğumlar için en fazla 3 çocuğa kadar (her çocuk için en fazla 2 yıl) borçlanma yapılabilir. Çoğul gebelikler tek doğum sayılır; borçlanma çalışılmayan süreleri kapsar.\n\n Yurt Dışı Borçlanması (Güncel Mevzuat Düzeltmesi): 1 Ağustos 2019 tarihinde yürürlüğe giren 7146 Sayılı Kanun gereği; bu tarihten sonra yapılan tüm yurt dışı borçlanmaları, Türkiye'deki geçmiş sigortalılık statüsüne bakılmaksızın doğrudan 4/B (Bağ-Kur) kapsamında değerlendirilmektedir. Kadınlar yurt dışında ev hanımı olarak geçen süreleri, erkekler ise çalıştıkları süreleri borçlanabilir. Tahakkuk eden borcun tebliğ tarihinden itibaren 3 ay içinde ödenmesi zorunludur.` },
-        {
-          konu: "Cenaze Ödeneği", metin: `Cenaze ödeneği, sigortalı bir kişi hayatını kaybettiğinde devletin (SGK) cenaze masraflarına destek olmak için ailesine verdiği tek seferlik bir yardımdır
-.
-Bu yardımı alabilmek için ölen kişinin hayatı boyunca en az 360 gün sigorta priminin ödenmiş olması, emekli olması veya bir iş kazası sonucu vefat etmiş olması gerekir
-. 2026 yılı için devletin verdiği bu cenaze yardımı tutarı 6.398 liradır .\n\nBaşvurular SGK İl/Merkez Müdürlüklerine dilekçe ile yapılır.` },
+        { konu: "Cenaze Ödeneği", metin: `Cenaze ödeneği, sigortalı bir kişi hayatını kaybettiğinde devletin (SGK) cenaze masraflarına destek olmak için ailesine verdiği tek seferlik bir yardımdır\nBu yardımı alabilmek için ölen kişinin hayatı boyunca en az 360 gün sigorta priminin ödenmiş olması, emekli olması veya bir iş kazası sonucu vefat etmiş olması gerekir\n2026 yılı için devletin verdiği bu cenaze yardımı tutarı 6.398 liradır.\n\nBaşvurular SGK İl/Merkez Müdürlüklerine dilekçe ile yapılır.` },
         { konu: "Çeyiz (Evlenme) Ödeneği", metin: `Yetim aylığı almakta iken evlenen kız çocuklarına, aldıkları yetim aylığının peşin olarak ödenmesidir.\n\n SSK, Bağ-Kur ve 5510 Sayılı Kanun (4/C): Aylığın 24 katı tutarında ödenir.\n 5434 Sayılı Kanun (Eski Emekli Sandığı): Aylığın 12 katı tutarında ödenir.` },
         { konu: "Genel Sağlık Sigortası (GSS) ve Sağlık Provizyonu", metin: ` Provizyon Şartları: İşe başlandığı andan itibaren geriye dönük son 1 yıl içinde 30 gün prim varsa sağlıktan faydalanılır. İşten ayrılan kişi, son 1 yıl içinde 30-89 gün arası prime sahipse ayrıldıktan sonra 10 gün, 90 gün ve üzeri prime sahipse 100 gün daha (10+90) sağlıktan faydalanabilir.\n\n GSS Kapsamı: GSS prim borcunun 60 günü aşması halinde kural olarak (Cumhurbaşkanlığı kararnameleriyle sağlanan devlet hastanesi istisnaları hariç) sağlık hizmeti alınamaz. Öğrenciler bulundukları ilden GSS işlemlerini yürütebilir, ödemeler sisteme ortalama 2 saat içinde yansır.\n\n Kız Çocukları: 01.10.2008 tarihinden önce sigortalı anne/baba üzerinden hak sahipliği (SSK 120 gün, Bağ-Kur 240 gün şartıyla) kazanan kız çocukları evlenene veya işe girene kadar sağlıktan faydalanır. Bu tarihten sonra doğan veya şartları sağlamayan kız çocukları ise erkek çocuklar gibi (18/20/25 yaş limitlerine göre) değerlendirilir.` },
         { konu: "İş Kazası Bildirim Süresi", metin: `İş kazası geçirilmesi durumunda, işveren tarafından yetkili kolluk kuvvetlerine derhal; SGK'ya ise en geç kazadan sonraki 3 iş günü içinde bildirim yapılmalıdır.` },
@@ -876,6 +866,7 @@ Bu yardımı alabilmek için ölen kişinin hayatı boyunca en az 360 gün sigor
         { konu: "Emekli Sandığı Ölüm Aylığı Bağlama Şartları", metin: `5434 sayılı Kanuna göre ölüm aylığı bağlanabilmesi için 10 yıllık hizmet şartı aranmaktadır.\n5510 sayılı Kanuna göre ise ölüm aylığı bağlanabilmesi için 5 yıllık hizmet şartı aranmaktadır.` },
         { konu: "BAĞ-KUR Ölüm Aylığı Bağlama Şartları", metin: `Vefat tarihinin 2008 yılı öncesi veya sonrası olmasına bakılmaksızın, ölüm aylığı bağlanabilmesi için en az 1800 gün prim ödenmiş olması gerekmektedir.\nAyrıca, vefat eden sigortalının genel sağlık sigortası primi dâhil kendi sigortalılığına ilişkin prim ve prime bağlı her türlü borcunun bulunmaması veya bu borçların ödenmiş olması şartıyla dul ve yetimlerine ölüm aylığı bağlanır.` },
         { konu: "SSK Ölüm Aylığı Bağlama Şartları", metin: `Vefat tarihi 01.10.2008 tarihinden önce ise, ölüm aylığı bağlanabilmesi için sigortalının en az 5 yıldan beri sigortalı olması ve toplam 900 gün malullük, yaşlılık ve ölüm sigortaları primi bildirilmiş olması gerekmektedir.\nSigortalılık süresi şartının sağlanamaması hâlinde, en az 1800 gün malullük, yaşlılık ve ölüm sigortaları primi bulunması durumunda da ölüm aylığı bağlanabilir.\nVefat tarihi 01.10.2008 tarihi ve sonrasında ise, ölüm aylığı bağlanabilmesi için en az 1800 gün malullük, yaşlılık ve ölüm sigortaları primi bildirilmiş olması gerekmektedir.\n4/1-(a) kapsamında sigortalı olanlar için ise, en az 5 yıldan beri sigortalı olunması ve toplam 900 gün malullük, yaşlılık ve ölüm sigortaları primi bildirilmiş olması hâlinde de ölüm aylığı bağlanabilir.` },
+        { konu: "Malul Çocukların Yetim Aylığı", metin: `MALUL ÇOCUKLARIN YETİM AYLIĞI\n\nMalullük Şartı\n• Çalışma gücü kaybı en az %60 olmalıdır.\n\nAylığın Kesilmediği Durumlar\n• Evlenme (kız veya erkek ayrımı yok)\n• Yaş şartı aranmaz.\n• Öğrencilik şartı aranmaz.\n• Bekâr olma şartı aranmaz.\n\nAylık Oranı\n• Normal: %25\n• Özel durumlarda: %50\n\nAylığın Başlangıcı\n• İlk hak kazanımında takip eden ay başı.\n• Hak yeniden kazanıldığında başvuruyu takip eden ay başı.\n\nAylığın Kesildiği Durumlar\n• Sigortalı olarak çalışmaya başlanması.\n• Kendi sigortalılığı nedeniyle gelir veya aylık bağlanması.\n• Malullük oranının %60'ın altına düşmesi.\n\nAylığın Kesilmediği Çalışmalar\n• Çıraklık ve mesleki eğitim.\n• Zorunlu staj.\n• İŞKUR kursları.\n• Kısmi zamanlı öğrenci çalışmaları.\n• Ceza infaz kurumu kapsamındaki çalışmalar.\n• Kamu destekli bursiyerlik.\n\nÖdeme\n• İlk aylık, tercih belirtilmemişse Ziraat Bankası aracılığıyla ödenir.`},
       ],
       "İŞKUR Kopyala yapıştır": [
         { konu: "Analık İzni, Süt İzni ve Yarım Çalışma", metin: `Analık İzni: 7578 sayılı Kanunla yapılan değişiklikle, kadın işçilere doğumdan önce 8 ve doğumdan sonra 16 hafta olmak üzere toplam 24 hafta ücretli analık izni verilir. Çoğul gebeliklerde doğum öncesi süreye 2 hafta eklenir. Sağlık durumu uygunsa, doktor onayıyla işçi doğuma 2 hafta kalıncaya kadar çalışabilir; bu durumda çalışılan süreler doğum sonrasına eklenir.\n\nÜcretsiz İzin ve Yarım Çalışma: Analık izni sonrası işçi isteğiyle 6 aya kadar ücretsiz izin alabilir. Ayrıca çocuğun bakımı için birinci doğumda 60, ikincide 120 ve sonrakilerde 180 gün (engelli çocukta 360 gün) süreyle haftalık çalışma süresinin yarısı kadar ücretsiz izin kullanılabilir. Bu dönemde şartları sağlayanlara İŞKUR tarafından Yarım Çalışma Ödeneği ödenir.\n\nSüt İzni: Kadın işçilere, çocuk bir yaşına gelene kadar günde toplam 1,5 saat süt izni verilir. Bu süre günlük çalışma süresinden sayılır ve saatlerini işçi kendisi belirler.` },
@@ -902,21 +893,14 @@ Bu yardımı alabilmek için ölen kişinin hayatı boyunca en az 360 gün sigor
       ],
 
       "MYK BİLGİ PORTALI": [
-        { konu: "BELGE ZORUNLULUĞU KAPSAMINDA TEŞVİKTEN YARARLANDIM ANCAK HÂLÂ SINAV ÜCRETİ HESABIMA YATMADI, NE ZAMAN YATACAK ?", metin: `MYK WEB PORTALINDAKİ “SORGULAMA” BAŞLIĞI ALTINDAKİ ADAY SORGULAMA BÖLÜMÜNDEN VEYA E-DEVLET KAPISI ÜZERİNDEN TEŞVİK KAPSAMINDA GERİ ÖDENECEK SINAV ÜCRETİNE İLİŞKİN BİLGİLERİ GÖREBİLİRSİNİZ. AÇIKLAMADA “HENÜZ TEŞVİK LİSTESİNE GİRMEDİ.” YAZIYORSA BELGE ALDIĞINIZ KURULUŞ TEŞVİKTEN YARARLANMA TALEBİNİZİ HENÜZ KURUMUMUZA İLETMEMİŞ DEMEKTİR.` },
+        { konu: "BELGE ZORUNLULUĞU KAPSAMINDA TEŞVİKTEN YARARLANDIM ANCAK HÂLÂ SINAV ÜCRETİ HESABIMA YATMADI, NE ZAMAN YATACAK ?", metin: `MYK WEB PORTALINDAKİ "SORGULAMA" BAŞLIĞI ALTINDAKİ ADAY SORGULAMA BÖLÜMÜNDEN VEYA E-DEVLET KAPISI ÜZERİNDEN TEŞVİK KAPSAMINDA GERİ ÖDENECEK SINAV ÜCRETİNE İLİŞKİN BİLGİLERİ GÖREBİLİRSİNİZ. AÇIKLAMADA "HENÜZ TEŞVİK LİSTESİNE GİRMEDİ." YAZIYORSA BELGE ALDIĞINIZ KURULUŞ TEŞVİKTEN YARARLANMA TALEBİNİZİ HENÜZ KURUMUMUZA İLETMEMİŞ DEMEKTİR.` },
         { konu: "BELGEMİ KAYBETTİM, YENİDEN BASILMASINI VE BANA GÖNDERİLMESİNİ SAĞLAYABİLİR MİSİNİZ?", metin: `BELGEYİ ALDIĞINIZ YETKİLENDİRİLMİŞ BELGELENDİRME KURULUŞU İLE GÖRÜŞMENİZ VEYA YENİDEN BASIM TALEBİNİZİ KURULUŞA İLETMENİZ HÂLİNDE İLGİLİ KURULUŞ BASIM TALEPLERİNİZİ KURUMUMUZA İLETEBİLİR. TALEPLER İLETİLDİKTEN SONRA EN GEÇ 5 İŞ GÜNÜ İÇERİSİNDE BELGE VE KİMLİK KARTLARI KURULUŞLARA GÖNDERİLİR.` },
-        { konu: "BELGEMİN GEÇERLİLİK SÜRESİ BİTİNCE NE OLUYOR? BELGE YENİLEME NE ANLAMA GELMEKTEDİR?", metin: `BELGE YENİLEME, MYK MESLEKİ YETERLİLİK BELGESİNİN GEÇERLİLİK SÜRESİ SONUNDA BELGE SAHİBİNİN MESLEKİ YETERLİLİĞiNİ SÜRDÜRDÜĞÜNÜN TESPİT EDİLMESİ VE YENİDEN BELGELENDİRİLMESİDİR. GEÇERLİLİK SÜRESİ BİTMEDEN ÖNCE İŞLEMLER YAPILMAZSA BELGE GEÇERLİLİĞİNİ YİTİRİR.` },
+        { konu: "BELGEMİN GEÇERLİLİK SÜRESİ BİTİNCE NE OLUYOR? BELGE YENİLEME NE ANLAMA GELMEKTEDİR?", metin: `BELGE YENİLEME, MYK MESLEKİ YETERLİLİK BELGESİNİN GEÇERLİLİK SÜRESİ SONUNDA BELGE SAHİBİNİN MESLEKİ YETERLİLİĞİNİ SÜRDÜRDÜĞÜNÜN TESPİT EDİLMESİ VE YENİDEN BELGELENDİRİLMESİDİR. GEÇERLİLİK SÜRESİ BİTMEDEN ÖNCE İŞLEMLER YAPILMAZSA BELGE GEÇERLİLİĞİNİ YİTİRİR.` },
         { konu: "GÖZETİM NEDİR? SINAVLARINA GİRMİŞ OLDUĞUM KURULUŞ BENDEN ÇEŞİTLİ BELGELER İSTİYOR, BU BELGELERİ VERMEK ZORUNDA MIYIM?", metin: `GÖZETİM, MYK BELGESİ SAHİBİNİN GEÇERLİLİK SÜRESİ İÇERİSİNDE İLGİLİ MESLEKİ YETERLİLİĞİ SÜRDÜRDÜĞÜNÜN İZLENMESİDİR. YETKİLENDİRİLMİŞ BELGELENDİRME KURULUŞLARI AKTİF OLARAK ÇALIŞTIĞINIZI GÖSTERİR KANITLARI TALEP EDER, VERİLMEZSE BELGE ASKIYA ALINABİLİR VEYA İPTAL EDİLEBİLİR.` },
         { konu: "SINAV SONUCUNDA 90 PUAN ALDIĞIM AMA BAŞARISIZ OLDUĞUM YAZIYOR, BU NASIL MÜMKÜN OLUYOR?", metin: `ULUSAL YETERLİLİKLERİN BÜYÜK BİR ÇOĞUNLUĞUNDA KRİTİK ADIMLAR YER ALMAKTADIR. KRİTİK ADIM, SINAVIN BAŞARIYLA TAMAMLANMASI İÇİN ADAYIN MUTLAKA EKSİKSİZ YERİNE GETİRMESİ GEREKEN İŞLEMLERİ İFADE EDER, BU ADIMLARDAN BAŞARISIZ OLANLAR SINAVDAN KALIRLAR.` },
-        { konu: "SINAV SONUÇLARIMI VE BELGE HAK EDİP ETMEDİĞİMİ NEREDEN ÖĞRENEBİLİRİM ?", metin: `MYK WEB PORTALINDAKİ “SORGULAMA” BAŞLIĞI ALTINDAKİ ADAY SORGULAMA BÖLÜMÜNDEN VEYA E-DEVLET KAPISI ÜZERİNDEN SINAV SONUÇLARINIZI GÖREBİLİRSİNİZ. BELGE TALEBİ İLETİLDİKTEN SONRA EN GEÇ 5 İŞ GÜNÜ İÇERİSİNDE BELGE VE KİMLİK KARTLARI HAZIRLANIR.` }
+        { konu: "SINAV SONUÇLARIMI VE BELGE HAK EDİP ETMEDİĞİMİ NEREDEN ÖĞRENEBİLİRİM ?", metin: `MYK WEB PORTALINDAKİ "SORGULAMA" BAŞLIĞI ALTINDAKİ ADAY SORGULAMA BÖLÜMÜNDEN VEYA E-DEVLET KAPISI ÜZERİNDEN SINAV SONUÇLARINIZI GÖREBİLİRSİNİZ. BELGE TALEBİ İLETİLDİKTEN SONRA EN GEÇ 5 İŞ GÜNÜ İÇERİSİNDE BELGE VE KİMLİK KARTLARI HAZIRLANIR.` }
       ],
-      "MYK BİLGİ PORTALI": [
-        { konu: "BELGE ZORUNLULUĞU KAPSAMINDA TEŞVİKTEN YARARLANDIM ANCAK HÂLÂ SINAV ÜCRETİ HESABIMA YATMADI, NE ZAMAN YATACAK ?", metin: `MYK WEB PORTALINDAKİ “SORGULAMA” BAŞLIĞI ALTINDAKİ ADAY SORGULAMA BÖLÜMÜNDEN VEYA E-DEVLET KAPISI ÜZERİNDEN TEŞVİK KAPSAMINDA GERİ ÖDENECEK SINAV ÜCRETİNE İLİŞKİN BİLGİLERİ GÖREBİLİRSİNİZ. AÇIKLAMADA “HENÜZ TEŞVİK LİSTESİNE GİRMEDİ.” YAZIYORSA BELGE ALDIĞINIZ KURULUŞ TEŞVİKTEN YARARLANMA TALEBİNİZİ HENÜZ KURUMUMUZA İLETMEMİŞ DEMEKTİR.` },
-        { konu: "BELGEMİ KAYBETTİM, YENİDEN BASILMASINI VE BANA GÖNDERİLMESİNİ SAĞLAYABİLİR MİSİNİZ?", metin: `BELGEYİ ALDIĞINIZ YETKİLENDİRİLMİŞ BELGELENDİRME KURULUŞU İLE GÖRÜŞMENİZ VEYA YENİDEN BASIM TALEBİNİZİ KURULUŞA İLETMENİZ HÂLİNDE İLGİLİ KURULUŞ BASIM TALEPLERİNİZİ KURUMUMUZA İLETEBİLİR. TALEPLER İLETİLDİKTEN SONRA EN GEÇ 5 İŞ GÜNÜ İÇERİSİNDE BELGE VE KİMLİK KARTLARI KURULUŞLARA GÖNDERİLİR.` },
-        { konu: "BELGEMİN GEÇERLİLİK SÜRESİ BİTİNCE NE OLUYOR? BELGE YENİLEME NE ANLAMA GELMEKTEDİR?", metin: `BELGE YENİLEME, MYK MESLEKİ YETERLİLİK BELGESİNİR GEÇERLİLİK SÜRESİ SONUNDA BELGE SAHİBİNİN MESLEKİ YETERLİLİĞiNİ SÜRDÜRDÜĞÜNÜN TESPİT EDİLMESİ VE YENİDEN BELGELENDİRİLMESİDIR. GEÇERLİLİK SÜRESİ BİTMEDEN ÖNCE İŞLEMLER YAPILMAZSA BELGE GEÇERLİLİĞİNİ YİTİRİR.` },
-        { konu: "GÖZETİM NEDİR? SINAVLARINA GİRMİŞ OLDUĞUM KURULUŞ BENDEN ÇEŞİTLİ BELGELER İSTİYOR, BU BELGELERİ VERMEK ZORUNDA MIYIM?", metin: `GÖZETİM, MYK BELGESİ SAHİBİNİR GEÇERLİLİK SÜRESİ İÇERİSİNDE İLGİLİ MESLEKİ YETERLİLİĞİ SÜRDÜRDÜĞÜNÜN İZLENMESİDİR. YETKİLENDİRİLMİŞ BELGELENDİRME KURULUŞLARI AKTİF OLARAK ÇALIŞTIĞINIZI GÖSTERİR KANITLARI TALEP EDER, VERİLMEZSE BELGE ASKIYA ALINABİLİR VEYA İPTAL EDİLEBİLİR.` },
-        { konu: "SINAV SONUCUNDA 90 PUAN ALDIĞIM AMA BAŞARISIZ OLDUĞUM YAZIYOR, BU NASIL MÜMKÜN OLUYOR?", metin: `ULUSAL YETERLİLİKLERİN BÜYÜK BİR ÇOĞUNLUĞUNDA KRİTİK ADIMLAR YER ALMAKTADIR. KRİTİK ADIM, SINAVIN BAŞARIYLA TAMAMLANMASI İÇİN ADAYIN MUTLAKA EKSİKSİZ YERİNE GETİRMESİ GEREKEN İŞLEMLERİ İFADE EDER, BU ADIMLARDAN BAŞARISIZ OLANLAR SINAVDAN KALIRLAR.` },
-        { konu: "SINAV SONUÇLARIMI VE BELGE HAK EDİP ETMEDİĞİMİ NEREDEN ÖĞRENEBİLİRİM ?", metin: `MYK WEB PORTALINDAKİ “SORGULAMA” BAŞLIĞI ALTINDAKİ ADAY SORGULAMA BÖLÜMÜNDEN VEYA E-DEVLET KAPISI ÜZERİNDEN SINAV SONUÇLARINIZI GÖREBİLİRSİNİZ. BELGE TALEBİ İLETİLDİKTEN SONRA EN GEÇ 5 İŞ GÜNÜ İÇERİSİNDE BELGE VE KİMLİK KARTLARI HAZIRLANIR.` }
-      ],
+
       "İSG BİLGİ PORTALI": [
         { konu: "A SINIFI İŞ SAĞLIĞI GÜVENLİĞİ UZMANI KİMLER OLABİLİR?", metin: `(B) SINIFI İŞ GÜVENLİĞİ UZMANLIĞI BELGESİYLE EN AZ DÖRT YIL FİİLEN GÖREV YAPTIĞINI BELGELEYEN VE (A) SINIFI SINAVINDA BAŞARILI OLANLARA, MÜHENDİSLİK VEYA MİMARLIK MEZUNLARINDAN İŞ SAĞLIĞI VE GÜVENLİĞİNDE DOKTORA YAPMIŞ OLANLARA, İŞ SAĞLIĞI VE GÜVENLİĞİ ALANINDA EN AZ ON YIL GÖREV YAPMIŞ MÜHENDİS/MİMAR İŞ MÜFETTİŞLERİNE VERİLİR.` },
         { konu: "B SINIFI İŞ SAĞLIĞI GÜVENLİĞİ UZMANI KİMLER OLABİLİR?", metin: `(C) SINIFI İŞ GÜVENLİĞİ UZMANLIĞI BELGESİYLE EN AZ ÜÇ YIL FİİLEN GÖREV YAPTIĞINI BELGELEYEN VE (B) SINIFI SINAVINDA BAŞARILI OLAN MÜHENDİS VEYA MİMARLAR İLE TEKNİK ELEMANLARA, İŞ SAĞLIĞI VE GÜVENLİĞİNDE YÜKSEK LİSANS YAPMIŞ MÜHENDİS VE MİMARLARA VERİLİR.` },
@@ -924,7 +908,7 @@ Bu yardımı alabilmek için ölen kişinin hayatı boyunca en az 360 gün sigor
         { konu: "DİĞER SAĞLIK PERSONELİ KİMLER OLABİLİR? VE ÇALIŞMA SÜRESİ", metin: `EĞİTİM PROGRAMINI TAMAMLAYAN VE SINAVINDA BAŞARILI OLANLARA VERİLİR. ÇOK TEHLİKELİ SINIFTA YER ALAN 10-49 ÇALIŞANI OLAN İŞYERLERİNDE ÇALIŞAN BAŞINA AYDA EN AZ 10 DAKİKA, 50-249 ÇALIŞANI OLANLARDA 15 DAKİKA, 250 VE ÜZERİ ÇALIŞANI OLANLARDA 20 DAKİKA ÇALIŞTIRILMALIDIR. TAM SÜRELİ İŞYERİ HEKİMİ VARSA DSP ÇALIŞTIRMA ZORUNLULUĞU YOKTUR.` },
         { konu: "İSG BELGESİ VİZE SÜRESİ", metin: `İŞ SAĞLIĞI GÜVENLİĞİ UZMANLARI SERTİFİKALARINI 5 YILDA BİR VİZE ETTİRMESİ GEREKMEKTEDİR. VİZE SÜRESİ DOLDUĞUNDA YENİLETME İŞLEMİ YAPILMAZSA KİŞİ GÖREVİNİ YAPAMAZ. VİZE SÜRESİNİN SONA ERMESİNE 60 GÜN YA DA DAHA AZ KALMIŞ OLMASI GEREKMEKTEDİR.` },
         { konu: "İSG UZMANI ÇALIŞMA SÜRELERİ", metin: `AZ TEHLİKELİ SINIFTA ÇALIŞAN BAŞINA AYDA EN AZ 10 DAKİKA.\nTEHLİKELİ SINIFTA ÇALIŞAN BAŞINA AYDA EN AZ 20 DAKİKA.\nÇOK TEHLİKELİ SINIFTA ÇALIŞAN BAŞINA AYDA EN AZ 40 DAKİKA.` },
-        { topic: "İŞYERİ HEKİMİ KİMLER OLABİLİR? VE ÇALIŞMA SÜRELERİ", konu: "İŞYERİ HEKİMİ KİMLER OLABİLİR? VE ÇALIŞMA SÜRELERİ", metin: `İŞYERİ HEKİMLİĞİ EĞİTİMİNİ TAMAMLAYAN VE SINAVDA BAŞARILI OLAN HEKİMLERE, İŞ SAĞLIĞI DOKTORLARINA VEYA 8 YIL TEFTİŞ YAPMIŞ HEKİM İŞ MÜFETTİŞLERİNE VERİLİR.\nÇALIŞMA SÜRELERİ: AZ TEHLİKELİDE ÇALIŞAN BAŞINA EN AZ 5 DAKİKA, TEHLİKELİDE 10 DAKİKA, ÇOK TEHLİKELİDE İSE ÇALIŞAN BAŞINA AYDA EN AZ 15 DAKİKADIR.` }
+        { konu: "İŞYERİ HEKİMİ KİMLER OLABİLİR? VE ÇALIŞMA SÜRELERİ", metin: `İŞYERİ HEKİMLİĞİ EĞİTİMİNİ TAMAMLAYAN VE SINAVDA BAŞARILI OLAN HEKİMLERE, İŞ SAĞLIĞI DOKTORLARINA VEYA 8 YIL TEFTİŞ YAPMIŞ HEKİM İŞ MÜFETTİŞLERİNE VERİLİR.\nÇALIŞMA SÜRELERİ: AZ TEHLİKELİDE ÇALIŞAN BAŞINA EN AZ 5 DAKİKA, TEHLİKELİDE 10 DAKİKA, ÇOK TEHLİKELİDE İSE ÇALIŞAN BAŞINA AYDA EN AZ 15 DAKİKADIR.` }
       ],
       "ÇAĞRI KAYIT": [
         { konu: "Bireysel Emeklilik", metin: `Bireysel emeklilik katılım durumu ve birikim tutarı hakkında kurumumuzca bilgi verilememektedir; ilgili finans kuruluşu ile görüşmeniz gerekmektedir.` },
@@ -2978,10 +2962,6 @@ Bu yardımı alabilmek için ölen kişinin hayatı boyunca en az 360 gün sigor
       }
     }
   </style>
-
-
-
-
 
   <div id="emeklilikTabloGövde" class="dsdswexxvzx ia-panel">
 
@@ -19394,563 +19374,949 @@ RESPONSIVE
   </div>
 
 
-<div id="ubgt_2429_panel">
-  <style>
-    #ubgt_2429_panel .r7_kL8_wS {
-      padding: 20px;
-      width: 100%;
-      box-sizing: border-box;
-      background-color: #ffffff;
+  <div id="ubgt_2429_panel">
+    <style>
+      #ubgt_2429_panel .r7_kL8_wS {
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: #ffffff;
 
-      margin: 0 auto;
-      border-radius: 0;
-      overflow: hidden;
-      font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #000000;
-      line-height: 1.5;
-    }
+        margin: 0 auto;
+        border-radius: 0;
+        overflow: hidden;
+        font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #000000;
+        line-height: 1.5;
+      }
 
-    #ubgt_2429_panel .t1_pY6_cH {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 25px;
-      flex-wrap: wrap;
-    }
+      #ubgt_2429_panel .t1_pY6_cH {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 25px;
+        flex-wrap: wrap;
+      }
 
-    #ubgt_2429_panel .b4_nS9_wA {
-      background-color: #f1f5f9;
-      border: 2px solid transparent;
-      padding: 10px 20px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 14px;
-      color: #141d35;
-      transition: all 0.2s ease;
-    }
+      #ubgt_2429_panel .b4_nS9_wA {
+        background-color: #f1f5f9;
+        border: 2px solid transparent;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 14px;
+        color: #141d35;
+        transition: all 0.2s ease;
+      }
 
-    #ubgt_2429_panel .b4_nS9_wA:hover {
-      background-color: #0087C2;
-      color: #ffffff;
-      border-color: #0087C2;
-    }
+      #ubgt_2429_panel .b4_nS9_wA:hover {
+        background-color: #0087C2;
+        color: #ffffff;
+        border-color: #0087C2;
+      }
 
-    #ubgt_2429_panel .b4_nS9_wA.h8_rW2_kA {
-      background-color: #141d35;
-      color: #ffffff;
-      border-color: #141d35;
-    }
+      #ubgt_2429_panel .b4_nS9_wA.h8_rW2_kA {
+        background-color: #141d35;
+        color: #ffffff;
+        border-color: #141d35;
+      }
 
-    #ubgt_2429_panel .s3_tC4_gA {
-      display: none;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      background: none;
-      border: none;
-    }
+      #ubgt_2429_panel .s3_tC4_gA {
+        display: none;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: none;
+        border: none;
+      }
 
-    #ubgt_2429_panel .s3_tC4_gA.h8_rW2_kA {
-      display: block;
-    }
+      #ubgt_2429_panel .s3_tC4_gA.h8_rW2_kA {
+        display: block;
+      }
 
-    #ubgt_2429_panel .j2_mK5_qA {
-      color: #141d35;
-      text-align: left;
-      font-size: 12pt;
-      font-weight: bold;
-      padding: 0 0 8px 0;
-      margin: 0 0 15px 0;
-      border-bottom: 2px solid #0087C2;
-    }
+      #ubgt_2429_panel .j2_mK5_qA {
+        color: #141d35;
+        text-align: left;
+        font-size: 12pt;
+        font-weight: bold;
+        padding: 0 0 8px 0;
+        margin: 0 0 15px 0;
+        border-bottom: 2px solid #0087C2;
+      }
 
-    #ubgt_2429_panel .v6_nK2_zA2 {
-      width: 100%;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin-bottom: 30px;
-    }
+      #ubgt_2429_panel .v6_nK2_zA2 {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 30px;
+      }
 
-    #ubgt_2429_panel .g9_tM1_wT {
-      width: 100%;
-      border-collapse: collapse;
-      background-color: #ffffff;
-      font-size: 9.5pt;
-    }
+      #ubgt_2429_panel .g9_tM1_wT {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ffffff;
+        font-size: 9.5pt;
+      }
 
-    #ubgt_2429_panel .g9_tM1_wT th,
-    #ubgt_2429_panel .g9_tM1_wT td {
-      border: 2px solid #141d35;
-      padding: 10px;
-      text-align: center;
-      vertical-align: middle;
-    }
+      #ubgt_2429_panel .g9_tM1_wT th,
+      #ubgt_2429_panel .g9_tM1_wT td {
+        border: 2px solid #141d35;
+        padding: 10px;
+        text-align: center;
+        vertical-align: middle;
+      }
 
-    #ubgt_2429_panel .g9_tM1_wT thead tr {
-      background-color: #141d35;
-      color: #ffffff;
-      font-weight: bold;
-    }
+      #ubgt_2429_panel .g9_tM1_wT thead tr {
+        background-color: #141d35;
+        color: #ffffff;
+        font-weight: bold;
+      }
 
-    #ubgt_2429_panel .g9_tM1_wT tbody {
-      color: #000000;
-      font-weight: bold;
-    }
+      #ubgt_2429_panel .g9_tM1_wT tbody {
+        color: #000000;
+        font-weight: bold;
+      }
 
-    #ubgt_2429_panel .u4_xP8_wA {
-      text-align: left;
-      font-weight: bold;
-      color: #141d35;
-    }
+      #ubgt_2429_panel .u4_xP8_wA {
+        text-align: left;
+        font-weight: bold;
+        color: #141d35;
+      }
 
-    #ubgt_2429_panel .c2_jR4_nA {
-      text-align: left;
-      font-weight: bold;
-      color: #141d35;
-      background-color: #f5f5f5;
-    }
+      #ubgt_2429_panel .c2_jR4_nA {
+        text-align: left;
+        font-weight: bold;
+        color: #141d35;
+        background-color: #f5f5f5;
+      }
 
-    #ubgt_2429_panel .g9_tM1_wT tbody tr {
-      transition: background-color 0.15s;
-    }
+      #ubgt_2429_panel .g9_tM1_wT tbody tr {
+        transition: background-color 0.15s;
+      }
 
-    #ubgt_2429_panel .g9_tM1_wT tbody tr:hover {
-      background-color: #f5f5f5 !important;
-    }
+      #ubgt_2429_panel .g9_tM1_wT tbody tr:hover {
+        background-color: #f5f5f5 !important;
+      }
 
-    #ubgt_2429_panel .g9_tM1_wT tbody tr.bg-zebra td:not(.c2_jR4_nA) {
-      background-color: #fafafa;
-    }
+      #ubgt_2429_panel .g9_tM1_wT tbody tr.bg-zebra td:not(.c2_jR4_nA) {
+        background-color: #fafafa;
+      }
 
-    #ubgt_2429_panel .txt-danger {
-      color: #c62828;
-    }
+      #ubgt_2429_panel .txt-danger {
+        color: #c62828;
+      }
 
-    #ubgt_2429_panel .txt-success {
-      color: #2e7d32;
-    }
+      #ubgt_2429_panel .txt-success {
+        color: #2e7d32;
+      }
 
-    #ubgt_2429_panel .txt-muted {
-      color: #666666;
-      font-weight: normal;
-    }
+      #ubgt_2429_panel .txt-muted {
+        color: #666666;
+        font-weight: normal;
+      }
 
-    #ubgt_2429_panel .l5_vP9_sA {
-      background-color: #f5f5f5;
-      border: 1px solid #141d35;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 4px;
-      font-size: 10pt;
-    }
+      #ubgt_2429_panel .l5_vP9_sA {
+        background-color: #f5f5f5;
+        border: 1px solid #141d35;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 4px;
+        font-size: 10pt;
+      }
 
-    #ubgt_2429_panel .l5_vP9_sA ul {
-      margin: 0;
-      padding-left: 20px;
-    }
+      #ubgt_2429_panel .l5_vP9_sA ul {
+        margin: 0;
+        padding-left: 20px;
+      }
 
-    #ubgt_2429_panel .l5_vP9_sA li {
-      margin-bottom: 10px;
-      line-height: 1.6;
-    }
+      #ubgt_2429_panel .l5_vP9_sA li {
+        margin-bottom: 10px;
+        line-height: 1.6;
+      }
 
-    #ubgt_2429_panel .l5_vP9_sA li:last-child {
-      margin-bottom: 0;
-    }
-  </style>
+      #ubgt_2429_panel .l5_vP9_sA li:last-child {
+        margin-bottom: 0;
+      }
+    </style>
 
-  <div class="r7_kL8_wS ia-panel" id="resmitatilgunleri">
+    <div class="r7_kL8_wS ia-panel" id="resmitatilgunleri">
 
-    <div class="t1_pY6_cH">
-      <button class="b4_nS9_wA h8_rW2_kA" onclick="f7_xR9_bX_ubgt('tatil')">TATİL GÜNLERİ</button>
-      <button class="b4_nS9_wA" onclick="f7_xR9_bX_ubgt('ucret')">ÜCRET VE ZAM ORANLARI</button>
+      <div class="t1_pY6_cH">
+        <button class="b4_nS9_wA h8_rW2_kA" onclick="f7_xR9_bX_ubgt('tatil')">TATİL GÜNLERİ</button>
+        <button class="b4_nS9_wA" onclick="f7_xR9_bX_ubgt('ucret')">ÜCRET VE ZAM ORANLARI</button>
+      </div>
+
+      <div id="tab-tatil-ubgt" class="s3_tC4_gA h8_rW2_kA">
+        <div class="j2_mK5_qA">
+          2429 SAYILI KANUN - ULUSAL BAYRAM VE GENEL TATİL GÜNLERİ (TOPLAM 15,5 GÜN)
+        </div>
+        <div class="v6_nK2_zA2">
+          <table class="g9_tM1_wT">
+            <thead>
+              <tr>
+                <th style="width: 60%;">BAYRAM / TATİL</th>
+                <th style="width: 40%;">GÜN SAYISI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="u4_xP8_wA">1 Ocak Yılbaşı</td>
+                <td>1 GÜN</td>
+              </tr>
+              <tr class="bg-zebra">
+                <td class="u4_xP8_wA">23 Nisan Ulusal Egemenlik ve Çocuk Bayramı</td>
+                <td>1 GÜN</td>
+              </tr>
+              <tr>
+                <td class="u4_xP8_wA">1 Mayıs Emek ve Dayanışma Günü</td>
+                <td>1 GÜN</td>
+              </tr>
+              <tr class="bg-zebra">
+                <td class="u4_xP8_wA">19 Mayıs Atatürk'ü Anma, Gençlik ve Spor Bayramı</td>
+                <td>1 GÜN</td>
+              </tr>
+              <tr>
+                <td class="u4_xP8_wA">Ramazan Bayramı (Arefe günü saat 13.00'ten itibaren)</td>
+                <td>3,5 GÜN</td>
+              </tr>
+              <tr class="bg-zebra">
+                <td class="u4_xP8_wA">Kurban Bayramı (Arefe günü saat 13.00'ten itibaren)</td>
+                <td>4,5 GÜN</td>
+              </tr>
+              <tr>
+                <td class="u4_xP8_wA">15 Temmuz Demokrasi ve Millî Birlik Günü</td>
+                <td>1 GÜN</td>
+              </tr>
+              <tr class="bg-zebra">
+                <td class="u4_xP8_wA">30 Ağustos Zafer Bayramı</td>
+                <td>1 GÜN</td>
+              </tr>
+              <tr>
+                <td class="u4_xP8_wA">29 Ekim Cumhuriyet Bayramı (28 Ekim saat 13.00'ten itibaren)</td>
+                <td>1,5 GÜN</td>
+              </tr>
+              <tr>
+                <td class="c2_jR4_nA">TOPLAM</td>
+                <td>15,5 GÜN</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="tab-ucret-ubgt" class="s3_tC4_gA">
+        <div class="j2_mK5_qA">
+          4857 SAYILI İŞ KANUNU - ÇALIŞMA DURUMUNA GÖRE ÜCRET VE ZAM ORANLARI
+        </div>
+        <div class="v6_nK2_zA2">
+          <table class="g9_tM1_wT">
+            <thead>
+              <tr>
+                <th style="width: 45%;">ÇALIŞMA DURUMU</th>
+                <th style="width: 30%;">İLAVE ÜCRET ORANI</th>
+                <th style="width: 25%;">İLGİLİ MADDE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="u4_xP8_wA">Resmî tatilde çalışma</td>
+                <td class="txt-danger">%100 ZAMLI</td>
+                <td class="txt-muted">Madde 47</td>
+              </tr>
+              <tr class="bg-zebra">
+                <td class="u4_xP8_wA">Bayram tatilinde çalışma</td>
+                <td class="txt-danger">%100 ZAMLI</td>
+                <td class="txt-muted">Madde 47</td>
+              </tr>
+              <tr>
+                <td class="u4_xP8_wA">Hafta tatilinde çalışma</td>
+                <td class="txt-danger">%150 ZAMLI</td>
+                <td class="txt-muted">Madde 46</td>
+              </tr>
+              <tr class="bg-zebra">
+                <td class="u4_xP8_wA">Resmî/dinî bayramın hafta tatiline denk gelmesi ve çalışılması</td>
+                <td class="txt-danger">%150 ZAMLI</td>
+                <td class="txt-muted">Madde 46 / 47</td>
+              </tr>
+              <tr>
+                <td class="u4_xP8_wA">Haftalık 45 saati aşan fazla çalışma</td>
+                <td class="txt-success">%50 ZAMLI</td>
+                <td class="txt-muted">Madde 41</td>
+              </tr>
+              <tr class="bg-zebra">
+                <td class="u4_xP8_wA">45 saatlik süreyi tamamlayan fazla sürelerle çalışma</td>
+                <td class="txt-success">%25 ZAMLI</td>
+                <td class="txt-muted">Madde 41</td>
+              </tr>
+              <tr>
+                <td class="u4_xP8_wA">45 saati aşan kısım için fazla çalışma</td>
+                <td class="txt-success">%50 ZAMLI</td>
+                <td class="txt-muted">Madde 41</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div
+          style="height: 1px; background: linear-gradient(to right, transparent, #141d35, transparent); margin: 30px 0; opacity:.25;">
+        </div>
+
+        <div class="l5_vP9_sA">
+          <strong style="color: #141d35; display:block; margin-bottom: 10px; font-size:10.5pt;">AÇIKLAMALAR</strong>
+          <ul>
+            <li>Ulusal bayram ve genel tatil günlerinde çalışılıp çalışılmayacağı toplu iş sözleşmesi veya bireysel iş
+              sözleşmesi ile belirlenir. Sözleşmelerde hüküm bulunmaması hâlinde bu günlerde çalışılması için işçinin
+              onayı gereklidir (Madde 44).</li>
+            <li>İşçi ulusal bayram ve genel tatil günlerinde çalışmazsa o günün ücretini tam olarak alır. Çalışması
+              hâlinde ise normal ücretine ek olarak çalıştığı her gün için ayrıca bir günlük ücret ödenir (Madde 47).
+            </li>
+            <li>Yüzde usulünün uygulandığı işyerlerinde ulusal bayram ve genel tatil ücretleri işveren tarafından
+              ödenir.</li>
+            <li>İşverenin, işçiyi hafta tatilinde veya ulusal bayram ve genel tatil günlerinde çalıştırabilmesi için
+              işçinin yazılı onayını alması gerekmektedir. Bu onay iş sözleşmesinde yer alıyorsa ayrıca yeniden onay
+              alınmasına gerek yoktur.</li>
+            <li>Haftalık 45 saatin üzerinde çalışan bir işçinin ayrıca hafta tatilinde çalışması hâlinde, hafta tatili
+              çalışması %150 zamlı ücret üzerinden değerlendirilir.</li>
+            <li>Kaynak: 4857 sayılı İş Kanunu'nun 44, 47 ve 49. maddeleri.</li>
+          </ul>
+        </div>
+      </div>
+
     </div>
 
-    <div id="tab-tatil-ubgt" class="s3_tC4_gA h8_rW2_kA">
-      <div class="j2_mK5_qA">
-        2429 SAYILI KANUN - ULUSAL BAYRAM VE GENEL TATİL GÜNLERİ (TOPLAM 15,5 GÜN)
-      </div>
-      <div class="v6_nK2_zA2">
-        <table class="g9_tM1_wT">
-          <thead>
-            <tr>
-              <th style="width: 60%;">BAYRAM / TATİL</th>
-              <th style="width: 40%;">GÜN SAYISI</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="u4_xP8_wA">1 Ocak Yılbaşı</td>
-              <td>1 GÜN</td>
-            </tr>
-            <tr class="bg-zebra">
-              <td class="u4_xP8_wA">23 Nisan Ulusal Egemenlik ve Çocuk Bayramı</td>
-              <td>1 GÜN</td>
-            </tr>
-            <tr>
-              <td class="u4_xP8_wA">1 Mayıs Emek ve Dayanışma Günü</td>
-              <td>1 GÜN</td>
-            </tr>
-            <tr class="bg-zebra">
-              <td class="u4_xP8_wA">19 Mayıs Atatürk'ü Anma, Gençlik ve Spor Bayramı</td>
-              <td>1 GÜN</td>
-            </tr>
-            <tr>
-              <td class="u4_xP8_wA">Ramazan Bayramı (Arefe günü saat 13.00'ten itibaren)</td>
-              <td>3,5 GÜN</td>
-            </tr>
-            <tr class="bg-zebra">
-              <td class="u4_xP8_wA">Kurban Bayramı (Arefe günü saat 13.00'ten itibaren)</td>
-              <td>4,5 GÜN</td>
-            </tr>
-            <tr>
-              <td class="u4_xP8_wA">15 Temmuz Demokrasi ve Millî Birlik Günü</td>
-              <td>1 GÜN</td>
-            </tr>
-            <tr class="bg-zebra">
-              <td class="u4_xP8_wA">30 Ağustos Zafer Bayramı</td>
-              <td>1 GÜN</td>
-            </tr>
-            <tr>
-              <td class="u4_xP8_wA">29 Ekim Cumhuriyet Bayramı (28 Ekim saat 13.00'ten itibaren)</td>
-              <td>1,5 GÜN</td>
-            </tr>
-            <tr>
-              <td class="c2_jR4_nA">TOPLAM</td>
-              <td>15,5 GÜN</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <script>
+      function f7_xR9_bX_ubgt(tabId) {
+        var root = document.getElementById('ubgt_2429_panel');
+        root.querySelectorAll('.b4_nS9_wA').forEach(function (btn) { btn.classList.remove('h8_rW2_kA'); });
+        root.querySelectorAll('.s3_tC4_gA').forEach(function (box) { box.classList.remove('h8_rW2_kA'); });
 
-    <div id="tab-ucret-ubgt" class="s3_tC4_gA">
-      <div class="j2_mK5_qA">
-        4857 SAYILI İŞ KANUNU - ÇALIŞMA DURUMUNA GÖRE ÜCRET VE ZAM ORANLARI
-      </div>
-      <div class="v6_nK2_zA2">
-        <table class="g9_tM1_wT">
-          <thead>
-            <tr>
-              <th style="width: 45%;">ÇALIŞMA DURUMU</th>
-              <th style="width: 30%;">İLAVE ÜCRET ORANI</th>
-              <th style="width: 25%;">İLGİLİ MADDE</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="u4_xP8_wA">Resmî tatilde çalışma</td>
-              <td class="txt-danger">%100 ZAMLI</td>
-              <td class="txt-muted">Madde 47</td>
-            </tr>
-            <tr class="bg-zebra">
-              <td class="u4_xP8_wA">Bayram tatilinde çalışma</td>
-              <td class="txt-danger">%100 ZAMLI</td>
-              <td class="txt-muted">Madde 47</td>
-            </tr>
-            <tr>
-              <td class="u4_xP8_wA">Hafta tatilinde çalışma</td>
-              <td class="txt-danger">%150 ZAMLI</td>
-              <td class="txt-muted">Madde 46</td>
-            </tr>
-            <tr class="bg-zebra">
-              <td class="u4_xP8_wA">Resmî/dinî bayramın hafta tatiline denk gelmesi ve çalışılması</td>
-              <td class="txt-danger">%150 ZAMLI</td>
-              <td class="txt-muted">Madde 46 / 47</td>
-            </tr>
-            <tr>
-              <td class="u4_xP8_wA">Haftalık 45 saati aşan fazla çalışma</td>
-              <td class="txt-success">%50 ZAMLI</td>
-              <td class="txt-muted">Madde 41</td>
-            </tr>
-            <tr class="bg-zebra">
-              <td class="u4_xP8_wA">45 saatlik süreyi tamamlayan fazla sürelerle çalışma</td>
-              <td class="txt-success">%25 ZAMLI</td>
-              <td class="txt-muted">Madde 41</td>
-            </tr>
-            <tr>
-              <td class="u4_xP8_wA">45 saati aşan kısım için fazla çalışma</td>
-              <td class="txt-success">%50 ZAMLI</td>
-              <td class="txt-muted">Madde 41</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div style="height: 1px; background: linear-gradient(to right, transparent, #141d35, transparent); margin: 30px 0; opacity:.25;"></div>
-
-      <div class="l5_vP9_sA">
-        <strong style="color: #141d35; display:block; margin-bottom: 10px; font-size:10.5pt;">AÇIKLAMALAR</strong>
-        <ul>
-          <li>Ulusal bayram ve genel tatil günlerinde çalışılıp çalışılmayacağı toplu iş sözleşmesi veya bireysel iş sözleşmesi ile belirlenir. Sözleşmelerde hüküm bulunmaması hâlinde bu günlerde çalışılması için işçinin onayı gereklidir (Madde 44).</li>
-          <li>İşçi ulusal bayram ve genel tatil günlerinde çalışmazsa o günün ücretini tam olarak alır. Çalışması hâlinde ise normal ücretine ek olarak çalıştığı her gün için ayrıca bir günlük ücret ödenir (Madde 47).</li>
-          <li>Yüzde usulünün uygulandığı işyerlerinde ulusal bayram ve genel tatil ücretleri işveren tarafından ödenir.</li>
-          <li>İşverenin, işçiyi hafta tatilinde veya ulusal bayram ve genel tatil günlerinde çalıştırabilmesi için işçinin yazılı onayını alması gerekmektedir. Bu onay iş sözleşmesinde yer alıyorsa ayrıca yeniden onay alınmasına gerek yoktur.</li>
-          <li>Haftalık 45 saatin üzerinde çalışan bir işçinin ayrıca hafta tatilinde çalışması hâlinde, hafta tatili çalışması %150 zamlı ücret üzerinden değerlendirilir.</li>
-          <li>Kaynak: 4857 sayılı İş Kanunu'nun 44, 47 ve 49. maddeleri.</li>
-        </ul>
-      </div>
-    </div>
-
+        event.currentTarget.classList.add('h8_rW2_kA');
+        document.getElementById('tab-' + tabId + '-ubgt').classList.add('h8_rW2_kA');
+      }
+    </script>
   </div>
 
-  <script>
-    function f7_xR9_bX_ubgt(tabId) {
-      var root = document.getElementById('ubgt_2429_panel');
-      root.querySelectorAll('.b4_nS9_wA').forEach(function(btn) { btn.classList.remove('h8_rW2_kA'); });
-      root.querySelectorAll('.s3_tC4_gA').forEach(function(box) { box.classList.remove('h8_rW2_kA'); });
-
-      event.currentTarget.classList.add('h8_rW2_kA');
-      document.getElementById('tab-' + tabId + '-ubgt').classList.add('h8_rW2_kA');
-    }
-  </script>
-</div>
 
 
+  <div id="edevlet_link_panel" class="ia-panel">
+    <style>
+      #edevlet_link_panel {
+        width: 100%;
+        box-sizing: border-box;
+        background-color: transparent;
+        padding: 20px;
+        font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #1a1a1a;
+        line-height: 1.5;
+      }
 
-<div id="edevlet_link_panel" class="ia-panel">
+      #edevlet_link_panel * {
+        box-sizing: border-box;
+      }
+
+      #edevlet_link_panel .ep_search_wrap {
+        margin-bottom: 24px;
+      }
+
+      #edevlet_link_panel #ep_search_input {
+        width: 100%;
+        padding: 11px 14px;
+        font-size: 11pt;
+        font-family: 'Roboto', sans-serif;
+        border: 2px solid hsl(220, 24%, 12%);
+        border-radius: 6px;
+        outline: none;
+        background: transparent;
+        color: #1a1a1a;
+        transition: border-color .2s;
+      }
+
+      #edevlet_link_panel #ep_search_input::placeholder {
+        color: #9aa0a8;
+      }
+
+      #edevlet_link_panel #ep_search_input:focus {
+        border-color: #4ade80;
+      }
+
+      #edevlet_link_panel .ep_cat_block {
+        margin-bottom: 22px;
+      }
+
+      #edevlet_link_panel .ep_cat_title {
+        color: hsl(220, 24%, 12%);
+        font-weight: 700;
+        font-size: 9.5pt;
+        letter-spacing: .6px;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+        opacity: .75;
+      }
+
+      #edevlet_link_panel .ep_cat_list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 24px;
+      }
+
+      @media (max-width: 900px) {
+        #edevlet_link_panel .ep_cat_list {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 560px) {
+        #edevlet_link_panel .ep_cat_list {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      #edevlet_link_panel .ep_link_row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: #1a1a1a;
+        font-size: 10pt;
+        padding: 8px 4px;
+        border-bottom: 1px solid #f0f1f3;
+        transition: color .15s, padding-left .15s;
+      }
+
+      #edevlet_link_panel .ep_link_row:last-child {
+        border-bottom: none;
+      }
+
+      #edevlet_link_panel .ep_link_row:hover {
+        color: #4ade80;
+        padding-left: 8px;
+      }
+
+      #edevlet_link_panel .ep_dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: #4ade80;
+        flex-shrink: 0;
+        opacity: .6;
+      }
+
+      #edevlet_link_panel .ep_no_result {
+        display: none;
+        color: #9aa0a8;
+        padding: 20px 4px;
+        font-size: 10pt;
+      }
+    </style>
+
+    <div class="ep_search_wrap">
+      <input type="text" id="ep_search_input" onkeyup="ep_filterLinks()"
+        placeholder="Hizmet ara... (ör. borçlanma, tescil, işsizlik ödeneği)">
+    </div>
+
+    <div id="ep_results_container"></div>
+    <div class="ep_no_result" id="ep_no_result">Aramanızla eşleşen bir hizmet bulunamadı.</div>
+
+    <script>
+      (function () {
+        var ep_data = [
+          {
+            cat: "4A Sigortalı", items: [
+              ["4A Sigortalı Tescil Kaydı Tespiti", "https://www.turkiye.gov.tr/4a-tescil-kaydi"],
+              ["4A İşe Giriş Çıkış Bildirgesi", "https://www.turkiye.gov.tr/sosyal-guvenlik-4a-ise-giris-cikis-bildirgesi"],
+              ["4A(SSK) Sigortalılarının Kendini Bildirmesi", "https://www.turkiye.gov.tr/sgk-4a-sigortalilik-bildirimi"],
+              ["4A On Günden Az Süreli Ev Hiz. Çalışan Kişi Sorgulama", "https://www.turkiye.gov.tr/sgk-ev-hizmetleri-calisan"],
+              ["4A On Günden Az Süreli Ev Hiz. İşveren Başvuru ve Sorgulama", "https://www.turkiye.gov.tr/sgk-ev-hizmetleri-isveren"],
+              ["4A Askerlik Borçlanması Başvurusu", "https://www.turkiye.gov.tr/sosyal-guvenlik-4a-askerlik-borclanmasi-basvurusu"],
+              ["4A Doğum Borçlanması Başvurusu", "https://www.turkiye.gov.tr/sosyal-guvenlik-4a-dogum-borclanmasi-basvurusu"],
+              ["4A İsteğe Bağlı İlk Tescil Kaydı", "https://www.turkiye.gov.tr/sosyal-guvenlik-4a-istege-bagli-ilk-tescil-kaydi"],
+              ["4A İsteğe Bağlı Sigortalılığı Sona Erdirme", "https://www.turkiye.gov.tr/sosyal-guvenlik-4a-istege-bagli-sigortaliligi-sona-erdirme"],
+              ["4A Banka ve Adres Değişikliği", "https://www.turkiye.gov.tr/4a-banka-degisikligi"],
+              ["Kısmi Süreli Çalışan Sigortalıların Borçlandırılması", "https://www.turkiye.gov.tr/sosyal-guvenlik-4857-sayili-kanuna-gore-kismi-sureli-calisan-sigortalilarin-borclandirilmasi"]
+            ]
+          },
+          {
+            cat: "4B Sigortalı", items: [
+              ["4B Hizmet Bilgisi", "https://www.turkiye.gov.tr/4b-hizmet-bilgisi"],
+              ["4B Borç Durumu", "https://www.turkiye.gov.tr/4b-borc-durumu"],
+              ["4B Ödeme Dökümü", "https://www.turkiye.gov.tr/4b-odeme-dokumu"],
+              ["4B İş Göremezlik Raporu Çalışmazlık Beyan İşlemleri", "https://www.turkiye.gov.tr/sosyal-guvenlik-is-goremezlik-raporu-calismazlik-beyan-islemleri"],
+              ["4B Tescil Kaydı", "https://www.turkiye.gov.tr/4b-tescil-kaydi"],
+              ["4B Kapsamında Toptan Ödeme İhyası", "https://www.turkiye.gov.tr/sosyal-guvenlik-4b-kapsaminda-toptan-odeme-ihyasi"],
+              ["4B Askerlik Borçlanması Başvurusu", "https://www.turkiye.gov.tr/sosyal-guvenlik-4b-askerlik-borclanmasi-basvurusu"],
+              ["4B Doğum Borçlanması Başvurusu", "https://www.turkiye.gov.tr/sosyal-guvenlik-4b-dogum-borclanmasi-basvurusu"],
+              ["4B Banka ve Adres Değişikliği", "https://www.turkiye.gov.tr/4b-banka-degisikligi"],
+              ["4B İsteğe Bağlı İlk Tescil Kaydı Veya İptali", "https://www.turkiye.gov.tr/4b-istege-bagli-ilk-tescil-kaydi"]
+            ]
+          },
+          {
+            cat: "4C Sigortalı", items: [
+              ["4C Tescil Kaydı", "https://www.turkiye.gov.tr/4c-tescil-kaydi"],
+              ["4C Kapsamında Kamu Görevlilerinin Hizmetlerinin İhyası", "https://www.turkiye.gov.tr/sosyal-guvenlik-5434-sayili-emekli-sandigi-kanunu-kapsaminda-kamu-gorevlilerinin-hizmetlerinin-ihyasi"],
+              ["4C Banka ve Adres Değişikliği", "https://www.turkiye.gov.tr/4c-banka-degisikligi"],
+              ["4C Evlenme İkramiyesi Ödenmesi Talebi", "https://www.turkiye.gov.tr/sosyal-guvenlik-evlenme-ikramiyesi-odenmesi-talebi"],
+              ["4C Bir Aylık Maaş Tercihi", "https://www.turkiye.gov.tr/4c-bir-aylik-maas-tercihi"],
+              ["4C Ölüm Yardımı ve Dul / Yetim Aylığı Talebi", "https://www.turkiye.gov.tr/sosyal-guvenlik-olum-yardimi-ve-dul-yetim-ayligi-talebi"],
+              ["Şahıs Ödeme Online Başvuru", "https://gss.sgk.gov.tr/SahisOdemeOnlineBasvuru"]
+            ]
+          },
+          {
+            cat: "Genel Sağlık Sigortası Uygulamaları", items: [
+              ["GSS Tescil ve Prim Borcu Sorgulama", "https://www.turkiye.gov.tr/sgk-gss-borc-dokumu"],
+              ["Sağlık Provizyon Aktivasyon Sistemi", "https://www.turkiye.gov.tr/spas-mustahaklik-sorgulama"],
+              ["Sgk Cep Telefonu Bilgisi Beyan", "https://www.turkiye.gov.tr/sgk-cep-telefonu-bilgisi-beyan"],
+              ["Sağlık Yardımı Talep ve Taahhüt", "https://www.turkiye.gov.tr/sgk-saglik-yardim-talep-taahhut"],
+              ["Şahıs Ödemeleri Banka Hesabı Tanımlama", "https://www.turkiye.gov.tr/sgk-sahis-odemeleri-banka-hesabi-tanimlama"],
+              ["Tedavi Bilgileri Sorgulama", "https://www.turkiye.gov.tr/sgk-tedavi-bilgileri-sorgulama"],
+              ["Bakmakla Yükümlü Olduğu Aile Bireyleri Sorgulama", "https://www.turkiye.gov.tr/sosyal-guvenlik-genel-saglik-sigortalisinin-bakmakla-yukumlu-oldugu-aile-bireyleri-sorgulama"],
+              ["4A/4B/4C Muayene Katılım Payı Sorgulama", "https://www.turkiye.gov.tr/muayene-katilim-payi-sorgulama"],
+              ["İlaç Kullanım Süresi Sorgulama", "https://www.turkiye.gov.tr/ilac-kullanim-suresi-sorgulama"],
+              ["İlaç Rapor Bilgisi Sorgulama", "https://www.turkiye.gov.tr/sosyal-guvenlik-ilac-rapor-bilgisi-sorgulama"],
+              ["İlaç e-Reçete / Reçete Bilgileri Sorgulama", "https://www.turkiye.gov.tr/sosyal-guvenlik-ilac-e-recete-recete-bilgileri-sorgulama"],
+              ["Yurt Dışından Getirilen İlaçların Başvurusu", "https://www.turkiye.gov.tr/sosyal-guvenlik-yurt-disindan-getirilen-ilaclarin-basvurusu"]
+            ]
+          },
+          {
+            cat: "Borçlanma Hizmetleri", items: [
+              ["Kart İle Prim Ödeme Uygulaması (Web Tahsilat)", "https://www.turkiye.gov.tr/sosyal-guvenlik-sosyal-guvenlik-kurumu-kart-ile-prim-odeme-uygulamasi"],
+              ["Ev Hizmetlerinde Çalışanların İstirahat Raporu Çalışmazlık Bildirimi", "https://www.turkiye.gov.tr/sosyal-guvenlik-ev-hizmetlerinde-calisanlarin-istirahat-raporu-calismazlik-bildirimi"],
+              ["İşyeri Kaydı / Borcu Yoktur Belgesi Sorgulama", "https://www.turkiye.gov.tr/sosyal-guvenlik-isyeri-kaydi-borcu-yoktur-belgesi-sorgulama"],
+              ["E-Borcu Yoktur", "https://www.turkiye.gov.tr/sgk-esgkuyg-esgksifre-e-borcu-yoktur"],
+              ["Yurtdışı Borçlanma Talebinde Bulunulması", "https://www.turkiye.gov.tr/sosyal-guvenlik-elektronik-ortamda-duzenlenen-yurt-disi-hizmetikamet-belgeleriyle-yurt-disi-borclanma-talebinde-bulunulmasi"],
+              ["EK5/EK6/5G/30 Günden Az İBS Tescil Kaydı ve Borç Dökümü", "https://www.turkiye.gov.tr/sgk-ek5ek6-tescil-kaydi-ve-borc-dokumu"],
+              ["Toptan Ödeme Talebi", "https://www.turkiye.gov.tr/sosyal-guvenlik-toptan-odeme-talebi"]
+            ]
+          },
+          {
+            cat: "Sigortalılık Uygulamaları", items: [
+              ["4A/4B İşgöremezlik Ödemesi Görme", "https://www.turkiye.gov.tr/4ab-isgoremezlik-odemesi-gorme"],
+              ["SGK Tescil ve Hizmet Dökümü / İşyeri Ünvan Listesi", "https://www.turkiye.gov.tr/sgk-tescil-ve-hizmet-dokumu"],
+              ["Sosyal Güvenlik Kayıt Belgesi Sorgulama", "https://www.turkiye.gov.tr/sosyal-guvenlik-kayit-belgesi-sorgulama"],
+              ["Gelir, Aylık, Ödenek Talep Belgesinin Verilmesi", "https://www.turkiye.gov.tr/sgk-tahsis-talep-taahhut-beyan"],
+              ["Şahıs Ödeme Durumları Görüntüleme", "https://www.turkiye.gov.tr/sgk-sahis-odeme-goruntuleme"]
+            ]
+          },
+          {
+            cat: "Emeklilik Uygulamaları", items: [
+              ["Emekli Günlük Ödeme Sorgulama", "https://www.turkiye.gov.tr/sosyal-guvenlik-emekli-gunluk-odeme-sorgulama"],
+              ["Hareketsiz ve Blokeli Emekli Maaşı İade Başvurusu", "https://www.turkiye.gov.tr/sgk-hareketsiz-ve-blokeli-emekli-maasi-iade-basvurusu"],
+              ["Hareketsiz ve Blokeli Emekli Maaşı Sorgulama", "https://www.turkiye.gov.tr/sgk-hareketsiz-ve-blokeli-emekli-maasi-sorgulama"],
+              ["Emekli Dijital Kart Sorgulama", "https://www.turkiye.gov.tr/sgk-emekli-dijital-kart-sorgulama"],
+              ["Eğitim Öğretim Yardımı Talebi", "https://www.turkiye.gov.tr/sosyal-guvenlik-egitim-ogretim-yardimi-talebi"]
+            ]
+          },
+          {
+            cat: "İşkur", items: [
+              ["İşsizlik Ödeneği / İş Kaybı Tazminatı Başvurusu", "https://www.turkiye.gov.tr/issizlik-odenegi-basvurusu?bilgilendirme=Metni"],
+              ["İŞKUR Kayıt Belgesi", "https://www.turkiye.gov.tr/iskur-kayit-belgesi"],
+              ["İş Arayan Üyelik", "https://www.turkiye.gov.tr/iskur-is-arayan-uyelik"],
+              ["(TYP) Sorgulama ve Başvuru", "https://www.turkiye.gov.tr/iskur-typ-arama-ve-basvuru"],
+              ["Kısa Çalışma Ödeneği Başvurusu", "https://www.turkiye.gov.tr/iskur-kisa-calisma-odenegi-basvurusu"],
+              ["Yarım Çalışma Ödeneği (YÇÖ) Başvurusu ve Sorgulama", "https://www.turkiye.gov.tr/turkiye-is-iskur-yarim-calisma-odenegi-basvurusu-ve-basvuru-sorgulama"],
+              ["İş ve Meslek Danışmanlığı Randevu Al", "https://www.turkiye.gov.tr/iskur-is-arayanlar-icin-danismanlik-hizmeti-randevusu-alma"],
+              ["Engelli Hibe Desteği Başvurusu", "https://www.turkiye.gov.tr/turkiye-is-iskur-engelli-hibe-destegi-basvurusu"]
+            ]
+          },
+          {
+            cat: "Hizmet Birleştirme", items: [
+              ["Hizmet Birleştirme (4/1-a, b ve 506 SK GM 20)", "https://www.turkiye.gov.tr/sosyal-guvenlik-41-a-b-ve-506-sk-gm-20-nci-madde-sandigi-calisanlarin-hizmet-birlestirme-basvurusu"],
+              ["Kamu Görevlisi Görevinden Ayrılanların Hizmet Birleştirilmesi", "https://www.turkiye.gov.tr/sosyal-guvenlik-kamu-gorevlisiyken-bu-gorevinden-ayrilanlarin-hizmet-surelerinin-birlestirilmesi"],
+              ["PTT'den Yapılan Kurum Ödemeleri Sorgulama ve Hesaba Aktarma", "https://www.turkiye.gov.tr/ptt-ptt-uzerinden-yapilan-kurum-odemeleri-sorgulama"]
+            ]
+          }
+        ];
+
+        function ep_render(filter) {
+          var container = document.getElementById('ep_results_container');
+          var noResult = document.getElementById('ep_no_result');
+          var f = (filter || '').toLocaleLowerCase('tr-TR').trim();
+          var html = '';
+          var totalMatches = 0;
+
+          ep_data.forEach(function (group) {
+            var matched = group.items.filter(function (item) {
+              return item[0].toLocaleLowerCase('tr-TR').indexOf(f) !== -1;
+            });
+            if (matched.length === 0) return;
+            totalMatches += matched.length;
+
+            html += '<div class="ep_cat_block"><div class="ep_cat_title">' + group.cat + '</div><div class="ep_cat_list">';
+            matched.forEach(function (item) {
+              html += '<a class="ep_link_row" href="' + item[1] + '" target="_blank" rel="noopener">' +
+                '<span class="ep_dot"></span><span>' + item[0] + '</span></a>';
+            });
+            html += '</div></div>';
+          });
+
+          container.innerHTML = html;
+          noResult.style.display = totalMatches === 0 ? 'block' : 'none';
+        }
+
+        window.ep_filterLinks = function () {
+          var val = document.getElementById('ep_search_input').value;
+          ep_render(val);
+        };
+
+        ep_render('');
+      })();
+    </script>
+  </div>
+
+
+
+<div id="gk" class="ia-panel">
   <style>
-    #edevlet_link_panel {
+    #gk {
+      --navy: hsl(220, 24%, 12%);
+      --green: #16803c;
+      --red: #b91c1c;
+      --amber: #b45309;
+      --blue: #1e40af;
       width: 100%;
-      box-sizing: border-box;
-      background-color: transparent;
-      padding: 20px;
+      background: transparent;
       font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: #1a1a1a;
-      line-height: 1.5;
+      padding: 16px 0;
+    }
+    #gk * { box-sizing: border-box; }
+
+    #gk .gk-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    #gk .gk-tab {
+      flex: 1;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      font-weight: 700;
+      font-size: 12.5px;
+      background: #eef1f5;
+      color: var(--navy);
+      border-radius: 4px;
+    }
+    #gk .gk-tab.active { background: var(--navy); color: #fff; }
+
+    #gk .gk-view { display: none; }
+    #gk .gk-view.active { display: block; }
+
+    #gk .gk-view-title {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 16px;
     }
 
-    #edevlet_link_panel * {
-      box-sizing: border-box;
+    #gk .gk-card {
+      border: 1px solid #e2e5ea;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      overflow: hidden;
     }
-
-    #edevlet_link_panel .ep_search_wrap {
-      margin-bottom: 24px;
+    #gk .gk-card-title {
+      background: var(--navy);
+      color: #fff;
+      font-weight: 700;
+      font-size: 10.5pt;
+      padding: 10px 14px;
     }
+    #gk .gk-card-body { padding: 4px 14px 10px 14px; }
 
-    #edevlet_link_panel #ep_search_input {
-      width: 100%;
-      padding: 11px 14px;
-      font-size: 11pt;
-      font-family: 'Roboto', sans-serif;
-      border: 2px solid hsl(220, 24%, 12%);
-      border-radius: 6px;
-      outline: none;
-      background: transparent;
-      color: #1a1a1a;
-      transition: border-color .2s;
-    }
+    #gk .gk-tur { padding: 10px 0; border-bottom: 1px solid #f0f1f3; }
+    #gk .gk-tur:last-child { border-bottom: none; }
+    #gk .gk-tur.gk-full { grid-column: 1 / -1; }
 
-    #edevlet_link_panel #ep_search_input::placeholder {
-      color: #9aa0a8;
-    }
-
-    #edevlet_link_panel #ep_search_input:focus {
-      border-color: #4ade80;
-    }
-
-    #edevlet_link_panel .ep_cat_block {
-      margin-bottom: 22px;
-    }
-
-    #edevlet_link_panel .ep_cat_title {
-      color: hsl(220, 24%, 12%);
+    #gk .gk-tur-name {
       font-weight: 700;
       font-size: 9.5pt;
-      letter-spacing: .6px;
-      text-transform: uppercase;
+      color: #444;
       margin-bottom: 6px;
-      opacity: .75;
     }
 
-    #edevlet_link_panel .ep_cat_list {
+    #gk .gk-rows { display: flex; flex-direction: column; gap: 4px; }
+
+    #gk .gk-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      column-gap: 24px;
-    }
-
-    @media (max-width: 900px) {
-      #edevlet_link_panel .ep_cat_list {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 560px) {
-      #edevlet_link_panel .ep_cat_list {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    #edevlet_link_panel .ep_link_row {
-      display: flex;
-      align-items: center;
+      grid-template-columns: 60px 1fr;
+      align-items: baseline;
       gap: 10px;
-      text-decoration: none;
-      color: #1a1a1a;
-      font-size: 10pt;
-      padding: 8px 4px;
-      border-bottom: 1px solid #f0f1f3;
-      transition: color .15s, padding-left .15s;
+      font-size: 9.5pt;
     }
 
-    #edevlet_link_panel .ep_link_row:last-child {
-      border-bottom: none;
+    #gk .gk-col-label {
+      font-weight: 700;
+      color: #888;
+      font-size: 8.5pt;
     }
 
-    #edevlet_link_panel .ep_link_row:hover {
-      color: #4ade80;
-      padding-left: 8px;
+    #gk .gk-status { font-weight: 700; }
+    #gk .gk-status.ok    { color: var(--green); }
+    #gk .gk-status.stop  { color: var(--red); }
+    #gk .gk-status.warn  { color: var(--amber); }
+    #gk .gk-status.info  { color: var(--blue); }
+
+    #gk .gk-sub {
+      font-weight: 400;
+      color: #777;
+      font-size: 8.5pt;
     }
 
-    #edevlet_link_panel .ep_dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background-color: #4ade80;
-      flex-shrink: 0;
-      opacity: .6;
+    #gk .gk-fn {
+      font-size: 7.5pt;
+      color: #999;
+      cursor: help;
+      border-bottom: 1px dotted #aaa;
+      margin-left: 2px;
+      position: relative;
+    }
+    #gk .gk-fn:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      left: 0;
+      bottom: 100%;
+      margin-bottom: 6px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 8pt;
+      font-weight: 400;
+      padding: 8px 10px;
+      border-radius: 4px;
+      width: 200px;
+      line-height: 1.4;
+      z-index: 30;
+      box-shadow: 0 4px 12px rgba(0,0,0,.25);
     }
 
-    #edevlet_link_panel .ep_no_result {
-      display: none;
-      color: #9aa0a8;
-      padding: 20px 4px;
-      font-size: 10pt;
+    #gk .gk-note {
+      font-size: 9pt;
+      color: #555;
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: #f7fdf9;
+      border-left: 3px solid #4ade80;
+    }
+
+    @media (min-width: 720px) {
+      #gk .gk-card-body { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
+      #gk .gk-tur { padding: 12px 0; }
     }
   </style>
 
-  <div class="ep_search_wrap">
-    <input type="text" id="ep_search_input" onkeyup="ep_filterLinks()" placeholder="Hizmet ara... (ör. borçlanma, tescil, işsizlik ödeneği)">
+  <div class="gk-tabs">
+    <button class="gk-tab active" data-tab="a">EK-23/a</button>
+    <button class="gk-tab" data-tab="b">EK-23/b</button>
+    <button class="gk-tab" data-tab="c">EK-23/c</button>
   </div>
 
-  <div id="ep_results_container"></div>
-  <div class="ep_no_result" id="ep_no_result">Aramanızla eşleşen bir hizmet bulunamadı.</div>
+  <div id="gk-view-a" class="gk-view active">
+    <div class="gk-view-title">2008/Ekim öncesi mülga kanunlara göre aylık bağlananların emeklilik sonrası çalışma statüsü</div>
+    <div id="gk-cards-a"></div>
+  </div>
+  <div id="gk-view-b" class="gk-view">
+    <div class="gk-view-title">Sigortalılık başlangıcı 2008/Ekim öncesi, 5510'a göre aylık bağlananların emeklilik sonrası statüsü</div>
+    <div id="gk-cards-b"></div>
+  </div>
+  <div id="gk-view-c" class="gk-view">
+    <div class="gk-view-title">Sigortalılık başlangıcı 2008/Ekim sonrası, 5510'a göre aylık bağlananların emeklilik sonrası çalışmaları</div>
+    <div id="gk-cards-c"></div>
+  </div>
+
+  <div class="gk-note">Kaynak: SGK EK-23/a, EK-23/b, EK-23/c. Dipnot işaretlerinin üzerine gelerek tarih bazlı detayları görebilirsiniz.</div>
 
   <script>
-  (function(){
-    var ep_data = [
-      { cat: "4A Sigortalı", items: [
-        ["4A Sigortalı Tescil Kaydı Tespiti", "https://www.turkiye.gov.tr/4a-tescil-kaydi"],
-        ["4A İşe Giriş Çıkış Bildirgesi", "https://www.turkiye.gov.tr/sosyal-guvenlik-4a-ise-giris-cikis-bildirgesi"],
-        ["4A(SSK) Sigortalılarının Kendini Bildirmesi", "https://www.turkiye.gov.tr/sgk-4a-sigortalilik-bildirimi"],
-        ["4A On Günden Az Süreli Ev Hiz. Çalışan Kişi Sorgulama", "https://www.turkiye.gov.tr/sgk-ev-hizmetleri-calisan"],
-        ["4A On Günden Az Süreli Ev Hiz. İşveren Başvuru ve Sorgulama", "https://www.turkiye.gov.tr/sgk-ev-hizmetleri-isveren"],
-        ["4A Askerlik Borçlanması Başvurusu", "https://www.turkiye.gov.tr/sosyal-guvenlik-4a-askerlik-borclanmasi-basvurusu"],
-        ["4A Doğum Borçlanması Başvurusu", "https://www.turkiye.gov.tr/sosyal-guvenlik-4a-dogum-borclanmasi-basvurusu"],
-        ["4A İsteğe Bağlı İlk Tescil Kaydı", "https://www.turkiye.gov.tr/sosyal-guvenlik-4a-istege-bagli-ilk-tescil-kaydi"],
-        ["4A İsteğe Bağlı Sigortalılığı Sona Erdirme", "https://www.turkiye.gov.tr/sosyal-guvenlik-4a-istege-bagli-sigortaliligi-sona-erdirme"],
-        ["4A Banka ve Adres Değişikliği", "https://www.turkiye.gov.tr/4a-banka-degisikligi"],
-        ["Kısmi Süreli Çalışan Sigortalıların Borçlandırılması", "https://www.turkiye.gov.tr/sosyal-guvenlik-4857-sayili-kanuna-gore-kismi-sureli-calisan-sigortalilarin-borclandirilmasi"]
-      ]},
-      { cat: "4B Sigortalı", items: [
-        ["4B Hizmet Bilgisi", "https://www.turkiye.gov.tr/4b-hizmet-bilgisi"],
-        ["4B Borç Durumu", "https://www.turkiye.gov.tr/4b-borc-durumu"],
-        ["4B Ödeme Dökümü", "https://www.turkiye.gov.tr/4b-odeme-dokumu"],
-        ["4B İş Göremezlik Raporu Çalışmazlık Beyan İşlemleri", "https://www.turkiye.gov.tr/sosyal-guvenlik-is-goremezlik-raporu-calismazlik-beyan-islemleri"],
-        ["4B Tescil Kaydı", "https://www.turkiye.gov.tr/4b-tescil-kaydi"],
-        ["4B Kapsamında Toptan Ödeme İhyası", "https://www.turkiye.gov.tr/sosyal-guvenlik-4b-kapsaminda-toptan-odeme-ihyasi"],
-        ["4B Askerlik Borçlanması Başvurusu", "https://www.turkiye.gov.tr/sosyal-guvenlik-4b-askerlik-borclanmasi-basvurusu"],
-        ["4B Doğum Borçlanması Başvurusu", "https://www.turkiye.gov.tr/sosyal-guvenlik-4b-dogum-borclanmasi-basvurusu"],
-        ["4B Banka ve Adres Değişikliği", "https://www.turkiye.gov.tr/4b-banka-degisikligi"],
-        ["4B İsteğe Bağlı İlk Tescil Kaydı Veya İptali", "https://www.turkiye.gov.tr/4b-istege-bagli-ilk-tescil-kaydi"]
-      ]},
-      { cat: "4C Sigortalı", items: [
-        ["4C Tescil Kaydı", "https://www.turkiye.gov.tr/4c-tescil-kaydi"],
-        ["4C Kapsamında Kamu Görevlilerinin Hizmetlerinin İhyası", "https://www.turkiye.gov.tr/sosyal-guvenlik-5434-sayili-emekli-sandigi-kanunu-kapsaminda-kamu-gorevlilerinin-hizmetlerinin-ihyasi"],
-        ["4C Banka ve Adres Değişikliği", "https://www.turkiye.gov.tr/4c-banka-degisikligi"],
-        ["4C Evlenme İkramiyesi Ödenmesi Talebi", "https://www.turkiye.gov.tr/sosyal-guvenlik-evlenme-ikramiyesi-odenmesi-talebi"],
-        ["4C Bir Aylık Maaş Tercihi", "https://www.turkiye.gov.tr/4c-bir-aylik-maas-tercihi"],
-        ["4C Ölüm Yardımı ve Dul / Yetim Aylığı Talebi", "https://www.turkiye.gov.tr/sosyal-guvenlik-olum-yardimi-ve-dul-yetim-ayligi-talebi"],
-        ["Şahıs Ödeme Online Başvuru", "https://gss.sgk.gov.tr/SahisOdemeOnlineBasvuru"]
-      ]},
-      { cat: "Genel Sağlık Sigortası Uygulamaları", items: [
-        ["GSS Tescil ve Prim Borcu Sorgulama", "https://www.turkiye.gov.tr/sgk-gss-borc-dokumu"],
-        ["Sağlık Provizyon Aktivasyon Sistemi", "https://www.turkiye.gov.tr/spas-mustahaklik-sorgulama"],
-        ["Sgk Cep Telefonu Bilgisi Beyan", "https://www.turkiye.gov.tr/sgk-cep-telefonu-bilgisi-beyan"],
-        ["Sağlık Yardımı Talep ve Taahhüt", "https://www.turkiye.gov.tr/sgk-saglik-yardim-talep-taahhut"],
-        ["Şahıs Ödemeleri Banka Hesabı Tanımlama", "https://www.turkiye.gov.tr/sgk-sahis-odemeleri-banka-hesabi-tanimlama"],
-        ["Tedavi Bilgileri Sorgulama", "https://www.turkiye.gov.tr/sgk-tedavi-bilgileri-sorgulama"],
-        ["Bakmakla Yükümlü Olduğu Aile Bireyleri Sorgulama", "https://www.turkiye.gov.tr/sosyal-guvenlik-genel-saglik-sigortalisinin-bakmakla-yukumlu-oldugu-aile-bireyleri-sorgulama"],
-        ["4A/4B/4C Muayene Katılım Payı Sorgulama", "https://www.turkiye.gov.tr/muayene-katilim-payi-sorgulama"],
-        ["İlaç Kullanım Süresi Sorgulama", "https://www.turkiye.gov.tr/ilac-kullanim-suresi-sorgulama"],
-        ["İlaç Rapor Bilgisi Sorgulama", "https://www.turkiye.gov.tr/sosyal-guvenlik-ilac-rapor-bilgisi-sorgulama"],
-        ["İlaç e-Reçete / Reçete Bilgileri Sorgulama", "https://www.turkiye.gov.tr/sosyal-guvenlik-ilac-e-recete-recete-bilgileri-sorgulama"],
-        ["Yurt Dışından Getirilen İlaçların Başvurusu", "https://www.turkiye.gov.tr/sosyal-guvenlik-yurt-disindan-getirilen-ilaclarin-basvurusu"]
-      ]},
-      { cat: "Borçlanma Hizmetleri", items: [
-        ["Kart İle Prim Ödeme Uygulaması (Web Tahsilat)", "https://www.turkiye.gov.tr/sosyal-guvenlik-sosyal-guvenlik-kurumu-kart-ile-prim-odeme-uygulamasi"],
-        ["Ev Hizmetlerinde Çalışanların İstirahat Raporu Çalışmazlık Bildirimi", "https://www.turkiye.gov.tr/sosyal-guvenlik-ev-hizmetlerinde-calisanlarin-istirahat-raporu-calismazlik-bildirimi"],
-        ["İşyeri Kaydı / Borcu Yoktur Belgesi Sorgulama", "https://www.turkiye.gov.tr/sosyal-guvenlik-isyeri-kaydi-borcu-yoktur-belgesi-sorgulama"],
-        ["E-Borcu Yoktur", "https://www.turkiye.gov.tr/sgk-esgkuyg-esgksifre-e-borcu-yoktur"],
-        ["Yurtdışı Borçlanma Talebinde Bulunulması", "https://www.turkiye.gov.tr/sosyal-guvenlik-elektronik-ortamda-duzenlenen-yurt-disi-hizmetikamet-belgeleriyle-yurt-disi-borclanma-talebinde-bulunulmasi"],
-        ["EK5/EK6/5G/30 Günden Az İBS Tescil Kaydı ve Borç Dökümü", "https://www.turkiye.gov.tr/sgk-ek5ek6-tescil-kaydi-ve-borc-dokumu"],
-        ["Toptan Ödeme Talebi", "https://www.turkiye.gov.tr/sosyal-guvenlik-toptan-odeme-talebi"]
-      ]},
-      { cat: "Sigortalılık Uygulamaları", items: [
-        ["4A/4B İşgöremezlik Ödemesi Görme", "https://www.turkiye.gov.tr/4ab-isgoremezlik-odemesi-gorme"],
-        ["SGK Tescil ve Hizmet Dökümü / İşyeri Ünvan Listesi", "https://www.turkiye.gov.tr/sgk-tescil-ve-hizmet-dokumu"],
-        ["Sosyal Güvenlik Kayıt Belgesi Sorgulama", "https://www.turkiye.gov.tr/sosyal-guvenlik-kayit-belgesi-sorgulama"],
-        ["Gelir, Aylık, Ödenek Talep Belgesinin Verilmesi", "https://www.turkiye.gov.tr/sgk-tahsis-talep-taahhut-beyan"],
-        ["Şahıs Ödeme Durumları Görüntüleme", "https://www.turkiye.gov.tr/sgk-sahis-odeme-goruntuleme"]
-      ]},
-      { cat: "Emeklilik Uygulamaları", items: [
-        ["Emekli Günlük Ödeme Sorgulama", "https://www.turkiye.gov.tr/sosyal-guvenlik-emekli-gunluk-odeme-sorgulama"],
-        ["Hareketsiz ve Blokeli Emekli Maaşı İade Başvurusu", "https://www.turkiye.gov.tr/sgk-hareketsiz-ve-blokeli-emekli-maasi-iade-basvurusu"],
-        ["Hareketsiz ve Blokeli Emekli Maaşı Sorgulama", "https://www.turkiye.gov.tr/sgk-hareketsiz-ve-blokeli-emekli-maasi-sorgulama"],
-        ["Emekli Dijital Kart Sorgulama", "https://www.turkiye.gov.tr/sgk-emekli-dijital-kart-sorgulama"],
-        ["Eğitim Öğretim Yardımı Talebi", "https://www.turkiye.gov.tr/sosyal-guvenlik-egitim-ogretim-yardimi-talebi"]
-      ]},
-      { cat: "İşkur", items: [
-        ["İşsizlik Ödeneği / İş Kaybı Tazminatı Başvurusu", "https://www.turkiye.gov.tr/issizlik-odenegi-basvurusu?bilgilendirme=Metni"],
-        ["İŞKUR Kayıt Belgesi", "https://www.turkiye.gov.tr/iskur-kayit-belgesi"],
-        ["İş Arayan Üyelik", "https://www.turkiye.gov.tr/iskur-is-arayan-uyelik"],
-        ["(TYP) Sorgulama ve Başvuru", "https://www.turkiye.gov.tr/iskur-typ-arama-ve-basvuru"],
-        ["Kısa Çalışma Ödeneği Başvurusu", "https://www.turkiye.gov.tr/iskur-kisa-calisma-odenegi-basvurusu"],
-        ["Yarım Çalışma Ödeneği (YÇÖ) Başvurusu ve Sorgulama", "https://www.turkiye.gov.tr/turkiye-is-iskur-yarim-calisma-odenegi-basvurusu-ve-basvuru-sorgulama"],
-        ["İş ve Meslek Danışmanlığı Randevu Al", "https://www.turkiye.gov.tr/iskur-is-arayanlar-icin-danismanlik-hizmeti-randevusu-alma"],
-        ["Engelli Hibe Desteği Başvurusu", "https://www.turkiye.gov.tr/turkiye-is-iskur-engelli-hibe-destegi-basvurusu"]
-      ]},
-      { cat: "Hizmet Birleştirme", items: [
-        ["Hizmet Birleştirme (4/1-a, b ve 506 SK GM 20)", "https://www.turkiye.gov.tr/sosyal-guvenlik-41-a-b-ve-506-sk-gm-20-nci-madde-sandigi-calisanlarin-hizmet-birlestirme-basvurusu"],
-        ["Kamu Görevlisi Görevinden Ayrılanların Hizmet Birleştirilmesi", "https://www.turkiye.gov.tr/sosyal-guvenlik-kamu-gorevlisiyken-bu-gorevinden-ayrilanlarin-hizmet-surelerinin-birlestirilmesi"],
-        ["PTT'den Yapılan Kurum Ödemeleri Sorgulama ve Hesaba Aktarma", "https://www.turkiye.gov.tr/ptt-ptt-uzerinden-yapilan-kurum-odemeleri-sorgulama"]
-      ]}
-    ];
-
-    function ep_render(filter) {
-      var container = document.getElementById('ep_results_container');
-      var noResult = document.getElementById('ep_no_result');
-      var f = (filter || '').toLocaleLowerCase('tr-TR').trim();
-      var html = '';
-      var totalMatches = 0;
-
-      ep_data.forEach(function(group){
-        var matched = group.items.filter(function(item){
-          return item[0].toLocaleLowerCase('tr-TR').indexOf(f) !== -1;
-        });
-        if (matched.length === 0) return;
-        totalMatches += matched.length;
-
-        html += '<div class="ep_cat_block"><div class="ep_cat_title">' + group.cat + '</div><div class="ep_cat_list">';
-        matched.forEach(function(item){
-          html += '<a class="ep_link_row" href="' + item[1] + '" target="_blank" rel="noopener">' +
-                  '<span class="ep_dot"></span><span>' + item[0] + '</span></a>';
-        });
-        html += '</div></div>';
-      });
-
-      container.innerHTML = html;
-      noResult.style.display = totalMatches === 0 ? 'block' : 'none';
-    }
-
-    window.ep_filterLinks = function() {
-      var val = document.getElementById('ep_search_input').value;
-      ep_render(val);
+  (function () {
+    var FN = {
+      1: "29.02.2016'ya kadar emekli aylığı kesilmez. Çalışıldığı süre boyunca sadece SGDP (Sosyal Güvenlik Destek Primi) ödenir.",
+      2: "01.03.2016 tarihinden itibaren bu çalışma sigortalılık kapsamında değerlendirilmez ve prim alınmaz.",
+      3: "Kişinin talep etmesi halinde emekli aylığı kesilir ve normal sigortalı olarak çalışılır. Talep edilmezse emekli aylığı kesilmez.",
+      4: "5335 sayılı Kanun gereği kamu sektöründeki çalışmalar nedeniyle emekli aylığı kesilir.",
+      5: "Kamu sektöründe yapılan çalışmalar için 5335 sayılı Kanun gereği emekli aylığı kesilir.",
+      6: "İsteğe bağlı olarak malullük, yaşlılık ve ölüm sigortası hükümleri de uygulanabilir."
     };
 
-    ep_render('');
+    function fn(nums) {
+      return (nums || []).map(function (n) {
+        return '<span class="gk-fn" data-tip="' + FN[n] + '">' + n + '</span>';
+      }).join('');
+    }
+
+    function row(col, status, text, sub, fns) {
+      var cls = { ok: 'ok', stop: 'stop', warn: 'warn', info: 'info' }[status];
+      return '<div class="gk-row">' +
+        '<span class="gk-col-label">' + col + '</span>' +
+        '<span><span class="gk-status ' + cls + '">' + text + '</span>' + fn(fns) +
+        (sub ? ' <span class="gk-sub">' + sub + '</span>' : '') + '</span>' +
+        '</div>';
+    }
+
+    function tur(name, rows, full) {
+      return '<div class="gk-tur' + (full ? ' gk-full' : '') + '"><div class="gk-tur-name">' + name + '</div><div class="gk-rows">' + rows.join('') + '</div></div>';
+    }
+
+    function card(title, turs) {
+      return '<div class="gk-card"><div class="gk-card-title">' + title + '</div><div class="gk-card-body">' + turs.join('') + '</div></div>';
+    }
+
+    // ---------------- EK-23/a ----------------
+    var cardsA = [
+      card('506 Sayılı Kanun', [
+        tur('Sürekli İş Göremezlik Geliri', [
+          row('Tümü', 'ok', 'Gelir ödenmeye devam eder.', 'Normal çalışan gibi tüm sigorta primleri uygulanır.')
+        ], true),
+        tur('Malullük', [
+          row('4A', 'stop', 'Emekli aylığı kesilir.'),
+          row('4B (1-2-3)', 'ok', 'Emekli aylığı kesilmez.', null, [1, 2]),
+          row('4B (4)', 'ok', 'Emekli aylığı kesilmez.', 'Bu çalışma sigortalılık kapsamında değerlendirilmez.'),
+          row('4C', 'ok', 'Emekli aylığı kesilmez.')
+        ]),
+        tur('Yaşlılık', [
+          row('4A', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', 'Kamu sektöründe yapılan çalışmalar için 5335 sayılı Kanun gereği emekli aylığı kesilir.', [5]),
+          row('4B (1-2-3)', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', null, [1, 3]),
+          row('4B (4)', 'ok', 'Emekli aylığı kesilmez.', 'Bu çalışma sigortalılık kapsamında değerlendirilmez.'),
+          row('4C', 'stop', 'Emekli aylığı kesilir.', null, [4])
+        ])
+      ]),
+      card('1479 Sayılı Kanun', [
+        tur('Yaşlılık', [
+          row('4A', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', null, [5]),
+          row('4B (1-2-3)', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', null, [1, 3]),
+          row('4B (4)', 'ok', 'Emekli aylığı kesilmez.', 'Bu çalışma sigortalılık kapsamında değerlendirilmez.'),
+          row('4C', 'stop', 'Emekli aylığı kesilir.', null, [4])
+        ])
+      ]),
+      card('2925 Sayılı Kanun', [
+        tur('Sürekli İş Göremezlik Geliri', [
+          row('Tümü', 'ok', 'Gelir ödenmeye devam eder.', 'Normal çalışan gibi tüm sigorta primleri uygulanır.')
+        ], true),
+        tur('Malullük', [
+          row('4A', 'stop', 'Emekli aylığı kesilir.'),
+          row('4B (1-2-3)', 'ok', 'Emekli aylığı kesilmez.', null, [1, 2]),
+          row('4B (4)', 'ok', 'Emekli aylığı kesilmez.', 'Bu çalışma sigortalılık kapsamında değerlendirilmez.'),
+          row('4C', 'ok', 'Emekli aylığı kesilmez.')
+        ]),
+        tur('Yaşlılık', [
+          row('4A', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', null, [5]),
+          row('4B (1-2-3)', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', null, [1, 3]),
+          row('4B (4)', 'ok', 'Emekli aylığı kesilmez.', 'Bu çalışma sigortalılık kapsamında değerlendirilmez.'),
+          row('4C', 'stop', 'Emekli aylığı kesilir.', null, [4])
+        ])
+      ]),
+      card('2926 Sayılı Kanun', [
+        tur('Yaşlılık', [
+          row('4A', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', null, [5]),
+          row('4B (1-2-3)', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', null, [1, 3]),
+          row('4B (4)', 'ok', 'Emekli aylığı kesilmez.', 'Bu çalışma sigortalılık kapsamında değerlendirilmez.'),
+          row('4C', 'stop', 'Emekli aylığı kesilir.', null, [4])
+        ])
+      ])
+    ];
+    document.getElementById('gk-cards-a').innerHTML = cardsA.join('');
+
+    // ---------------- EK-23/b ----------------
+    var cardsB = [
+      card('Genel', [
+        tur('Sürekli İş Göremezlik Geliri', [
+          row('Tümü', 'ok', 'Gelir ödenmeye devam eder.', 'Normal çalışan gibi tüm sigorta primleri uygulanır.')
+        ], true)
+      ]),
+      card('4/1-(a)', [
+        tur('Malullük', [
+          row('4A', 'stop', 'Emekli aylığı kesilir.'),
+          row('4B (1-2-3)', 'ok', 'Emekli aylığı kesilmez.', null, [1, 2]),
+          row('4B (4)', 'ok', 'Emekli aylığı kesilmez.', 'Bu çalışma sigortalılık kapsamında değerlendirilmez.'),
+          row('4C', 'stop', 'Emekli aylığı kesilir.')
+        ])
+      ]),
+      card('4/1-(b) (1-2-3)', [
+        tur('Yaşlılık', [
+          row('4A', 'warn', 'Başvuru durumuna göre aylık kesilebilir.'),
+          row('4B (1-2-3)', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', null, [1, 3]),
+          row('4B (4)', 'ok', 'Emekli aylığı kesilmez.', 'Bu çalışma sigortalılık kapsamında değerlendirilmez.'),
+          row('4C', 'stop', 'Emekli aylığı kesilir.', null, [4])
+        ])
+      ]),
+      card('4/1-(b) (4)', [
+        tur('Malullük', [
+          row('4B (1-2-3)', 'info', 'Sadece belirli sigorta kolları uygulanır.', 'Kısa vadeli sigorta + Çalıştığınız sürece SGDP (Sosyal Güvenlik Destek Primi) ödenir. Emekli aylığınız devam eder.')
+        ], true),
+        tur('Yaşlılık', [
+          row('4A', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', null, [5]),
+          row('4B (1-2-3)', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', null, [1, 3]),
+          row('4B (4)', 'ok', 'Emekli aylığı kesilmez.', null, [3]),
+          row('4C', 'stop', 'Emekli aylığı kesilir.', null, [4])
+        ])
+      ]),
+      card('4/1-(ç)', [
+        tur('Yaşlılık', [
+          row('4A', 'warn', 'Başvuru durumuna göre aylık kesilebilir.'),
+          row('4B (1-2-3)', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', null, [1]),
+          row('4B (4)', 'ok', 'Emekli aylığı kesilmez.', 'Bu çalışma sigortalılık kapsamında değerlendirilmez.'),
+          row('4C', 'stop', 'Emekli aylığı kesilir.')
+        ])
+      ]),
+      card('Vazife Malullüğü', [
+        tur('5510/47 (5/c dışı)', [
+          row('4A', 'stop', 'Emekli aylığı kesilir.', null, [6]),
+          row('4B (1-2-3)', 'warn', 'Başvuru durumuna göre aylık kesilebilir.'),
+          row('4B (4)', 'warn', 'Başvuru durumuna göre aylık kesilebilir.'),
+          row('4C', 'stop', 'Emekli aylığı kesilir.', 'Uzun vadeli sigorta hükümleri uygulanır.')
+        ]),
+        tur('5510/47 (5/c kapsamı)', [
+          row('4A', 'ok', 'Emekli aylığı kesilmez.', null, [6]),
+          row('4B (1-2-3)', 'ok', 'Emekli aylığı kesilmez.', null, [6]),
+          row('4B (4)', 'ok', 'Emekli aylığı kesilmez.', null, [6]),
+          row('4C', 'ok', 'Emekli aylığı kesilmez.', 'Uzun vadeli sigorta hükümleri uygulanır.')
+        ])
+      ])
+    ];
+    document.getElementById('gk-cards-b').innerHTML = cardsB.join('');
+
+    // ---------------- EK-23/c ----------------
+    var cardsC = [
+      card('Genel', [
+        tur('Sürekli İş Göremezlik Geliri', [
+          row('Tümü', 'ok', 'Gelir ödenmeye devam eder.', 'Normal çalışan gibi tüm sigorta primleri uygulanır.')
+        ], true)
+      ]),
+      card('4/1-(a)', [
+        tur('Malullük', [row('4A', 'stop', 'Emekli aylığı kesilir.')]),
+        tur('Yaşlılık', [row('4A', 'stop', 'Emekli aylığı kesilir.'), row('4B', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', null, [3])])
+      ]),
+      card('4/1-(b)', [
+        tur('Malullük', [row('4B', 'stop', 'Emekli aylığı kesilir.')]),
+        tur('Yaşlılık', [row('4B', 'stop', 'Emekli aylığı kesilir.'), row('4C', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', null, [3])])
+      ]),
+      card('Vazife Malullüğü', [
+        tur('5510/47 (5/c dışı)', [
+          row('4A', 'stop', 'Emekli aylığı kesilir.', null, [6]),
+          row('4B', 'warn', 'Başvuru durumuna göre aylık kesilebilir.'),
+          row('4C', 'stop', 'Emekli aylığı kesilir.', 'Uzun vadeli sigorta hükümleri uygulanır.')
+        ]),
+        tur('5510/47 (5/c kapsamı)', [
+          row('4A', 'ok', 'Emekli aylığı kesilmez.', null, [6]),
+          row('4B', 'ok', 'Emekli aylığı kesilmez.', null, [6]),
+          row('4C', 'ok', 'Emekli aylığı kesilmez.', 'Uzun vadeli sigorta hükümleri uygulanır.')
+        ])
+      ]),
+      card('4/1-(c)', [
+        tur('Malullük', [row('4C', 'stop', 'Emekli aylığı kesilir.')]),
+        tur('Yaşlılık', [row('4C', 'stop', 'Emekli aylığı kesilir.'), row('4B', 'warn', 'Başvuru durumuna göre aylık kesilebilir.', null, [3])])
+      ])
+    ];
+    document.getElementById('gk-cards-c').innerHTML = cardsC.join('');
+
+    // Tabs
+    document.querySelectorAll('#gk .gk-tab').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('#gk .gk-tab').forEach(function (b) { b.classList.remove('active'); });
+        document.querySelectorAll('#gk .gk-view').forEach(function (v) { v.classList.remove('active'); });
+        btn.classList.add('active');
+        document.getElementById('gk-view-' + btn.dataset.tab).classList.add('active');
+      });
+    });
   })();
   </script>
 </div>
