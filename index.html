@@ -16160,7 +16160,7 @@
     // Kopyalama fonksiyonu
     function fnc_kopyala_q7(element) {
       const satir = element.parentElement;
-      const satirMetni = satir.innerText.trim();
+      const satirMetni = satir.innerText.replace(/\s+/g, ' ').trim();
 
       navigator.clipboard.writeText(satirMetni).then(() => {
         satir.classList.add('komple-yesil-zort');
