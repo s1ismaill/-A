@@ -109,6 +109,44 @@
     color: #4ade80;
   }
 
+  .search-clear-wrapper {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+  }
+
+  .search-clear-wrapper input {
+    width: 100%;
+    padding-right: 2.4rem;
+  }
+
+  .search-clear-btn {
+    position: absolute;
+    top: 50%;
+    right: 0.65rem;
+    transform: translateY(-50%);
+    width: 1.7rem;
+    height: 1.7rem;
+    border: none;
+    background: transparent;
+    color: #4a5568;
+    font-size: 1.05rem;
+    line-height: 1;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .search-clear-btn:hover {
+    color: #111;
+  }
+
+  .search-clear-btn.visible {
+    display: flex;
+  }
+
   /* Genel Dropdown (Diğer Hariç Ortayı Baz Alır) */
   .c-dropdown {
     position: absolute;
@@ -5833,39 +5871,39 @@
                 <tbody>
                   <tr>
                     <td onclick="fnc_kopyala_q7(this)">Adana</td>
-                    <td onclick="fnc_kopyala_q7(this)">1</td>
+                    <td onclick="fnc_kopyala_q7(this)">01</td>
                   </tr>
                   <tr>
                     <td onclick="fnc_kopyala_q7(this)">Adıyaman</td>
-                    <td onclick="fnc_kopyala_q7(this)">2</td>
+                    <td onclick="fnc_kopyala_q7(this)">02</td>
                   </tr>
                   <tr>
                     <td onclick="fnc_kopyala_q7(this)">Afyon</td>
-                    <td onclick="fnc_kopyala_q7(this)">3</td>
+                    <td onclick="fnc_kopyala_q7(this)">03</td>
                   </tr>
                   <tr>
                     <td onclick="fnc_kopyala_q7(this)">Ağrı</td>
-                    <td onclick="fnc_kopyala_q7(this)">4</td>
+                    <td onclick="fnc_kopyala_q7(this)">04</td>
                   </tr>
                   <tr>
                     <td onclick="fnc_kopyala_q7(this)">Amasya</td>
-                    <td onclick="fnc_kopyala_q7(this)">5</td>
+                    <td onclick="fnc_kopyala_q7(this)">05</td>
                   </tr>
                   <tr>
                     <td onclick="fnc_kopyala_q7(this)">Ankara</td>
-                    <td onclick="fnc_kopyala_q7(this)">6</td>
+                    <td onclick="fnc_kopyala_q7(this)">06</td>
                   </tr>
                   <tr>
                     <td onclick="fnc_kopyala_q7(this)">Antalya</td>
-                    <td onclick="fnc_kopyala_q7(this)">7</td>
+                    <td onclick="fnc_kopyala_q7(this)">07</td>
                   </tr>
                   <tr>
                     <td onclick="fnc_kopyala_q7(this)">Artvin</td>
-                    <td onclick="fnc_kopyala_q7(this)">8</td>
+                    <td onclick="fnc_kopyala_q7(this)">08</td>
                   </tr>
                   <tr>
                     <td onclick="fnc_kopyala_q7(this)">Aydın</td>
-                    <td onclick="fnc_kopyala_q7(this)">9</td>
+                    <td onclick="fnc_kopyala_q7(this)">09</td>
                   </tr>
                 </tbody>
               </table>
@@ -20321,8 +20359,59 @@ RESPONSIVE
   </script>
 </div>
 
+<script>
+(function() {
+  const inputSelector = 'input[type="text"][id*="search"], input[type="text"][id*="Search"], input[type="text"][class*="search"], input[type="text"][class*="Search"]';
+  const inputs = Array.from(document.querySelectorAll(inputSelector));
+  const clearButtons = [];
 
+  function toggleButton(input, button) {
+    if (!input || !button) return;
+    const show = input.value.trim() !== '' && !input.disabled;
+    button.classList.toggle('visible', show);
+  }
 
+  function createClearButton(input) {
+    if (!input || input.closest('.search-clear-wrapper')) return null;
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'search-clear-wrapper';
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'search-clear-btn';
+    button.setAttribute('aria-label', 'Temizle');
+    button.textContent = '×';
+    button.addEventListener('click', function () {
+      input.value = '';
+      input.focus();
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      toggleButton(input, button);
+    });
+
+    input.parentNode.insertBefore(wrapper, input);
+    wrapper.appendChild(input);
+    wrapper.appendChild(button);
+
+    input.addEventListener('input', () => toggleButton(input, button));
+    input.addEventListener('change', () => toggleButton(input, button));
+    input.addEventListener('blur', () => toggleButton(input, button));
+    toggleButton(input, button);
+    return button;
+  }
+
+  inputs.forEach(input => {
+    const button = createClearButton(input);
+    if (button) {
+      clearButtons.push({ input, button });
+    }
+  });
+
+  setInterval(() => {
+    clearButtons.forEach(({ input, button }) => toggleButton(input, button));
+  }, 250);
+})();
+</script>
 </body>
 
 </html>
