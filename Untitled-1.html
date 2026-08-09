@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eksik Süre Hesaplayıcı</title>
+    <link rel="icon" type="image/jpeg" href="ia.jpg">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-main: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-input: #f8fafc;
+            --border: #cbd5e1;
+
+            --text-main: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+
+            --danger: #dc2626;
+            --success: #16a34a;
+
+            --radius: 18px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            background: #E6F0FA;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .calculator-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .current-time-box {
+            text-align: center;
+            padding: 22px;
+            margin-bottom: 25px;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+        }
+
+        .current-time-label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-bottom: 7px;
+        }
+
+        .current-time {
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-variant-numeric: tabular-nums;
+            color: var(--text-main);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            height: 52px;
+            padding: 0 16px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            outline: none;
+            background: var(--bg-input);
+            color: var(--text-main);
+            font-size: 17px;
+            font-weight: 600;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .form-group input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .result-section {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 10px;
+        }
+
+        .result-box {
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+            text-align: center;
+        }
+
+        .result-box .result-label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-bottom: 9px;
+        }
+
+        .result-box .result-value {
+            display: block;
+            font-size: 23px;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .result-box.missing {
+            border-color: rgba(220, 38, 38, 0.3);
+            background: rgba(220, 38, 38, 0.05);
+        }
+
+        .result-box.missing .result-value {
+            color: var(--danger);
+        }
+
+        .result-box.extra {
+            border-color: rgba(22, 163, 74, 0.3);
+            background: rgba(22, 163, 74, 0.05);
+        }
+
+        .result-box.extra .result-value {
+            color: var(--success);
+        }
+
+        .result-box.normal {
+            border-color: rgba(37, 99, 235, 0.3);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .result-box.normal .result-value {
+            color: var(--primary);
+        }
+
+        .main-result {
+            margin-top: 22px;
+            padding: 30px 25px;
+            border-radius: 18px;
+            text-align: center;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .main-result .status-icon {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .main-result .status-title {
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .main-result .status-value {
+            font-size: 42px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .main-result.missing {
+            border-color: rgba(220, 38, 38, 0.4);
+            background: rgba(220, 38, 38, 0.06);
+        }
+
+        .main-result.missing .status-value {
+            color: var(--danger);
+        }
+
+        .main-result.extra {
+            border-color: rgba(22, 163, 74, 0.4);
+            background: rgba(22, 163, 74, 0.06);
+        }
+
+        .main-result.extra .status-value {
+            color: var(--success);
+        }
+
+        .main-result.normal {
+            border-color: rgba(37, 99, 235, 0.4);
+            background: rgba(37, 99, 235, 0.06);
+        }
+
+        .main-result.normal .status-value {
+            color: var(--primary);
+        }
+
+        .button-area {
+            display: flex;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .btn {
+            height: 52px;
+            border: none;
+            border-radius: 12px;
+            padding: 0 22px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .btn-secondary {
+            width: 100%;
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            color: var(--text-main);
+            border-color: #94a3b8;
+            background: #f1f5f9;
+        }
+
+        .info-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 20px;
+            padding: 15px 17px;
+            border-radius: 12px;
+            background: rgba(37, 99, 235, 0.05);
+            border: 1px solid rgba(37, 99, 235, 0.15);
+        }
+
+        .info-box .info-icon {
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .info-box p {
+            color: var(--text-secondary);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .live-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 12px;
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--success);
+            box-shadow: 0 0 8px rgba(22, 163, 74, 0.6);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.45;
+                transform: scale(0.75);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .calculator-card {
+                padding: 20px 15px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .result-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <main class="calculator-card">
+            <!-- CANLI SAAT -->
+            <div class="current-time-box">
+                <span class="current-time-label">Bilgisayar Saati</span>
+                <div class="current-time" id="currentTime">00:00:00</div>
+                <div class="live-status">
+                    <span class="live-dot"></span>
+                    Canlı olarak güncelleniyor
+                </div>
+            </div>
+
+            <!-- GİRİŞ ALANLARI -->
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="vardiyaBaslangic">Vardiya Başlangıç saati</label>
+                    <input type="time" id="vardiyaBaslangic" value="08:00">
+                </div>
+
+                <div class="form-group">
+                    <label for="vardiyaBitis">Vardiya Bitiş Saati</label>
+                    <input type="time" id="vardiyaBitis" value="18:00">
+                </div>
+
+                <div class="form-group" style="grid-column: span 2;">
+                    <label for="sistemSuresi">Sistemde Görünen Çalışma Süresi</label>
+                    <input type="text" id="sistemSuresi" placeholder="Örn: 724 yazmanız yeterlidir" inputmode="numeric"
+                        maxlength="5" autocomplete="off">
+                </div>
+            </div>
+
+            <!-- TEMİZLE BUTONU -->
+            <div class="button-area">
+                <button type="button" class="btn btn-secondary" onclick="temizle()">
+                    Sıfırla
+                </button>
+            </div>
+
+            <!-- ANA SONUÇ -->
+            <div class="main-result normal" id="mainResult">
+                <div class="status-icon" id="statusIcon"></div>
+                <div class="status-title" id="statusTitle">BEKLENİYOR</div>
+                <div class="status-value" id="statusValue">00:00:00</div>
+            </div>
+
+            <!-- DETAYLI SONUÇLAR -->
+            <div class="result-section">
+                <div class="result-box">
+                    <span class="result-label">Gerçek Geçen Süre</span>
+                    <span class="result-value" id="gercekSure">00:00:00</span>
+                </div>
+
+                <div class="result-box">
+                    <span class="result-label">Tahmini Sistem Giriş Saati</span>
+                    <span class="result-value" id="sistemSure">--:--</span>
+                </div>
+
+                <div class="result-box missing">
+                    <span class="result-label">Süre Farkı</span>
+                    <span class="result-value" id="farkSure">00:00:00</span>
+                </div>
+            </div>
+
+            <!-- BİLGİ -->
+            <div class="info-box">
+                <div class="info-icon">💡</div>
+                <p>
+                    İki nokta koşturmadan direkt rakamları yazın (örn: <strong>724</strong>). Yazdığınız an hesaplama
+                    otomatik başlar ve saniyeler bazında canlı güncellenir.
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let hesaplamaAktif = false;
+
+        const vardiyaInput = document.getElementById("vardiyaBaslangic");
+        const bitisInput = document.getElementById("vardiyaBitis");
+        const sistemInput = document.getElementById("sistemSuresi");
+        const currentTimeElement = document.getElementById("currentTime");
+        const gercekSureElement = document.getElementById("gercekSure");
+        const sistemSureElement = document.getElementById("sistemSure");
+        const farkElement = document.getElementById("farkSure");
+        const mainResult = document.getElementById("mainResult");
+        const statusIcon = document.getElementById("statusIcon");
+        const statusTitle = document.getElementById("statusTitle");
+        const statusValue = document.getElementById("statusValue");
+
+        function saatToSaniye(saat) {
+            if (!saat) return null;
+            const parcalar = saat.split(":");
+            if (parcalar.length !== 2) return null;
+            const s = Number(parcalar[0]);
+            const d = Number(parcalar[1]);
+            if (!Number.isInteger(s) || !Number.isInteger(d)) return null;
+            return s * 3600 + d * 60;
+        }
+
+        function sureToSaniye(sure) {
+            if (!sure) return null;
+            let temiz = sure.replace(/\D/g, "");
+            if (temiz.length === 3) temiz = "0" + temiz;
+
+            if (temiz.length === 4) {
+                const saat = Number(temiz.substring(0, 2));
+                const dakika = Number(temiz.substring(2, 4));
+                if (dakika > 59) return null;
+                return saat * 3600 + dakika * 60;
+            }
+            return null;
+        }
+
+        function saniyeToSure(saniye) {
+            saniye = Math.max(0, saniye);
+            const saat = Math.floor(saniye / 3600);
+            const dakika = Math.floor((saniye % 3600) / 60);
+            return `${String(saat).padStart(2, "0")}:${String(dakika).padStart(2, "0")}`;
+        }
+
+        function saniyeToTamSure(saniye) {
+            const negatif = saniye < 0;
+            saniye = Math.abs(saniye);
+            const saat = Math.floor(saniye / 3600);
+            const dakika = Math.floor((saniye % 3600) / 60);
+            const saniyeKismi = Math.floor(saniye % 60);
+
+            return `${negatif ? "-" : ""}${String(saat).padStart(2, "0")}:${String(dakika).padStart(2, "0")}:${String(saniyeKismi).padStart(2, "0")}`;
+        }
+
+        function bilgisayarSaatiniAl() {
+            const simdi = new Date();
+            return {
+                saat: simdi.getHours(),
+                dakika: simdi.getMinutes(),
+                saniye: simdi.getSeconds(),
+                toplamSaniye: simdi.getHours() * 3600 + simdi.getMinutes() * 60 + simdi.getSeconds()
+            };
+        }
+
+        function saatiGuncelle() {
+            const zaman = bilgisayarSaatiniAl();
+            currentTimeElement.textContent = `${String(zaman.saat).padStart(2, "0")}:${String(zaman.dakika).padStart(2, "0")}:${String(zaman.saniye).padStart(2, "0")}`;
+
+            if (hesaplamaAktif) {
+                hesapla();
+            }
+        }
+
+        function gercekCalismaSuresi() {
+            const vardiyaSaniye = saatToSaniye(vardiyaInput.value);
+            const bitisSaniye = saatToSaniye(bitisInput.value);
+
+            if (vardiyaSaniye === null || bitisSaniye === null) return null;
+
+            const zaman = bilgisayarSaatiniAl();
+            let aktifSaniye = zaman.toplamSaniye;
+
+            if (aktifSaniye > bitisSaniye) {
+                aktifSaniye = bitisSaniye;
+            }
+
+            let gecenSaniye = aktifSaniye - vardiyaSaniye;
+            return gecenSaniye < 0 ? 0 : gecenSaniye;
+        }
+
+        function hesapla() {
+            const vardiya = vardiyaInput.value;
+            const sistem = sistemInput.value;
+
+            if (!vardiya || !sistem) return;
+
+            const sistemSaniye = sureToSaniye(sistem);
+            if (sistemSaniye === null) return;
+
+            const gercekSaniye = gercekCalismaSuresi();
+            if (gercekSaniye === null) return;
+
+            const fark = gercekSaniye - sistemSaniye;
+
+            gercekSureElement.textContent = saniyeToTamSure(gercekSaniye);
+
+            // Tahmini sistem giriş saati
+            const simdi = new Date();
+
+            let tahminiGiris =
+                (
+                    simdi.getHours() * 3600 +
+                    simdi.getMinutes() * 60 +
+                    simdi.getSeconds()
+                ) - sistemSaniye;
+
+            if (tahminiGiris < 0) {
+                tahminiGiris += 24 * 3600;
+            }
+
+            const tahminiSaat =
+                Math.floor(tahminiGiris / 3600);
+
+            const tahminiDakika =
+                Math.floor(
+                    (tahminiGiris % 3600) / 60
+                );
+
+            sistemSureElement.textContent =
+                String(tahminiSaat).padStart(2, "0") +
+                ":" +
+                String(tahminiDakika).padStart(2, "0");
+
+            farkElement.textContent = saniyeToTamSure(fark);
+
+            if (fark > 0) {
+                mainResult.className = "main-result missing";
+                statusIcon.textContent = "🔴";
+                statusTitle.textContent = "EKSİK SÜRE";
+                statusValue.textContent = saniyeToTamSure(fark);
+            } else if (fark < 0) {
+                mainResult.className = "main-result extra";
+                statusIcon.textContent = "🟢";
+                statusTitle.textContent = "FAZLA SÜRE";
+                statusValue.textContent = saniyeToTamSure(Math.abs(fark));
+            } else {
+                mainResult.className = "main-result normal";
+                statusIcon.textContent = "🔵";
+                statusTitle.textContent = "SÜRE TAM";
+                statusValue.textContent = "00:00:00";
+            }
+        }
+
+        sistemInput.addEventListener("input", function () {
+            let val = this.value.replace(/\D/g, "");
+            if (val.length > 4) val = val.substring(0, 4);
+
+            if (val.length >= 3) {
+                this.value = val.substring(0, val.length - 2) + ":" + val.substring(val.length - 2);
+            } else {
+                this.value = val;
+            }
+
+            if (val.length >= 3) {
+                hesaplamaAktif = true;
+                hesapla();
+            } else {
+                hesaplamaAktif = false;
+            }
+        });
+
+        sistemInput.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                this.blur();
+            }
+        });
+
+        function temizle() {
+            vardiyaInput.value = "08:00";
+            bitisInput.value = "18:00";
+            sistemInput.value = "";
+            hesaplamaAktif = false;
+
+            gercekSureElement.textContent = "00:00:00";
+            sistemSureElement.textContent = "--:--";
+            farkElement.textContent = "00:00:00";
+
+            mainResult.className = "main-result normal";
+            statusIcon.textContent = "";
+            statusTitle.textContent = "BEKLENİYOR";
+            statusValue.textContent = "00:00:00";
+        }
+
+        vardiyaInput.addEventListener("change", () => { if (hesaplamaAktif) hesapla(); });
+        bitisInput.addEventListener("change", () => { if (hesaplamaAktif) hesapla(); });
+
+        setInterval(saatiGuncelle, 1000);
+        saatiGuncelle();
+    </script>
+
+</body>
+
+</html>
