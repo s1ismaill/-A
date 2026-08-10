@@ -342,11 +342,9 @@
             <div class="c-dropdown">
               <a href="https://mail.pusulacc.com.tr/" class="ia-dropdown-link aaaa123" target="_blank">maıl</a>
               <a href="https://kamu.turkiye.gov.tr/" class="ia-dropdown-link aaaa123" target="_blank">Kamu</a>
-              <a href="https://esube.iskur.gov.tr/CallCenter.aspx" class="ia-dropdown-link aaaa123"
-                target="_blank">İşkur</a>
+              <a href="https://esube.iskur.gov.tr/CallCenter.aspx" class="ia-dropdown-link aaaa123" target="_blank">İşkur</a>
               <a href="https://pusuline.pusulacc.com.tr/" class="ia-dropdown-link aaaa123" target="_blank">Pusulıne</a>
-              <a href="https://onlinesinav.alo170.gov.tr/" target="_blank" class="ia-dropdown-link aaaa123">Alo 170
-                Sınav Sistemi</a>
+              <a href="https://onlinesinav.alo170.gov.tr/" target="_blank" class="ia-dropdown-link aaaa123">Alo 170 Sınav Sistemi</a>
               <a href="Untitled-1.html" class="ia-dropdown-link aaaa123" target="_blank">Eksik Süre Hesaplayıcı</a>
             </div>
           </li>
@@ -358,6 +356,8 @@
               <div class="ia-serit-baslik" data-panel="sgkFesihTabloGövde">SGK FESİH KODLARI</div>
               <div class="ia-serit-baslik" data-panel="x9z_table_content">SGK EKSİK GÜN BİLDİRİM</div>
               <div class="ia-serit-baslik" data-panel="tabloAlann459865958">RAPOR ÜCRETİ ALABİLECEKLER</div>
+              <div class="ia-serit-baslik" data-panel="ia_banka_odemeleri">BANKA ÖDEME BİLDİRİMLERİ</div>
+              <div class="ia-serit-baslik" data-panel="yk_40univ_panel">YEŞİL KARTLILARIN GİDEBİLECEĞİ ÜNV.HAST</div>
             </div>
           </li>
 
@@ -20296,6 +20296,1025 @@ UYARI
     });
   </script>
 
+
+
+
+<div id="yk_40univ_panel" class="ia-panel">
+
+    <style>
+        /* =========================================================
+           YEŞİL KART - 40 ÜNİVERSİTE HASTANELERİ
+           TÜM CSS SADECE #yk_40univ_panel İÇİN GEÇERLİDİR
+           ========================================================= */
+
+        #yk_40univ_panel .yk_r7_kL8_wS {
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            margin: 0 auto;
+            border-radius: 0;
+            overflow: hidden;
+            font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #000000;
+            line-height: 1.5;
+        }
+
+        /* ANA BAŞLIK */
+        #yk_40univ_panel .yk_j2_mK5_qA {
+            color: #141d35;
+            text-align: left;
+            font-size: 12pt;
+            font-weight: bold;
+            padding: 0 0 8px 0;
+            margin: 0 0 20px 0;
+            border-bottom: 2px solid #0087C2;
+        }
+
+        /* ÖNEMLİ NOT */
+        #yk_40univ_panel .yk_onemli_not {
+            background-color: #f5f5f5;
+            border: 1px solid #141d35;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-size: 10pt;
+            line-height: 1.6;
+        }
+
+        #yk_40univ_panel .yk_onemli_not strong {
+            color: #c62828;
+        }
+
+        /* AÇIKLAMA METİNLERİ */
+        #yk_40univ_panel .yk_aciklama {
+            color: #000000;
+            font-size: 10pt;
+            line-height: 1.7;
+            margin: 0 0 15px 0;
+        }
+
+        #yk_40univ_panel .yk_aciklama strong {
+            font-weight: bold;
+        }
+
+        /* TABLO BAŞLIĞI */
+        #yk_40univ_panel .yk_tablo_baslik {
+            color: #141d35;
+            text-align: left;
+            font-size: 11pt;
+            font-weight: bold;
+            padding: 0 0 8px 0;
+            margin: 25px 0 15px 0;
+            border-bottom: 2px solid #0087C2;
+            line-height: 1.5;
+        }
+
+        /* TABLO SCROLL */
+        #yk_40univ_panel .yk_v6_nK2_zA2 {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 30px;
+        }
+
+        /* TABLO */
+        #yk_40univ_panel .yk_g9_tM1_wT {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            font-size: 9.5pt;
+        }
+
+        /* HÜCRELER */
+        #yk_40univ_panel .yk_g9_tM1_wT th,
+        #yk_40univ_panel .yk_g9_tM1_wT td {
+            border: 2px solid #141d35;
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        /* TABLO HEADER */
+        #yk_40univ_panel .yk_g9_tM1_wT thead tr {
+            background-color: #141d35;
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        /* TABLO BODY */
+        #yk_40univ_panel .yk_g9_tM1_wT tbody {
+            color: #000000;
+            font-weight: bold;
+        }
+
+        /* ÜNİVERSİTE ADI */
+        #yk_40univ_panel .yk_universite {
+            text-align: left;
+            font-weight: bold;
+            color: #141d35;
+        }
+
+        /* İL */
+        #yk_40univ_panel .yk_il {
+            text-align: left;
+            font-weight: bold;
+            color: #141d35;
+            background-color: #f5f5f5;
+            white-space: nowrap;
+        }
+
+        /* SIRA */
+        #yk_40univ_panel .yk_sira {
+            width: 60px;
+            text-align: center;
+            color: #141d35;
+        }
+
+        /* SATIR */
+        #yk_40univ_panel .yk_g9_tM1_wT tbody tr {
+            transition: background-color 0.15s;
+        }
+
+        /* HOVER */
+        #yk_40univ_panel .yk_g9_tM1_wT tbody tr:hover {
+            background-color: #f5f5f5 !important;
+        }
+
+        /* ZEBRA */
+        #yk_40univ_panel .yk_g9_tM1_wT tbody tr.yk_bg_zebra td:not(.yk_il) {
+            background-color: #fafafa;
+        }
+
+        /* ALT BİLGİ */
+        #yk_40univ_panel .yk_alt_bilgi {
+            background-color: #f5f5f5;
+            border: 1px solid #141d35;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-size: 10pt;
+            line-height: 1.6;
+        }
+
+        #yk_40univ_panel .yk_alt_bilgi strong {
+            color: #141d35;
+        }
+
+        /* MOBİL */
+        @media (max-width: 768px) {
+
+            #yk_40univ_panel .yk_r7_kL8_wS {
+                padding: 15px;
+            }
+
+            #yk_40univ_panel .yk_j2_mK5_qA {
+                font-size: 11pt;
+            }
+
+            #yk_40univ_panel .yk_tablo_baslik {
+                font-size: 10.5pt;
+            }
+
+            #yk_40univ_panel .yk_g9_tM1_wT {
+                min-width: 700px;
+                font-size: 9pt;
+            }
+
+            #yk_40univ_panel .yk_g9_tM1_wT th,
+            #yk_40univ_panel .yk_g9_tM1_wT td {
+                padding: 9px 8px;
+            }
+        }
+
+
+        /* ARAMA ÇUBUĞU */
+        #yk_40univ_panel .yk_arama_alani {
+            width: 100%;
+            margin: 0 0 15px 0;
+        }
+
+        #yk_40univ_panel .yk_arama_input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 15px;
+            border: 2px solid #141d35;
+            border-radius: 4px;
+            background-color: #ffffff;
+            color: #000000;
+            font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 10pt;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #yk_40univ_panel .yk_arama_input::placeholder {
+            color: #666666;
+        }
+
+        #yk_40univ_panel .yk_arama_input:focus {
+            border-color: #0087C2;
+            box-shadow: 0 0 0 2px rgba(0, 135, 194, 0.12);
+        }
+    </style>
+
+
+    <div class="yk_r7_kL8_wS">
+
+        <!-- ANA BAŞLIK -->
+        <div class="yk_j2_mK5_qA">
+            YEŞİL KARTLILARIN GİDEBİLECEĞİ ÜNV. HAST.
+        </div>
+
+
+        <!-- ÖNEMLİ NOT -->
+        <div class="yk_onemli_not">
+            <strong>ÖNEMLİ NOT:</strong>
+            VATANDAŞLARA AŞAĞIDAKİ LİSTEDEN BİLGİYİ PAYLAŞTIKTAN SONRA
+            MUTLAKA HASTANE İLE İLETİŞİME GEÇİP, SEVKSİZ HASTANEYE KABUL VAR MI,
+            ŞARTLARI NELERDİR, BERABERİNDE EVRAK İSTENİYOR MU VB.
+            SORMALARI UYGUN OLACAKTIR.
+        </div>
+
+
+        <!-- AÇIKLAMA -->
+        <p class="yk_aciklama">
+            <strong>
+                SGK ile Götürü Bedel Üzerinden Sağlık Hizmeti Alım Sözleşmesi
+                imzalamış olan 40 tane Üniversite hastanesine Yeşil Kart kapsamında
+                ki vatandaşlarımız sevksiz müracaat edebilmektedirler.
+                Bundan sonraki süreçte ilgili hastanelere yeşil kartlıların
+                sevksiz müracaat edebileceğine dair bilgi paylaşıyor olalım.
+            </strong>
+        </p>
+
+        <p class="yk_aciklama">
+            <strong>
+                Bununla birlikte Yeşil Kart kapsamında olanlar ilgili hastanelerin
+                dışında kalan üniversite veya özel hastanelere sevkli müracaatları
+                halinde sağlık yardımı alabilmektedir.
+            </strong>
+        </p>
+
+
+        <!-- TABLO BAŞLIĞI -->
+        <div class="yk_tablo_baslik">
+            GÖTÜRÜ BEDEL ÜZERİNDEN SAĞLIK HİZMETİ ALIM SÖZLEŞMESİ VE USUL ESASLARI
+            İMZALANAN ÜNİVERSİTE SAĞLIK HİZMETİ SUNUCULARI
+        </div>
+
+
+        <!-- ARAMA ÇUBUĞU -->
+        <div class="yk_arama_alani">
+            <input type="text" id="yk_hastane_arama" class="yk_arama_input"
+                placeholder="İl veya üniversite/hastane ara..." autocomplete="off">
+        </div>
+
+
+        <!-- TABLO -->
+        <div class="yk_v6_nK2_zA2">
+
+            <table class="yk_g9_tM1_wT">
+
+                <thead>
+                    <tr>
+                        <th style="width: 8%;">S.NO</th>
+                        <th style="width: 20%;">İL</th>
+                        <th style="width: 72%;">ÜNİVERSİTE / SAĞLIK HİZMETİ SUNUCUSU</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td class="yk_sira">1</td>
+                        <td class="yk_il">ANKARA</td>
+                        <td class="yk_universite">HACETTEPE ÜNİVERSİTESİ TIP FAKÜLTESİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">2</td>
+                        <td class="yk_il">DÜZCE</td>
+                        <td class="yk_universite">DÜZCE ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">3</td>
+                        <td class="yk_il">İZMİR</td>
+                        <td class="yk_universite">DOKUZ EYLÜL ÜNİVERSİTESİ TIP FAKÜLTESİ SAĞLIK HİZMETİ SUNUCULARI</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">4</td>
+                        <td class="yk_il">ANKARA</td>
+                        <td class="yk_universite">ANKARA ÜNİVERSİTESİ TIP FAKÜLTESİ SAĞLIK HİZMETİ SUNUCULARI</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">5</td>
+                        <td class="yk_il">ANTALYA</td>
+                        <td class="yk_universite">AKDENİZ ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">6</td>
+                        <td class="yk_il">ADANA</td>
+                        <td class="yk_universite">ÇUKUROVA ÜNİVERSİTESİ TIP FAKÜLTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA
+                            MERKEZİ</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">7</td>
+                        <td class="yk_il">ZONGULDAK</td>
+                        <td class="yk_universite">BÜLENT ECEVİT ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">8</td>
+                        <td class="yk_il">ANKARA</td>
+                        <td class="yk_universite">GAZİ ÜNİVERSİTESİ TIP FAKÜLTESİ SAĞLIK HİZMETİ SUNUCULARI</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">9</td>
+                        <td class="yk_il">İZMİR</td>
+                        <td class="yk_universite">EGE ÜNİVERSİTESİ TIP FAKÜLTESİ EĞİTİM ARAŞTIRMA HASTANESİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">10</td>
+                        <td class="yk_il">KAYSERİ</td>
+                        <td class="yk_universite">ERCİYES ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">11</td>
+                        <td class="yk_il">HATAY</td>
+                        <td class="yk_universite">MUSTAFA KEMAL ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA HASTANESİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">12</td>
+                        <td class="yk_il">AFYONKARAHİSAR</td>
+                        <td class="yk_universite">AFYON KOCATEPE ÜNİVERSİTESİ TIP FAKÜLTESİ SAĞLIK HİZMETİ SUNUCULARI
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">13</td>
+                        <td class="yk_il">MERSİN</td>
+                        <td class="yk_universite">MERSİN ÜNİVERSİTESİ SAĞLIK ARAŞTIRMA VE UYGULAMA MERKEZİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">14</td>
+                        <td class="yk_il">ELAZIĞ</td>
+                        <td class="yk_universite">FIRAT ÜNİVERSİTESİ TIP FAKÜLTESİ SAĞLIK HİZMETİ SUNUCULARI</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">15</td>
+                        <td class="yk_il">KOCAELİ</td>
+                        <td class="yk_universite">KOCAELİ ÜNİVERSİTESİ ARAŞTIRMA VE UYGULAMA HASTANESİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">16</td>
+                        <td class="yk_il">KONYA</td>
+                        <td class="yk_universite">NECMETTİN ERBAKAN ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">17</td>
+                        <td class="yk_il">KIRIKKALE</td>
+                        <td class="yk_universite">KIRIKKALE ÜNİVERSİTESİ TIP FAKÜLTESİ ARAŞTIRMA VE UYGULAMA HASTANESİ
+                        </td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">18</td>
+                        <td class="yk_il">KONYA</td>
+                        <td class="yk_universite">SELÇUK ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">19</td>
+                        <td class="yk_il">ISPARTA</td>
+                        <td class="yk_universite">SÜLEYMAN DEMİREL ÜNİVERSİTESİ ARAŞTIRMA VE UYGULAMA HASTANESİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">20</td>
+                        <td class="yk_il">TOKAT</td>
+                        <td class="yk_universite">GAZİOSMANPAŞA ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">21</td>
+                        <td class="yk_il">ESKİŞEHİR</td>
+                        <td class="yk_universite">ESKİŞEHİR OSMANGAZİ ÜNİVERSİTESİ EĞİTİM VE ARAŞTIRMA HASTANESİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">22</td>
+                        <td class="yk_il">SİVAS</td>
+                        <td class="yk_universite">CUMHURİYET ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA HASTANESİ</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">23</td>
+                        <td class="yk_il">VAN</td>
+                        <td class="yk_universite">VAN YÜZÜNCÜ YIL ÜNİVERSİTESİ DURSUN ODABAŞ TIP MERKEZİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">24</td>
+                        <td class="yk_il">SAMSUN</td>
+                        <td class="yk_universite">ONDOKUZ MAYIS ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">25</td>
+                        <td class="yk_il">TRABZON</td>
+                        <td class="yk_universite">KARADENİZ TEKNİK ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ
+                        </td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">26</td>
+                        <td class="yk_il">DİYARBAKIR</td>
+                        <td class="yk_universite">DİCLE ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">27</td>
+                        <td class="yk_il">YOZGAT</td>
+                        <td class="yk_universite">BOZOK ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">28</td>
+                        <td class="yk_il">MANİSA</td>
+                        <td class="yk_universite">CELAL BAYAR ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ (HAFSA
+                            SULTAN HASTANESİ)</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">29</td>
+                        <td class="yk_il">ÇANAKKALE</td>
+                        <td class="yk_universite">ÇANAKKALE ONSEKİZ MART ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA
+                            HASTANESİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">30</td>
+                        <td class="yk_il">ERZURUM</td>
+                        <td class="yk_universite">ATATÜRK ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">31</td>
+                        <td class="yk_il">İSTANBUL</td>
+                        <td class="yk_universite">İSTANBUL ÜNİVERSİTESİ CERRAHPAŞA TIP FAKÜLTESİ SAĞLIK UYGULAMA VE
+                            ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">32</td>
+                        <td class="yk_il">İSTANBUL</td>
+                        <td class="yk_universite">İSTANBUL ÜNİVERSİTESİ İSTANBUL TIP FAKÜLTESİ SAĞLIK UYGULAMA VE
+                            ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">33</td>
+                        <td class="yk_il">KAHRAMANMARAŞ</td>
+                        <td class="yk_universite">KAHRAMANMARAŞ SÜTÇÜ İMAM ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA
+                            HASTANESİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">34</td>
+                        <td class="yk_il">MALATYA</td>
+                        <td class="yk_universite">İNÖNÜ ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">35</td>
+                        <td class="yk_il">GAZİANTEP</td>
+                        <td class="yk_universite">GAZİANTEP ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">36</td>
+                        <td class="yk_il">AYDIN</td>
+                        <td class="yk_universite">ADNAN MENDERES ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">37</td>
+                        <td class="yk_il">KARS</td>
+                        <td class="yk_universite">KAFKAS ÜNİVERSİTESİ SAĞLIK ARAŞTIRMA VE UYGULAMA MERKEZİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">38</td>
+                        <td class="yk_il">TEKİRDAĞ</td>
+                        <td class="yk_universite">NAMIK KEMAL ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA HASTANESİ</td>
+                    </tr>
+
+                    <tr>
+                        <td class="yk_sira">39</td>
+                        <td class="yk_il">EDİRNE</td>
+                        <td class="yk_universite">TRAKYA ÜNİVERSİTESİ SAĞLIK ARAŞTIRMA VE UYGULAMA MERKEZİ</td>
+                    </tr>
+
+                    <tr class="yk_bg_zebra">
+                        <td class="yk_sira">40</td>
+                        <td class="yk_il">ŞANLIURFA</td>
+                        <td class="yk_universite">HARRAN ÜNİVERSİTESİ SAĞLIK UYGULAMA VE ARAŞTIRMA MERKEZİ</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- ALT BİLGİ -->
+        <div class="yk_alt_bilgi">
+            <strong>NOT:</strong>
+            Sevksiz müracaat ve gerekli belgeler konusunda hastaneye gitmeden önce
+            ilgili sağlık kuruluşu ile iletişime geçilerek güncel şartların
+            öğrenilmesi uygun olacaktır.
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         BENZERSİZ PREFIX: yk_
+         ========================================================= -->
+
+    <script>
+        function yk_40univ_init() {
+            var yk_root = document.getElementById('yk_40univ_panel');
+
+            if (!yk_root) {
+                return;
+            }
+
+            /* Bu bölüm yalnızca yk_40univ_panel içerisinde çalışır. */
+            yk_root.querySelectorAll('.yk_g9_tM1_wT tbody tr')
+                .forEach(function (yk_row) {
+
+                    yk_row.addEventListener('mouseenter', function () {
+                        yk_row.style.transition = 'background-color 0.15s';
+                    });
+
+                });
+        }
+
+        yk_40univ_init();
+
+
+
+
+        function yk_40univ_arama() {
+
+            var yk_input = document.getElementById('yk_hastane_arama');
+
+            if (!yk_input) {
+                return;
+            }
+
+            yk_input.addEventListener('input', function () {
+
+                var yk_aranan = this.value
+                    .toLocaleLowerCase('tr-TR')
+                    .trim();
+
+                var yk_satirlar = document.querySelectorAll(
+                    '#yk_40univ_panel .yk_g9_tM1_wT tbody tr'
+                );
+
+                yk_satirlar.forEach(function (yk_satir) {
+
+                    var yk_metin = yk_satir.textContent
+                        .toLocaleLowerCase('tr-TR');
+
+                    if (yk_metin.includes(yk_aranan)) {
+                        yk_satir.style.display = '';
+                    } else {
+                        yk_satir.style.display = 'none';
+                    }
+
+                });
+
+            });
+        }
+
+        yk_40univ_arama();
+
+
+    </script>
+
+</div>
+
+
+
+
+
+
+
+
+<div id="ia_banka_odemeleri" class="ia-panel">
+
+<style>
+/* =========================================================
+   ORTAK ANA YAPI
+========================================================= */
+#ia_banka_odemeleri {
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    margin: 0 auto;
+    overflow: hidden;
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000000;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   YAN YANA KÜÇÜK BUTONLAR ALANI
+========================================================= */
+#ia_banka_odemeleri .ia_buton_grubu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+#ia_banka_odemeleri .ia_buton {
+    background-color: #f1f5f9;
+    border: 2px solid transparent;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    color: #141d35;
+    transition: all 0.2s ease;
+}
+
+#ia_banka_odemeleri .ia_buton:hover {
+    background-color: #0087C2;
+    color: #ffffff;
+    border-color: #0087C2;
+}
+
+#ia_banka_odemeleri .ia_buton.aktif {
+    background-color: #141d35;
+    color: #ffffff;
+    border-color: #141d35;
+}
+
+/* =========================================================
+   İÇERİK ALANLARI
+========================================================= */
+#ia_banka_odemeleri .ia_sekmeli_icerik {
+    display: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#ia_banka_odemeleri .ia_sekmeli_icerik.aktif {
+    display: block;
+}
+
+/* =========================================================
+   BÖLÜM BAŞLIKLARI
+========================================================= */
+#ia_banka_odemeleri .ia_bolum_baslik {
+    color: #141d35;
+    text-align: left;
+    font-size: 12pt;
+    font-weight: bold;
+    padding: 0 0 8px 0;
+    margin: 0 0 20px 0;
+    border-bottom: 2px solid #0087C2;
+}
+
+/* =========================================================
+   ALT BAŞLIKLAR
+========================================================= */
+#ia_banka_odemeleri .ia_alt_baslik {
+    color: #141d35;
+    font-size: 11pt;
+    font-weight: bold;
+    margin: 22px 0 12px 0;
+}
+
+/* =========================================================
+   NORMAL METİN
+========================================================= */
+#ia_banka_odemeleri .ia_metin {
+    font-size: 9.5pt;
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+/* =========================================================
+   TARİH VURGUSU
+========================================================= */
+#ia_banka_odemeleri .ia_tarih {
+    color: #c62828;
+    font-weight: bold;
+}
+
+/* =========================================================
+   ÖDEME TABLOSU
+========================================================= */
+#ia_banka_odemeleri .ia_tablo_alani {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 30px;
+}
+
+#ia_banka_odemeleri table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    font-size: 9.5pt;
+}
+
+#ia_banka_odemeleri th,
+#ia_banka_odemeleri td {
+    border: 2px solid #141d35;
+    padding: 10px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* =========================================================
+   TABLO BAŞLIĞI
+========================================================= */
+#ia_banka_odemeleri thead tr {
+    background-color: #141d35;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* =========================================================
+   TABLO GÖVDESİ
+========================================================= */
+#ia_banka_odemeleri tbody {
+    color: #000000;
+    font-weight: bold;
+}
+
+/* =========================================================
+   BANKA / ÖDEME İSİMLERİ
+========================================================= */
+#ia_banka_odemeleri .ia_sol {
+    text-align: left;
+    color: #141d35;
+    font-weight: bold;
+}
+
+/* =========================================================
+   ZEBRA VE HOVER
+========================================================= */
+#ia_banka_odemeleri tbody tr:nth-child(even) td {
+    background-color: #fafafa;
+}
+
+#ia_banka_odemeleri tbody tr {
+    transition: background-color 0.15s;
+}
+
+#ia_banka_odemeleri tbody tr:hover td {
+    background-color: #f5f5f5;
+}
+
+/* =========================================================
+   AYIRICI
+========================================================= */
+#ia_banka_odemeleri .ia_ayirici {
+    height: 1px;
+    background-color: #141d35;
+    opacity: 0.25;
+    margin: 35px 0;
+}
+
+/* =========================================================
+   MOBİL
+========================================================= */
+@media (max-width: 700px) {
+    #ia_banka_odemeleri table {
+        min-width: 850px;
+    }
+}
+</style>
+
+
+<!-- KÜÇÜK YAN YANA BUTONLAR -->
+<div class="ia_buton_grubu" style="justify-content: center;">
+    <button class="ia_buton aktif" onclick="sekmeDegistir('bolum1', this)">ZİRAAT VE PTT ÖDEMELERİ</button>
+    <button class="ia_buton" onclick="sekmeDegistir('bolum2', this)">ANLAŞMALI BANKALAR</button>
+</div>
+
+
+<!-- =========================================================
+   1. BÖLÜM: ZİRAAT VE PTT ÖDEMELERİ
+========================================================= -->
+<div id="bolum1" class="ia_sekmeli_icerik aktif">
+    
+    <div class="ia_bolum_baslik">
+        ZİRAAT BANKASINDAN VE PTT'DEN YAPILAN ÖDEMELER
+    </div>
+
+    <div class="ia_alt_baslik">
+        Ziraat Bankasından Yapılan Ödemeler
+    </div>
+
+    <p class="ia_metin">
+        <span class="ia_tarih">01.08.2017</span>
+        tarihinden itibaren sadece herhangi bir banka tercihinde bulunmayanların
+        ilk defa bağlanacak;
+    </p>
+
+    <div class="ia_tablo_alani">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="ia_sol">Gelir ve Aylıkları</td>
+                    <td>Ziraat Bankası şubelerine gönderilecektir.</td>
+                </tr>
+                <tr>
+                    <td class="ia_sol">Cenaze</td>
+                    <td>Ziraat Bankası şubelerine gönderilecektir.</td>
+                </tr>
+                <tr>
+                    <td class="ia_sol">Emekli İkramiyeleri</td>
+                    <td>Ziraat Bankası şubelerine gönderilecektir.</td>
+                </tr>
+                <tr>
+                    <td class="ia_sol">Evlenme</td>
+                    <td>Ziraat Bankası şubelerine gönderilecektir.</td>
+                </tr>
+                <tr>
+                    <td class="ia_sol">Toptan Ödemeler</td>
+                    <td>Ziraat Bankası şubelerine gönderilecektir.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="ia_alt_baslik">
+        PTT'den Yapılan Ödemeler
+    </div>
+
+    <div class="ia_tablo_alani">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="ia_sol">Emzirme Yardımı Ödemesi</td>
+                    <td class="ia_sol">4A Nakdi Tazminat Eğitim Öğretim</td>
+                </tr>
+                <tr>
+                    <td class="ia_sol">Geçici İş Göremezlik Ödemesi</td>
+                    <td class="ia_sol">4B Nakdi Tazminat Eğitim Öğretim</td>
+                </tr>
+                <tr>
+                    <td class="ia_sol">Şahıs Tıbbi Malzeme Ödemesi</td>
+                    <td class="ia_sol">Bağ-Kur Tütün Ödemesi</td>
+                </tr>
+                <tr>
+                    <td class="ia_sol">Şahıs Diş Ödemesi</td>
+                    <td class="ia_sol">Bloke Konulan Emekli Maaşları</td>
+                </tr>
+                <tr>
+                    <td class="ia_sol">Şahıs İlaç Ödemesi</td>
+                    <td class="ia_sol">Bağ-Kur Mahkeme Kararı ile Maaş Ödenmesi</td>
+                </tr>
+                <tr>
+                    <td class="ia_sol">Şahıs Sağlık Yolluğu Ödemesi</td>
+                    <td class="ia_sol">Emekli Hareketsiz Ödemesi</td>
+                </tr>
+                <tr>
+                    <td class="ia_sol">Tedavi Sağlık İadesi</td>
+                    <td class="ia_sol">Gelirlerden Red ve İadeler</td>
+                </tr>
+                <tr>
+                    <td class="ia_sol">Çölyak Metabolizma Ödemesi</td>
+                    <td class="ia_sol">Emsan Devir Öncesi Emanet İade</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+   2. BÖLÜM: ANLAŞMALI BANKALAR
+========================================================= -->
+<div id="bolum2" class="ia_sekmeli_icerik">
+    
+    <div class="ia_bolum_baslik">
+        ANLAŞMALI BANKALAR
+    </div>
+
+    <div class="ia_alt_baslik">
+        BANKALAR İLE İMZALANAN PROTOKOLLER
+    </div>
+
+    <div class="ia_tablo_alani">
+        <table>
+            <thead>
+                <tr>
+                    <th style="width:8%;">SIRA NO</th>
+                    <th style="width:30%;">PRİM TAHSİLATI PROTOKOLÜ<br>İMZALANAN BANKALAR</th>
+                    <th style="width:30%;">GELİR/AYLIK ÖDEMESİ PROTOKOLÜ<br>İMZALANAN BANKALAR</th>
+                    <th style="width:32%;">İLK GELİR/AYLIK VE PROMOSYON ÖDEMESİ<br>PROTOKOLÜ İMZALANAN BANKALAR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td class="ia_sol">Akbank</td><td class="ia_sol">Akbank</td><td class="ia_sol">Akbank</td></tr>
+                <tr><td>2</td><td class="ia_sol">Aktifbank</td><td class="ia_sol">Albaraka Türk Katılım Bankası</td><td class="ia_sol">Burgan Bank</td></tr>
+                <tr><td>3</td><td class="ia_sol">Albaraka Türk Katılım Bankası</td><td class="ia_sol">Alternatifbank</td><td class="ia_sol">Denizbank</td></tr>
+                <tr><td>4</td><td class="ia_sol">Alternatifbank</td><td class="ia_sol">Anadolubank</td><td class="ia_sol">Fibabanka</td></tr>
+                <tr><td>5</td><td class="ia_sol">Anadolubank</td><td class="ia_sol">Burgan Bank</td><td class="ia_sol">Finansbank</td></tr>
+                <tr><td>6</td><td class="ia_sol">Burgan Bank</td><td class="ia_sol">Denizbank</td><td class="ia_sol">ING Bank</td></tr>
+                <tr><td>7</td><td class="ia_sol">Citibank</td><td class="ia_sol">Fibabanka</td><td class="ia_sol">Kuveyt Türk Katılım Bankası</td></tr>
+                <tr><td>8</td><td class="ia_sol">Denizbank</td><td class="ia_sol">Finansbank</td><td class="ia_sol">Odea Bank</td></tr>
+                <tr><td>9</td><td class="ia_sol">Fibabanka</td><td class="ia_sol">HSBC Bank</td><td class="ia_sol">Şekerbank</td></tr>
+                <tr><td>10</td><td class="ia_sol">Finansbank</td><td class="ia_sol">ICBC Turkey Bank</td><td class="ia_sol">T.C. Ziraat Bankası</td></tr>
+                <tr><td>11</td><td class="ia_sol">HSBC Bank</td><td class="ia_sol">ING Bank</td><td class="ia_sol">Turkısh Bank</td></tr>
+                <tr><td>12</td><td class="ia_sol">ICBC Turkey Bank</td><td class="ia_sol">Kuveyt Türk Katılım Bankası</td><td class="ia_sol">Türk Ekonomi Bankası</td></tr>
+                <tr><td>13</td><td class="ia_sol">ING Bank</td><td class="ia_sol">Odea Bank</td><td class="ia_sol">Türkiye Finans Katılım Bankası</td></tr>
+                <tr><td>14</td><td class="ia_sol">Kuveyt Türk Katılım Bankası</td><td class="ia_sol">Şekerbank</td><td class="ia_sol">Türkiye Garanti Bankası</td></tr>
+                <tr><td>15</td><td class="ia_sol">Odea Bank</td><td class="ia_sol">T.C. Ziraat Bankası</td><td class="ia_sol">Türkiye Halk Bankası</td></tr>
+                <tr><td>16</td><td class="ia_sol">Şekerbank</td><td class="ia_sol">Turkısh Bank</td><td class="ia_sol">Türkiye İş Bankası</td></tr>
+                <tr><td>17</td><td class="ia_sol">T.C. Ziraat Bankası</td><td class="ia_sol">Türk Ekonomi Bankası</td><td class="ia_sol">Türkiye Vakıflar Bankası</td></tr>
+                <tr><td>18</td><td class="ia_sol">Turkısh Bank</td><td class="ia_sol">Türkiye Finans Katılım Bankası</td><td class="ia_sol">Vakıf Katılım Bankası</td></tr>
+                <tr><td>19</td><td class="ia_sol">Turkland Bank</td><td class="ia_sol">Türkiye Garanti Bankası</td><td class="ia_sol">Yapı ve Kredi Bankası</td></tr>
+                <tr><td>20</td><td class="ia_sol">Türk Ekonomi Bankası</td><td class="ia_sol">Türkiye Halk Bankası</td><td class="ia_sol">PTT</td></tr>
+                <tr><td>21</td><td class="ia_sol">Türkiye Finans Katılım Bankası</td><td class="ia_sol">Türkiye İş Bankası</td><td></td></tr>
+                <tr><td>22</td><td class="ia_sol">Türkiye Garanti Bankası</td><td class="ia_sol">Türkiye Vakıflar Bankası</td><td></td></tr>
+                <tr><td>23</td><td class="ia_sol">Türkiye Halk Bankası</td><td class="ia_sol">Vakıf Katılım Bankası</td><td></td></tr>
+                <tr><td>24</td><td class="ia_sol">Türkiye İş Bankası</td><td class="ia_sol">Yapı ve Kredi Bankası</td><td></td></tr>
+                <tr><td>25</td><td class="ia_sol">Türkiye Vakıflar Bankası</td><td class="ia_sol">Ziraat Katılım Bankası</td><td></td></tr>
+                <tr><td>26</td><td class="ia_sol">Vakıf Katılım Bankası</td><td class="ia_sol">PTT</td><td></td></tr>
+                <tr><td>27</td><td class="ia_sol">Yapı ve Kredi Bankası</td><td></td><td></td></tr>
+                <tr><td>28</td><td class="ia_sol">Ziraat Katılım Bankası</td><td></td><td></td></tr>
+                <tr><td>29</td><td class="ia_sol">PTT</td><td></td><td></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script>
+function sekmeDegistir(hedefID, element) {
+    var anaKapsayici = document.getElementById('ia_banka_odemeleri');
+
+    // Tüm butonların aktif sınıfını kaldır
+    anaKapsayici.querySelectorAll('.ia_buton').forEach(function(btn) {
+        btn.classList.remove('aktif');
+    });
+
+    // Tüm içeriklerin aktif sınıfını kaldır
+    anaKapsayici.querySelectorAll('.ia_sekmeli_icerik').forEach(function(icerik) {
+        icerik.classList.remove('aktif');
+    });
+
+    // Tıklanan butona ve ilgili içeriğe aktif sınıfını ekle
+    element.classList.add('aktif');
+    document.getElementById(hedefID).classList.add('aktif');
+}
+</script>
+
+</div>
 
 
 

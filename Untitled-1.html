@@ -127,6 +127,39 @@
             color: var(--text-muted);
         }
 
+        .gecmis-input-wrap {
+            display: flex;
+            gap: 8px;
+        }
+
+        .gecmis-input-wrap input {
+            flex: 1;
+        }
+
+        .plus-toggle-btn {
+            flex-shrink: 0;
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            font-size: 22px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .plus-toggle-btn:hover {
+            border-color: #94a3b8;
+        }
+
+        .plus-toggle-btn.active {
+            background: var(--success);
+            border-color: var(--success);
+            color: #ffffff;
+        }
+
         .result-section {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -376,10 +409,19 @@
                     <input type="time" id="vardiyaBitis" value="18:00">
                 </div>
 
-                <div class="form-group" style="grid-column: span 2;">
+                <div class="form-group">
                     <label for="sistemSuresi">Sistemde Görünen Çalışma Süresi</label>
                     <input type="text" id="sistemSuresi" placeholder="Örn: 724 yazmanız yeterlidir" inputmode="numeric"
                         maxlength="5" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="gecmisEksikSure">Geçmişten Kalan Eksik Süre (dk)</label>
+                    <div class="gecmis-input-wrap">
+                        <input type="text" id="gecmisEksikSure" placeholder="Sadece dakika, örn: 45" inputmode="numeric"
+                            maxlength="4" autocomplete="off">
+                        <button type="button" class="plus-toggle-btn" id="plusToggleBtn" title="Basılıysa fazla süre, basılı değilse eksik süre sayılır">+</button>
+                    </div>
                 </div>
             </div>
 
@@ -394,7 +436,7 @@
             <div class="main-result normal" id="mainResult">
                 <div class="status-icon" id="statusIcon"></div>
                 <div class="status-title" id="statusTitle">BEKLENİYOR</div>
-                <div class="status-value" id="statusValue">00:00:00</div>
+                <div class="status-value" id="statusValue">0 dk</div>
             </div>
 
             <!-- DETAYLI SONUÇLAR -->
@@ -420,7 +462,8 @@
                 <div class="info-icon">💡</div>
                 <p>
                     İki nokta koşturmadan direkt rakamları yazın (örn: <strong>724</strong>). Yazdığınız an hesaplama
-                    otomatik başlar ve saniyeler bazında canlı güncellenir.
+                    otomatik başlar ve saniyeler bazında canlı güncellenir. Geçmişten kalan eksik süre alanına ise
+                    sadece dakika olarak sayı girin (örn: <strong>45</strong>), bu süre toplam farka eklenir.
                 </p>
             </div>
         </main>
@@ -432,6 +475,9 @@
         const vardiyaInput = document.getElementById("vardiyaBaslangic");
         const bitisInput = document.getElementById("vardiyaBitis");
         const sistemInput = document.getElementById("sistemSuresi");
+        const gecmisEksikInput = document.getElementById("gecmisEksikSure");
+        const plusToggleBtn = document.getElementById("plusToggleBtn");
+        let gecmisFazlaMi = false;
         const currentTimeElement = document.getElementById("currentTime");
         const gercekSureElement = document.getElementById("gercekSure");
         const sistemSureElement = document.getElementById("sistemSure");
@@ -465,6 +511,15 @@
             return null;
         }
 
+        function gecmisEksikSaniyeAl() {
+            const deger = gecmisEksikInput.value.replace(/\D/g, "");
+            if (!deger) return 0;
+            const dakika = Number(deger);
+            if (!Number.isInteger(dakika) || dakika < 0) return 0;
+            const saniye = dakika * 60;
+            return gecmisFazlaMi ? -saniye : saniye;
+        }
+
         function saniyeToSure(saniye) {
             saniye = Math.max(0, saniye);
             const saat = Math.floor(saniye / 3600);
@@ -480,6 +535,12 @@
             const saniyeKismi = Math.floor(saniye % 60);
 
             return `${negatif ? "-" : ""}${String(saat).padStart(2, "0")}:${String(dakika).padStart(2, "0")}:${String(saniyeKismi).padStart(2, "0")}`;
+        }
+
+        function saniyeToDakika(saniye) {
+            const negatif = saniye < 0;
+            const dakika = Math.round(Math.abs(saniye) / 60);
+            return `${negatif ? "-" : ""}${dakika} dk`;
         }
 
         function bilgisayarSaatiniAl() {
@@ -530,7 +591,9 @@
             const gercekSaniye = gercekCalismaSuresi();
             if (gercekSaniye === null) return;
 
-            const fark = gercekSaniye - sistemSaniye;
+            const gecmisEksikSaniye = gecmisEksikSaniyeAl();
+
+            const fark = (gercekSaniye - sistemSaniye) + gecmisEksikSaniye;
 
             gercekSureElement.textContent = saniyeToTamSure(gercekSaniye);
 
@@ -567,17 +630,17 @@
                 mainResult.className = "main-result missing";
                 statusIcon.textContent = "🔴";
                 statusTitle.textContent = "EKSİK SÜRE";
-                statusValue.textContent = saniyeToTamSure(fark);
+                statusValue.textContent = saniyeToDakika(fark);
             } else if (fark < 0) {
                 mainResult.className = "main-result extra";
                 statusIcon.textContent = "🟢";
                 statusTitle.textContent = "FAZLA SÜRE";
-                statusValue.textContent = saniyeToTamSure(Math.abs(fark));
+                statusValue.textContent = saniyeToDakika(Math.abs(fark));
             } else {
                 mainResult.className = "main-result normal";
                 statusIcon.textContent = "🔵";
-                statusTitle.textContent = "SÜRE TAM";
-                statusValue.textContent = "00:00:00";
+                statusTitle.textContent = "TAM SÜRE";
+                statusValue.textContent = "0 dk";
             }
         }
 
@@ -605,10 +668,37 @@
             }
         });
 
+        gecmisEksikInput.addEventListener("input", function () {
+            let val = this.value.replace(/\D/g, "");
+            if (val.length > 4) val = val.substring(0, 4);
+            this.value = val;
+
+            if (hesaplamaAktif) {
+                hesapla();
+            }
+        });
+
+        gecmisEksikInput.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                this.blur();
+            }
+        });
+
+        plusToggleBtn.addEventListener("click", function () {
+            gecmisFazlaMi = !gecmisFazlaMi;
+            plusToggleBtn.classList.toggle("active", gecmisFazlaMi);
+            if (hesaplamaAktif) {
+                hesapla();
+            }
+        });
+
         function temizle() {
             vardiyaInput.value = "08:00";
             bitisInput.value = "18:00";
             sistemInput.value = "";
+            gecmisEksikInput.value = "";
+            gecmisFazlaMi = false;
+            plusToggleBtn.classList.remove("active");
             hesaplamaAktif = false;
 
             gercekSureElement.textContent = "00:00:00";
@@ -618,7 +708,7 @@
             mainResult.className = "main-result normal";
             statusIcon.textContent = "";
             statusTitle.textContent = "BEKLENİYOR";
-            statusValue.textContent = "00:00:00";
+            statusValue.textContent = "0 dk";
         }
 
         vardiyaInput.addEventListener("change", () => { if (hesaplamaAktif) hesapla(); });
