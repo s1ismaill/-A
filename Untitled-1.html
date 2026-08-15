@@ -306,6 +306,121 @@
             background: #f1f5f9;
         }
 
+
+        /* MOLA HESAPLAYICI - sade / profesyonel */
+        .mola-calculator {
+            margin-top: 20px;
+            padding: 18px 20px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: #ffffff;
+        }
+
+        .mola-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .mola-title-wrap {
+            min-width: 0;
+        }
+
+        .mola-kicker {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--text-muted);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .mola-title {
+            color: var(--text-main);
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .mola-total {
+            flex-shrink: 0;
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+            color: var(--primary);
+            font-size: 24px;
+            font-weight: 900;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .mola-total small {
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .mola-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .mola-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: var(--bg-input);
+        }
+
+        .mola-box label {
+            flex: 1;
+            min-width: 0;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .mola-box input {
+            width: 105px;
+            height: 40px;
+            padding: 0 10px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            outline: none;
+            background: #ffffff;
+            color: var(--text-main);
+            font-size: 16px;
+            font-weight: 800;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .mola-box input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+        }
+
+        @media (max-width: 700px) {
+            .mola-header {
+                align-items: flex-start;
+            }
+
+            .mola-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mola-box input {
+                width: 100px;
+            }
+        }
+
         .info-box {
             display: flex;
             align-items: flex-start;
@@ -437,6 +552,32 @@
                 <div class="status-icon" id="statusIcon"></div>
                 <div class="status-title" id="statusTitle">BEKLENİYOR</div>
                 <div class="status-value" id="statusValue">0 dk</div>
+            </div>
+
+
+            <!-- MOLA HESAPLAYICI -->
+            <div class="mola-calculator">
+                <div class="mola-header">
+                    <div class="mola-title-wrap">
+                        <span class="mola-kicker">Süre aracı</span>
+                        <div class="mola-title">Mola Hesaplayıcısı</div>
+                    </div>
+                    <div class="mola-total"><span id="molaSonuc">0</span><small>dk toplam</small></div>
+                </div>
+
+                <div class="mola-grid">
+                    <div class="mola-box">
+                        <label for="kisaMola">Kısa Mola</label>
+                        <input type="text" id="kisaMola" placeholder="01:16"
+                            inputmode="numeric" maxlength="5" autocomplete="off">
+                    </div>
+
+                    <div class="mola-box">
+                        <label for="yemekMola">Yemek Molası</label>
+                        <input type="text" id="yemekMola" placeholder="00:10"
+                            inputmode="numeric" maxlength="5" autocomplete="off">
+                    </div>
+                </div>
             </div>
 
             <!-- DETAYLI SONUÇLAR -->
@@ -692,11 +833,64 @@
             }
         });
 
+
+        // MOLA HESAPLAYICI
+        const kisaMolaInput = document.getElementById("kisaMola");
+        const yemekMolaInput = document.getElementById("yemekMola");
+        const molaSonucElement = document.getElementById("molaSonuc");
+
+        function molaSuresiniDakikayaCevir(deger) {
+            const temiz = deger.replace(/\D/g, "");
+            if (!temiz) return 0;
+
+            let saat = 0;
+            let dakika = 0;
+
+            if (temiz.length <= 2) {
+                dakika = Number(temiz);
+            } else {
+                const saatKismi = temiz.substring(0, temiz.length - 2);
+                const dakikaKismi = temiz.substring(temiz.length - 2);
+
+                saat = Number(saatKismi);
+                dakika = Number(dakikaKismi);
+
+                if (dakika > 59) return 0;
+            }
+
+            return (saat * 60) + dakika;
+        }
+
+        function molaInputFormatla(input) {
+            let val = input.value.replace(/\D/g, "").substring(0, 4);
+
+            if (val.length >= 3) {
+                val = val.substring(0, val.length - 2) + ":" + val.substring(val.length - 2);
+            }
+
+            input.value = val;
+            molaHesapla();
+        }
+
+        function molaHesapla() {
+            const kisaDakika = molaSuresiniDakikayaCevir(kisaMolaInput.value);
+            const yemekDakika = molaSuresiniDakikayaCevir(yemekMolaInput.value);
+            const toplam = kisaDakika + yemekDakika;
+
+            molaSonucElement.textContent = toplam;
+        }
+
+        kisaMolaInput.addEventListener("input", () => molaInputFormatla(kisaMolaInput));
+        yemekMolaInput.addEventListener("input", () => molaInputFormatla(yemekMolaInput));
+
         function temizle() {
             vardiyaInput.value = "08:00";
             bitisInput.value = "18:00";
             sistemInput.value = "";
             gecmisEksikInput.value = "";
+            kisaMolaInput.value = "";
+            yemekMolaInput.value = "";
+            molaSonucElement.textContent = "0";
             gecmisFazlaMi = false;
             plusToggleBtn.classList.remove("active");
             hesaplamaAktif = false;
