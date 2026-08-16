@@ -357,6 +357,8 @@
             <div class="c-dropdown">
               <div class="ia-serit-baslik" data-panel="dogumraporu">DOĞUM RAPORU HAKKINDA</div>
               <div class="ia-serit-baslik" data-panel="fiilihizmet">FİİLÎ HİZMET SÜRESİ</div>
+              <div class="ia-serit-baslik" data-panel="hizmetkollari">HİZMET KOLLARI</div>
+              <div class="ia-serit-baslik" data-panel="iskazasi">İŞ KAZASI</div>
               <div class="ia-serit-baslik" data-panel="eksikguntamamlama">KISMİ SÜRELİ ÇALIŞANLARIN EKSİK GÜNLERİ</div>
               <div class="ia-serit-baslik" data-panel="tabloAlann459865958">RAPOR ÜCRETİ ALABİLECEKLER</div>
               <div class="ia-serit-baslik" data-panel="x9z_table_content">SGK EKSİK GÜN BİLDİRİM</div>
@@ -35912,6 +35914,1218 @@ UYARI
 
 
 
+
+<section id="iskazasi" class="ia-panel">
+<style>
+#iskazasi {
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  color: #1a2b3c;
+}
+
+#iskazasi .law-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#iskazasi .law-header h1 {
+  font-family: 'Newsreader', serif;
+  font-size: 32px;
+  color: #0b4f8a;
+  margin: 0 0 8px 0;
+}
+
+#iskazasi .law-header p {
+  font-size: 14px;
+  color: #5a6b7c;
+  margin: 0;
+}
+
+#iskazasi .search-wrap {
+  max-width: 520px;
+  margin: 0 auto 24px auto;
+  position: relative;
+}
+
+#iskazasi .search-wrap input {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  padding: 12px 16px 12px 42px;
+  border: 2px solid #dde6ee;
+  border-radius: 30px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  color: #1a2b3c;
+}
+
+#iskazasi .search-wrap input:focus {
+  border-color: #0b4f8a;
+}
+
+#iskazasi .search-wrap .search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid #7d8b99;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+#iskazasi .search-wrap .search-icon::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 8px;
+  background: #7d8b99;
+  right: -6px;
+  bottom: -7px;
+  transform: rotate(45deg);
+}
+
+#iskazasi .search-empty {
+  text-align: center;
+  color: #7d8b99;
+  font-size: 14px;
+  padding: 30px 0;
+  display: none;
+}
+
+#iskazasi mark {
+  background: #ffe9b3;
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+#iskazasi .law-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+#iskazasi .law-tab-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border: 2px solid #0b4f8a;
+  border-radius: 30px;
+  background: #ffffff;
+  color: #0b4f8a;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+#iskazasi .law-tab-btn:hover {
+  background: #eaf3fb;
+}
+
+#iskazasi .law-tab-btn.active {
+  background: #0b4f8a;
+  color: #ffffff;
+}
+
+#iskazasi .law-panel {
+  display: none;
+}
+
+#iskazasi .law-panel.active {
+  display: block;
+  animation: iskazasiFade 0.35s ease;
+}
+
+@keyframes iskazasiFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#iskazasi .law-card {
+  background: #ffffff;
+  border: 1px solid #dde6ee;
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(11, 79, 138, 0.06);
+}
+
+#iskazasi .law-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0b4f8a;
+  margin: 0 0 14px 0;
+}
+
+#iskazasi ul.law-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#iskazasi ul.law-list li {
+  position: relative;
+  padding: 8px 0;
+  font-size: 15px;
+  line-height: 1.6;
+  border-bottom: 1px dashed #e3ebf2;
+}
+
+#iskazasi ul.law-list li:last-child {
+  border-bottom: none;
+}
+
+#iskazasi ul.law-list.compact li {
+  font-size: 14px;
+  padding: 6px 0;
+}
+
+#iskazasi .info-box {
+  background: #eaf3fb;
+  border-left: 4px solid #0b4f8a;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #163a56;
+}
+
+#iskazasi .info-box strong {
+  color: #0b4f8a;
+}
+
+#iskazasi .warning-box {
+  background: #fdf3ea;
+  border-left: 4px solid #d98324;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6b4413;
+}
+
+#iskazasi .warning-box strong {
+  color: #b9660c;
+}
+
+#iskazasi table.law-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+#iskazasi table.law-table th {
+  background: #0b4f8a;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+#iskazasi table.law-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #e3ebf2;
+  vertical-align: top;
+}
+
+#iskazasi table.law-table tr:nth-child(even) td {
+  background: #f6fafd;
+}
+
+#iskazasi .faq-item {
+  background: #f6fafd;
+  border: 1px solid #e3ebf2;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+
+#iskazasi .faq-item:last-child {
+  margin-bottom: 0;
+}
+
+#iskazasi .faq-q {
+  font-weight: 700;
+  color: #0b4f8a;
+  font-size: 14.5px;
+  margin: 0 0 6px 0;
+}
+
+#iskazasi .faq-a {
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0;
+  color: #3a4a5a;
+}
+
+#iskazasi .law-footer-note {
+  text-align: center;
+  font-size: 13px;
+  color: #7d8b99;
+  margin-top: 20px;
+}
+
+@media (max-width: 700px) {
+  #iskazasi .law-tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #iskazasi .law-tab-btn {
+    text-align: center;
+  }
+  #iskazasi table.law-table {
+    font-size: 12px;
+  }
+}
+</style>
+
+<div class="law-header">
+  <h1>İş Kazası</h1>
+  <p>5510 Sayılı Kanun Madde 13, 14 · 2016/21 ve 2018/26 Sayılı Genelgeler</p>
+</div>
+
+<div class="search-wrap">
+  <span class="search-icon"></span>
+  <input type="text" id="iskazasiSearch" placeholder="İçerikte ara..." autocomplete="off">
+</div>
+<p class="search-empty" id="iskazasiSearchEmpty">Aramanızla eşleşen bir sonuç bulunamadı.</p>
+
+<div class="law-tabs">
+  <button class="law-tab-btn active" data-tab="ik-tab1">Bildirim Süresi — Genel</button>
+  <button class="law-tab-btn" data-tab="ik-tab2">Bildirim Süreleri Tablosu</button>
+  <button class="law-tab-btn" data-tab="ik-tab3">İş Kazası Sayılma Şartları</button>
+  <button class="law-tab-btn" data-tab="ik-tab4">Kapsam — Kimler İçin Geçerli</button>
+  <button class="law-tab-btn" data-tab="ik-tab5">Bildirim Yöntemi ve Mali Tatil</button>
+  <button class="law-tab-btn" data-tab="ik-tab6">Çırak/Stajyer/Kursiyer Bildirimi</button>
+  <button class="law-tab-btn" data-tab="ik-tab7">Kısa Vade Soru-Cevap</button>
+</div>
+
+<div class="law-panel active" id="ik-tab1">
+  <div class="law-card">
+    <h2 class="law-title">İş Kazası Bildirim Süresi</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">İş kazası, en geç kazadan sonraki 3 iş günü içinde Kuruma bildirilmelidir.</p>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Kasti Hareket Sonucu İş Kazası</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">İş kazasına kasti bir hareketi yüzünden uğradığı tespit edilen kişiye, yarısı tutarında iş göremezlik ödeneği ödenir.</p>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Geç Bildirimin Sonuçları</h2>
+    <ul class="law-list">
+      <li>Belirtilen sürelerde işverence bildirim yapılmaması durumunda, bildirimin Kuruma yapıldığı tarihe kadar sigortalıya ödenecek geçici iş göremezlik ödeneği, Kurumca işverenden tahsil edilir.</li>
+      <li>4/1-(b) (BAĞ-KUR) kapsamındaki sigortalıların iş kazasını belirtilen sürede bildirmemesi hâlinde, bildirim tarihine kadar geçen süre için ödenek ödenmez; bildirim tarihinden sonraki sürelere ait ödenek ödenir.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="law-panel" id="ik-tab2">
+  <div class="law-card">
+    <h2 class="law-title">Sigortalı Grubuna Göre Bildirim Süreleri</h2>
+    <table class="law-table">
+      <thead><tr><th>Sigortalı Grubu</th><th>Bildirim Süresi</th></tr></thead>
+      <tbody>
+        <tr><td>4/a (SSK) kapsamındaki sigortalılar; hükümlü/tutuklular; aday çırak/çırak/mesleki eğitim öğrencileri; staj gören öğrenciler; tamamlayıcı/alan eğitimi gören öğrenciler; bursiyerler; kısmi zamanlı çalışan öğrenciler; harp malulleri ve vazife malullüğü aylığı alanlar; İŞKUR kursiyerleri; ev hizmetlerinde çalışanlar; intörn öğrenciler</td><td>İşverenleri tarafından kazanın olduğu yerdeki yetkili kolluk kuvvetlerine derhal; Kuruma en geç kazadan sonraki 3 iş günü içinde.</td></tr>
+        <tr><td>Sosyal güvenlik sözleşmesi olmayan ülkelerde çalıştırılmak üzere götürülen Türk işçileri</td><td>İşvereni tarafından, kazanın olduğu ve sözleşmesi bulunmayan ülkedeki yerel kolluk kuvvetlerine derhal; Kuruma en geç 3 iş günü içinde.</td></tr>
+        <tr><td>Ek 5. madde kapsamında tarım/orman işlerinde süreksiz çalışanlar</td><td>Kendilerince veya işverenlerince kolluk kuvvetlerine derhal; Kuruma en geç 3 iş günü içinde.</td></tr>
+        <tr><td>Uluslararası sefer yapan kara, deniz, hava ulaştırma araçlarında çalışanlar</td><td>Aracın Türkiye'ye döndüğü günü takip eden ilk iş gününden itibaren işlemeye başlar (deniz aracının ilk Türk limanına girdiği, hava aracının ilk Türk havaalanına indiği, kara aracının sınır kapısından girdiği tarih esas alınır; araç gelemezse sigortalının sınır kapısından geçiş tarihi esas alınır).</td></tr>
+        <tr><td>4/b (BAĞ-KUR) kapsamındaki sigortalılar</td><td>Kazadan itibaren bir ayı geçmemek şartıyla, bildirim yapmaya engel hâlin ortadan kalktığı günü takip eden günden başlanarak kendisi tarafından 3 iş günü içinde.</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box"><strong>Kaynak:</strong> 2016/21 Sayılı Genelge</div>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Diğer Bildirim Kuralları</h2>
+    <ul class="law-list">
+      <li>Sigortalıların işverenin kontrolü dışındaki yerlerde iş kazası geçirmesi ve bilgi alınmasını engelleyen durumlarda, bildirim süresi kazanın öğrenildiği tarihten itibaren 3 iş günüdür.</li>
+      <li>4/b bendine tabi sigortalıların bildirim yapmalarına engel durumu, hekim raporu veya mücbir sebep belgesiyle kanıtlanmalıdır.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="law-panel" id="ik-tab3">
+  <div class="law-card">
+    <h2 class="law-title">Bir Olayın İş Kazası Sayılması (Madde 13)</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0 0 10px 0;">4/1-(a) (SSK) bendi kapsamında çalışan sigortalı için, aşağıdaki durumlarda meydana gelen olay iş kazası sayılır:</p>
+    <ul class="law-list">
+      <li>İşyerinde bulunduğu sırada.</li>
+      <li>İşveren tarafından yürütülmekte olan iş dolayısıyla.</li>
+      <li>Görevli olarak işyeri dışında başka bir yere gönderilmesi nedeniyle asıl işini yapmaksızın geçen zamanlarda.</li>
+      <li>Emziren kadın sigortalının, iş mevzuatına tabi olup olmadığına bakılmaksızın çocuğuna süt vermek için ayrılan zamanlarda.</li>
+      <li>İşverence sağlanan bir taşıtla işin yapıldığı yere gidiş-geliş sırasında.</li>
+    </ul>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Aranan Unsurlar</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0 0 10px 0;">Bir olayın iş kazası olup olmadığının değerlendirilmesi için, iş kazası geçiren kişide şu hâllerin bir arada bulunması gerekir:</p>
+    <ul class="law-list">
+      <li>Sigortalı olması.</li>
+      <li>Mutlaka bir olayla karşılaşmış olması.</li>
+      <li>Meydana gelen olay nedeniyle bedenen veya ruhen özre uğraması.</li>
+    </ul>
+    <div class="info-box">
+      <strong>Bilgi:</strong> Değerlendirme sırasında, ortaya çıkan olayın nedeni ile sonucu arasında bir ilişki kurularak buna göre değerlendirme yapılması gerekir. Sigortalının işyerinde kalp krizi geçirmesi veya başka bir hastalık nedeniyle ölmesi ya da ruhen/bedenen hemen veya sonradan engelli hâle gelmesi de iş kazası olarak kabul edilir.
+    </div>
+  </div>
+</div>
+
+<div class="law-panel" id="ik-tab4">
+  <div class="law-card">
+    <h2 class="law-title">İş Kazası Sigortası Hükümleri Kimler İçin Geçerlidir?</h2>
+    <ul class="law-list compact">
+      <li>4/1-(a) ve (b) bendi kapsamında sigortalı sayılanlar (SSK ve BAĞ-KUR).</li>
+      <li>Hizmet akdiyle çalışmamakla birlikte, ceza infaz kurumları ve tutukevlerindeki tesis/atölye gibi ünitelerde çalıştırılan hükümlü ve tutuklular.</li>
+      <li>3308 sayılı Mesleki Eğitim Kanunu kapsamındaki aday çırak, çırak ve işletmelerde mesleki eğitim gören öğrenciler.</li>
+      <li>Meslek liselerinde veya yükseköğrenim sırasında staja tabi tutulan öğrenciler.</li>
+      <li>Kamu kurum ve kuruluşlarınca desteklenen projelerde görevli bursiyerler.</li>
+      <li>2547 sayılı Kanunun 46. maddesine tabi kısmi zamanlı çalışan, aylık kazancı günlük prime esas kazanç alt sınırının 30 katını aşmayan öğrenciler.</li>
+      <li>Harp malulleri ile 2330 sayılı Kanun veya 5434 sayılı Kanunun 56. maddesi uyarınca vazife malullüğü aylığı bağlanmış maluller.</li>
+      <li>Türkiye İş Kurumunca düzenlenen meslek edindirme/geliştirme/değiştirme eğitimine katılan kursiyerler.</li>
+      <li>Sosyal güvenlik sözleşmesi olmayan ülkelerde çalıştırılmak üzere götürülen Türk işçileri.</li>
+      <li>Ek 5. madde kapsamında tarım/orman işlerinde süreksiz çalışan sigortalılar.</li>
+      <li>Ek 9. madde kapsamında ev hizmetlerinde 10 günden az veya fazla çalışan sigortalılar.</li>
+      <li>2547 sayılı Kanunun Ek 29. maddesine göre intörn statüsündeki öğrenciler.</li>
+      <li>5. madde (b) bendinde sayılan, mesleki ve teknik ortaöğretimde alan eğitimi gören öğrenciler (işyeri sayılan yer, eğitim gördükleri atölye/laboratuvar ile sınırlıdır; bu alanlar dışında meydana gelen olaylar iş kazası sayılmaz).</li>
+    </ul>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">İdari İzin ve Mali Tatil</h2>
+    <ul class="law-list">
+      <li>İdari izinler resmî tatil kapsamında olmadığından, kısa vadeli sigorta kolları mevzuatındaki süreleri uzatmaz. Bildirim süresinin son gününün idari izne rastlaması, süreyi izin sonrası ilk iş gününe uzatmaz; bildirim yükümlülüğü izin süresince de devam eder.</li>
+      <li>5604 sayılı Kanun uyarınca her yıl 1-20 Temmuz (20'si dahil) arası mali tatil uygulanır. Ancak iş kazası ve meslek hastalığı bildirimleri, mali tatildeki ertelenen süreler dışında tutulur; bildirimin son gününün mali tatile denk gelmesi, süreleri uzatmaz.</li>
+    </ul>
+    <div class="info-box"><strong>Örnek:</strong> 18/07/2017'de meydana gelen bir iş kazasının bildirimi, en geç 21/07/2017 tarihine (dahil) kadar Kuruma yapılmalıdır.</div>
+  </div>
+</div>
+
+<div class="law-panel" id="ik-tab5">
+  <div class="law-card">
+    <h2 class="law-title">Elektronik Bildirim</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">Meydana gelen iş kazası, işveren tarafından Kuruma e-Bildirim programı üzerinden bildirilir. Elektronik İş Kazası ve Meslek Hastalığı Bildirim Formuna www.sgk.gov.tr adresinden ulaşılabilir.</p>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Elektronik Bildirim Yapılamadığında</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">Bilgi işlem arızası, elektronik erişim sağlanamaması veya e-Bildirge şifresi alınamaması gibi nedenlerle elektronik bildirim yapılamıyorsa, işveren veya sigortalı tarafından www.sgk.gov.tr'deki İş Kazası ve Meslek Hastalığı Bildirim Formuyla kâğıt ortamında (Ek-13) veya aynı bilgileri taşıyan dilekçeyle yasal süresinde Kuruma başvurulması hâlinde bildirim geçerli sayılır.</p>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Sigortalının İş Kazası Günü Sigorta Bildirimi</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">4/1-(a) kapsamındaki sigortalıların iş kazası geçirdikleri gün için (geçici iş göremezlik belgesi olsa dahi) Kuruma hizmet bildirilmesi gerekir.</p>
+    <div class="info-box"><strong>Örnek:</strong> 21/11/2019'dan itibaren çalışan sigortalı, 04/01/2020'de iş kazası geçirip 14/01/2020'de vefat ederse, işverence bu sigortalı adına Ocak ayı için en az 4 günlük hizmet bildirilir. (Kaynak: 2019/9 Sayılı Genelge)</div>
+  </div>
+</div>
+
+<div class="law-panel" id="ik-tab6">
+  <div class="law-card">
+    <h2 class="law-title">Çırak, Stajyer ve İŞKUR Kursiyerlerinin İş Kazası Bildirimi</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">5510/5-(b) bendindeki çırak ve stajyer öğrenciler ile (e) bendindeki İŞKUR kursiyerlerinin staj sırasında iş kazası geçirmesi veya meslek hastalığına tutulması hâlinde, bildirim staj gördükleri işyeri işverenleri tarafından manuel olarak kâğıt ortamında yapılır. Yükümlülüğün süresinde yerine getirilmemesi hâlinde idari para cezası, eğitim/staj gördükleri işyeri işverenine uygulanır.</p>
+    <div class="info-box">
+      <strong>Örnek:</strong> Teknik lise son sınıfta bir işletmede staj gören öğrenci, işletmede iş kazası geçirirse; bildirim okul tarafından değil, staj gördüğü işletme tarafından yapılır. Bildirim yapılmazsa idari para cezası okula değil işletmeye uygulanır. Ancak okul tarafından süresinde bildirim yapılırsa, bu bildirim işletme adına yapılmış sayılır.
+    </div>
+    <div class="warning-box"><strong>Dikkat:</strong> Bu kapsamdakilerin istirahat raporu alması durumunda, çalışılmadığına dair bildirim işlemleri primlerin bildirildiği okul veya İŞKUR tarafından yapılmalıdır.</div>
+  </div>
+</div>
+
+<div class="law-panel" id="ik-tab7">
+  <div class="law-card">
+    <h2 class="law-title">Kısa Vadeli Soru-Cevap</h2>
+    <div class="faq-item">
+      <p class="faq-q">İşyeri sayılan yerlerde meydana gelen çeşitli kazalar (avluda düşme, dinlenme saatinde sakatlanma, bahçede meyve toplarken düşme, tarlada traktör kazası, yemek yerken kesik, dinlenme odasında zehirlenme, işyerinde intihar, havuzda boğulma, izinliyken işyerine ziyarete gelip kaza geçirme, araçlı çalışanların araç kazaları) iş kazası sayılır mı?</p>
+      <p class="faq-a">İş kazası olarak kabul edilir.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Görevli gönderilen sigortalının işi dışında eğlenmek için gittiği sinema veya gece kulübünde uğradığı kaza iş kazası sayılır mı?</p>
+      <p class="faq-a">İş kazası olarak kabul edilmez.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Uluslararası sefer yapan kara/deniz/hava ulaştırma araçlarında çalışanların iş kazası bildirim süresi ne zaman başlar?</p>
+      <p class="faq-a">Aracın Türkiye'ye döndüğü günü takip eden ilk iş gününden itibaren başlar.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">4/1-(b) (BAĞ-KUR) kapsamındaki sigortalıların iş kazası bildirimi ne zaman verilmelidir?</p>
+      <p class="faq-a">Kazanın meydana geldiği tarihten itibaren bir aylık süreyi geçmemek şartıyla, bildirim yapmaya engel hâlin ortadan kalktığı günü takip eden günden başlanarak kendisi tarafından 3 iş günü içinde.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Sağlık hizmet sunucuları kendilerine intikal eden iş kazalarını kaç gün içinde Kuruma bildirmelidir?</p>
+      <p class="faq-a">Poliklinik tarihi itibarıyla sigortalı bazında 10 gün içinde.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Sağlık hizmet sunucularınca kâğıt ortamında düzenlenen geçici iş göremezlik belgeleri nasıl Kuruma gönderilir?</p>
+      <p class="faq-a">Üst yazı ekinde, en geç 3 iş günü içinde, sağlık hizmet sunucusunun bulunduğu ildeki sosyal güvenlik il müdürlüğüne/merkezine gönderilir.</p>
+    </div>
+  </div>
+</div>
+
+<p class="law-footer-note">5510 Sayılı Kanun Madde 13, 14 · 2016/21, 2018/26 ve 2019/9 Sayılı Genelgeler · 5604 Sayılı Kanun</p>
+
+<script>
+(function() {
+  var container = document.getElementById('iskazasi');
+  var btns = container.querySelectorAll('.law-tab-btn');
+  var panels = container.querySelectorAll('.law-panel');
+  var tabBar = container.querySelector('.law-tabs');
+  var searchInput = document.getElementById('iskazasiSearch');
+  var emptyMsg = document.getElementById('iskazasiSearchEmpty');
+  var cards = container.querySelectorAll('.law-card');
+
+  cards.forEach(function(card) {
+    card.dataset.original = card.innerHTML;
+  });
+
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      panels.forEach(function(p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      container.querySelector('#' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  function escapeRegExp(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function highlight(root, term) {
+    var regex = new RegExp('(' + escapeRegExp(term) + ')', 'gi');
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    var nodes = [];
+    var node;
+    while ((node = walker.nextNode())) { nodes.push(node); }
+    nodes.forEach(function(textNode) {
+      if (!regex.test(textNode.nodeValue)) return;
+      regex.lastIndex = 0;
+      var span = document.createElement('span');
+      span.innerHTML = textNode.nodeValue.replace(regex, '<mark>$1</mark>');
+      textNode.parentNode.replaceChild(span, textNode);
+    });
+  }
+
+  searchInput.addEventListener('input', function() {
+    var term = searchInput.value.trim();
+
+    if (!term) {
+      cards.forEach(function(card) {
+        card.innerHTML = card.dataset.original;
+        card.style.display = '';
+      });
+      tabBar.style.display = '';
+      emptyMsg.style.display = 'none';
+      panels.forEach(function(p) { p.classList.remove('active'); });
+      container.querySelector('.law-tab-btn.active').click();
+      return;
+    }
+
+    tabBar.style.display = 'none';
+    panels.forEach(function(p) { p.classList.add('active'); });
+
+    var anyMatch = false;
+    cards.forEach(function(card) {
+      card.innerHTML = card.dataset.original;
+      var text = card.textContent.toLowerCase();
+      if (text.indexOf(term.toLowerCase()) !== -1) {
+        card.style.display = '';
+        highlight(card, term);
+        anyMatch = true;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    emptyMsg.style.display = anyMatch ? 'none' : 'block';
+  });
+})();
+</script>
+</section>
+
+
+
+
+
+
+
+<section id="hizmetkollari" class="ia-panel">
+<style>
+#hizmetkollari {
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  color: #1a2b3c;
+}
+
+#hizmetkollari .law-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+#hizmetkollari .law-header h1 {
+  font-family: 'Newsreader', serif;
+  font-size: 32px;
+  color: #0b4f8a;
+  margin: 0 0 8px 0;
+}
+
+#hizmetkollari .law-header p {
+  font-size: 14px;
+  color: #5a6b7c;
+  margin: 0;
+}
+
+#hizmetkollari .search-wrap {
+  max-width: 520px;
+  margin: 0 auto 24px auto;
+  position: relative;
+}
+
+#hizmetkollari .search-wrap input {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  padding: 12px 16px 12px 42px;
+  border: 2px solid #dde6ee;
+  border-radius: 30px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  color: #1a2b3c;
+}
+
+#hizmetkollari .search-wrap input:focus {
+  border-color: #0b4f8a;
+}
+
+#hizmetkollari .search-wrap .search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 2px solid #7d8b99;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+#hizmetkollari .search-wrap .search-icon::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 8px;
+  background: #7d8b99;
+  right: -6px;
+  bottom: -7px;
+  transform: rotate(45deg);
+}
+
+#hizmetkollari .search-empty {
+  text-align: center;
+  color: #7d8b99;
+  font-size: 14px;
+  padding: 30px 0;
+  display: none;
+}
+
+#hizmetkollari mark {
+  background: #ffe9b3;
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+#hizmetkollari .law-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+#hizmetkollari .law-tab-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border: 2px solid #0b4f8a;
+  border-radius: 30px;
+  background: #ffffff;
+  color: #0b4f8a;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+#hizmetkollari .law-tab-btn:hover {
+  background: #eaf3fb;
+}
+
+#hizmetkollari .law-tab-btn.active {
+  background: #0b4f8a;
+  color: #ffffff;
+}
+
+#hizmetkollari .law-panel {
+  display: none;
+}
+
+#hizmetkollari .law-panel.active {
+  display: block;
+  animation: hizmetkollariFade 0.35s ease;
+}
+
+@keyframes hizmetkollariFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#hizmetkollari .law-card {
+  background: #ffffff;
+  border: 1px solid #dde6ee;
+  border-radius: 12px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(11, 79, 138, 0.06);
+}
+
+#hizmetkollari .law-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #0b4f8a;
+  margin: 0 0 14px 0;
+}
+
+#hizmetkollari ul.law-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#hizmetkollari ul.law-list li {
+  position: relative;
+  padding: 8px 0;
+  font-size: 15px;
+  line-height: 1.6;
+  border-bottom: 1px dashed #e3ebf2;
+}
+
+#hizmetkollari ul.law-list li:last-child {
+  border-bottom: none;
+}
+
+#hizmetkollari .info-box {
+  background: #eaf3fb;
+  border-left: 4px solid #0b4f8a;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #163a56;
+}
+
+#hizmetkollari .info-box strong {
+  color: #0b4f8a;
+}
+
+#hizmetkollari .info-box a {
+  color: #0b4f8a;
+  font-weight: 600;
+}
+
+#hizmetkollari .warning-box {
+  background: #fdf3ea;
+  border-left: 4px solid #d98324;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6b4413;
+}
+
+#hizmetkollari .warning-box strong {
+  color: #b9660c;
+}
+
+#hizmetkollari table.law-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+#hizmetkollari table.law-table th {
+  background: #0b4f8a;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+#hizmetkollari table.law-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid #e3ebf2;
+}
+
+#hizmetkollari table.law-table tr:nth-child(even) td {
+  background: #f6fafd;
+}
+
+#hizmetkollari .faq-item {
+  background: #f6fafd;
+  border: 1px solid #e3ebf2;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+
+#hizmetkollari .faq-item:last-child {
+  margin-bottom: 0;
+}
+
+#hizmetkollari .faq-q {
+  font-weight: 700;
+  color: #0b4f8a;
+  font-size: 14.5px;
+  margin: 0 0 6px 0;
+}
+
+#hizmetkollari .faq-a {
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0;
+  color: #3a4a5a;
+}
+
+#hizmetkollari .example-box {
+  background: #f6fafd;
+  border: 1px solid #e3ebf2;
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+#hizmetkollari .example-box strong {
+  color: #0b4f8a;
+}
+
+#hizmetkollari .law-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+#hizmetkollari .law-footer-note {
+  text-align: center;
+  font-size: 13px;
+  color: #7d8b99;
+  margin-top: 20px;
+}
+
+@media (max-width: 700px) {
+  #hizmetkollari .law-grid {
+    grid-template-columns: 1fr;
+  }
+  #hizmetkollari .law-tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #hizmetkollari .law-tab-btn {
+    text-align: center;
+  }
+}
+</style>
+
+<div class="law-header">
+  <h1>Sigortalılık Türleri ve Hizmet Kolları</h1>
+  <p>5510 Sayılı Kanun Madde 4, 9, 31, 36, 50, Ek 5, Ek 6 · 2926 Sayılı Kanun</p>
+</div>
+
+<div class="search-wrap">
+  <span class="search-icon"></span>
+  <input type="text" id="hizmetkollariSearch" placeholder="İçerikte ara..." autocomplete="off">
+</div>
+<p class="search-empty" id="hizmetkollariSearchEmpty">Aramanızla eşleşen bir sonuç bulunamadı.</p>
+
+<div class="law-tabs">
+  <button class="law-tab-btn active" data-tab="hk-tab1">Hizmet Kolu SSK</button>
+  <button class="law-tab-btn" data-tab="hk-tab2">Hizmet Kolu BAĞ-KUR</button>
+  <button class="law-tab-btn" data-tab="hk-tab3">EK-5 Tarım BAĞ-KUR</button>
+  <button class="law-tab-btn" data-tab="hk-tab4">EK-6 Sanatçılar / Taksi Şoförleri</button>
+  <button class="law-tab-btn" data-tab="hk-tab5">İsteğe Bağlı Sigorta</button>
+</div>
+
+<!-- SSK -->
+<div class="law-panel active" id="hk-tab1">
+  <div class="law-card">
+    <h2 class="law-title">İşyeri Kodları: Sahte / Kontrollü / Şüpheli</h2>
+    <ul class="law-list">
+      <li><strong>Sahte İşyerleri (S):</strong> Bu işyerlerinden bildirim yapılan hizmetler için hizmet bildirimi ve birleştirmesi yapılmaz; hizmeti ve tescili iptal edilmesi gerektiği tespit edilen sigortalıların hizmeti ve tescili geciktirilmeksizin iptal edilir.</li>
+      <li><strong>Kontrollü İşyerleri (K):</strong> "K" kodu konulduğu tarihten itibaren 1 ay içinde işyeri denetime çıkarılır; denetim sonuçlanana kadar E-Bildirge şifresi askıya alınır. Bu işyerlerinden bildirilen hizmetler, hizmet birleştirmelerinde dikkate alınmaz. Denetim sonunda kod kaldırılırsa hizmetler dahil edilerek yeni hizmet yazısı hazırlanır; sahte işyeri tespit edilirse hizmet ve tescil geciktirilmeksizin iptal edilir.</li>
+      <li><strong>Şüpheli İşyerleri (Ş):</strong> Kod konulduktan sonra 15 gün içinde denetime çıkarılır; denetim sonuçlanana veya "Sahte İşyeri" kodu konulana kadar bu işyerlerinden bildirilen hizmetlerin bildirimi ve birleştirmesine devam edilir.</li>
+    </ul>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Hizmet Dökümündeki Yıldız (*) İşareti</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">Hizmet dökümü ekranlarında, istirahatli olduğu dönemde tam prim bildirilen sigortalılar için "istirahatli olduğu ay içinde sigortalı işyerinde çalışmamıştır" kutucuğu işaretlenip primi işveren tarafından tam yatırılmışsa, o aya ait primde yıldız (*) işareti yer alır.</p>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Prim İadesi İçin Yaş Şartı (Madde 31)</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0 0 10px 0;">4/1-(a) ve (b) bentleri kapsamındaki sigortalılar ile ilk defa (c) bendi kapsamında sigortalı olanlardan, işten ayrılan veya işyerini kapatan ve yaşlılık aylığı için gerekli yaş şartını doldurduğu hâlde malûllük/yaşlılık aylığına hak kazanamayan sigortalıya, primlerinin her yıla ait tutarı güncelleme katsayısıyla güncellenerek toptan ödeme şeklinde verilir.</p>
+    <div class="info-box">
+      <strong>Yaş Şartı:</strong> Kadın ise 58, erkek ise 60 yaşını doldurmuş olma ve en az 9000 gün malûllük, yaşlılık ve ölüm sigortaları primi bildirilmiş olması hâlinde yaşlılık aylığı bağlanır; prim iadesi için de bu yaş şartı esas alınır.
+    </div>
+    <div class="info-box"><strong>Kaynak:</strong> 5510 Sayılı Kanun Madde 31 · 2018/38 Sayılı Genelge</div>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Ölüm Toptan Ödemesi (Madde 36)</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">4/1-(a) ve 4/1-(b) kapsamındaki sigortalılar ile ilk defa 4/1-(c) kapsamında sigortalı olanlardan ölenlerin hak sahiplerine ölüm aylığı bağlanamaması durumunda, ölüm tarihi esas alınarak 31. maddeye göre hesaplanan ölüm toptan ödeme tutarı, 34. madde hükümleri dikkate alınarak hak sahipliği şartlarını taşıyan eş, çocuk, ana ve babaya kanunda belirtilen hisseler oranında verilir. Ölüm aylığı bağlanması için aranan şartları taşımayan hiçbir hak sahibine toptan ödeme yapılmaz.</p>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Vergi Kaydı/Şirket Ortaklığı Devam Ederken 4A Sigortalılığı</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">1 Mart 2011'de yürürlüğe giren düzenlemeye göre, BAĞ-KUR'lu bir kişinin vergi kaydı ya da şirket ortaklığı devam ederken ortak olmadığı bir işyerinde çalışmaya başladığı andan itibaren 4A (SSK) kapsamında sigortalı olması mümkündür; bu durumda BAĞ-KUR primi ödemeye gerek kalmaz.</p>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Puantaj Nedir?</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">Puantaj, bir firmadaki çalışanların saat ya da gün bazında hak edişlerini doğru hesaplamak için kullanılan sistemdir; personel bazındaki çalışma süresi kayıtlarına puantaj takibi veya işçi puantajı denir. Genel amaç, mesainin saat veya gün üzerinden hesabını sağlamaktır.</p>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Hizmet Dökümünde Farklı Kişilere Ait Bilgiler</h2>
+    <ul class="law-list">
+      <li>Hizmet dökümü sorgularken özellikle isim bilgileri kontrol edilmelidir.</li>
+      <li>Dökümde farklı bir kişinin ismi yer alıyorsa, bu bilgi mutlaka paylaşılarak vatandaşın Sosyal Güvenlik Kurumuyla görüşebileceği belirtilmelidir.</li>
+      <li>Emeklilik hesaplaması ve toplam prim gün sayısı gibi konularda verilen bilginin resmi nitelik taşımadığı, net bilgi için bağlı oldukları SGK ünitesine müracaat edebilecekleri belirtilmelidir.</li>
+    </ul>
+    <div class="warning-box"><strong>Dikkat:</strong> Farklı kişilere ait hizmetler görünüyorsa bu bilginin vatandaşla paylaşılmaması, yanlış bilgi olarak değerlendirilip süreç açılmasına neden olur.</div>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Türkiye – KKTC Hizmet Birleştirmesi</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0 0 10px 0;">Türkiye Cumhuriyeti ile Kuzey Kıbrıs Türk Cumhuriyeti arasındaki Sosyal Güvenlik Anlaşması'nın 21. maddesi gereğince, KKTC'de geçen çalışmalar, Türkiye'deki hizmet süreleriyle çakışmamak kaydıyla birleştirilebilir.</p>
+    <ul class="law-list">
+      <li>Aylığın hesaplanmasında dikkate alınacak esaslar Türkiye Cumhuriyeti mevzuatına göre kabul edilen prim ödeme sürelerine göre tespit edilir.</li>
+      <li>KKTC mevzuatına göre geçen ve aylığa hak kazanılması için dikkate alınması gereken sigortalılık süreleri, Türkiye'deki muteber sigortalılık süreleriyle eşit muameleye tabi tutulur.</li>
+      <li>Türkiye'de sigortaya tabi tutulmadan önce KKTC'de malullük/yaşlılık/ölüm sigortalarına tabi tutulmuş kişi için, KKTC'de sigortaya ilk girdiği tarih Türkiye'de ilk giriş tarihi sayılır.</li>
+    </ul>
+    <div class="faq-item">
+      <p class="faq-q">Hizmet birleştirmesinde aylık nasıl bağlanır?</p>
+      <p class="faq-a">Vatandaş kısmi (oranlı) aylık olarak bağlanır. Kısmi aylık bağlanmasında, ülke ile SGK'nın sözleşmesine bağlı olarak bir gün dahi sigortalı çalışma varsa kısmi aylık bağlanır.</p>
+    </div>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Staj Girişlerinin Sigorta Başlangıcı Sayılması</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">5 Aralık 2017'de yayımlanan Sosyal Sigorta İşlemleri Yönetmeliği değişikliği; mesleki/teknik ortaöğretimde tamamlayıcı/alan eğitimi gören öğrencilerin iş kazası ve meslek hastalığı sigortası kapsamına alınmasını ve Jandarma-Sahil Güvenlik Akademisi kuruluşunu içerir. Stajyer veya öğrencilerin sigortalılık başlangıcı ya da emeklilik yaşı hesaplamasına yönelik herhangi bir değişiklik getirmemiştir; staj ve öğrencilik süreleri emeklilikte başlangıç sayılmaz.</p>
+  </div>
+</div>
+
+<!-- BAĞ-KUR -->
+<div class="law-panel" id="hk-tab2">
+  <div class="law-card">
+    <h2 class="law-title">Prim Ödeme Yolları</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">BAĞ-KUR primleri, SGK ile anlaşmalı bankaların şubelerinden, PTT şubelerinden, anlaşmalı bankaların internet sitelerinden veya <a href="https://onlinetahsilat.sgk.gov.tr/WebTahsilat" target="_blank" rel="noopener" style="color:#0b4f8a; font-weight:600;">onlinetahsilat.sgk.gov.tr</a> üzerinden ödenebilir.</p>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">BAĞ-KUR Prim Oranları</h2>
+    <table class="law-table">
+      <thead><tr><th>Sigorta Kolu</th><th>Oran (%)</th></tr></thead>
+      <tbody>
+        <tr><td>Kısa vadeli sigorta kolları primi</td><td>2</td></tr>
+        <tr><td>Malullük, yaşlılık ve ölüm sigortaları primi</td><td>20</td></tr>
+        <tr><td>Genel Sağlık Sigortası primi</td><td>12,5</td></tr>
+        <tr><td><strong>Toplam</strong></td><td><strong>34,5</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">BAĞ-KUR Sigortalılığının İhyası</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0 0 10px 0;">23.04.2015 tarih 29335 sayılı Resmî Gazete ile 6645 sayılı Kanunda yapılan değişikliğe göre:</p>
+    <ul class="law-list">
+      <li>Sigortalılıkları durdurulanlardan 4/(b) kapsamında çalışmaya devam edenlerin sigortalılıkları 01.05.2015 itibarıyla yeniden başlatılır. Sonraki bir tarihte talep edilirse, durdurulan sürelerin tamamı, Kurumca tebliğ edilecek prim borcunun 3 ay içinde ödenmesi kaydıyla hizmetten saydırılabilir.</li>
+      <li>İhya talebinde bulunanlar, Ek-2'deki başvuru formuyla dosyalarının bulunduğu sosyal güvenlik il müdürlüğüne/merkezine müracaat eder; güncel sigortalılık belgesi istenir.</li>
+    </ul>
+    <div class="info-box"><strong>Resmi Dayanak:</strong> 2015/13 Sayılı Genelge</div>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Sık Sorulan Sorular</h2>
+    <div class="faq-item"><p class="faq-q">Yersiz ödemelerde talep olmadan iade edilmesi gerekirken tam tersi durumlarla karşılaşılıyor, nedeni nedir?</p><p class="faq-a">Kurumdan kaynaklı aksamalar olabilir. Yersiz ödemeler faiziyle birlikte iade edilir.</p></div>
+    <div class="faq-item"><p class="faq-q">İhya ödemeleri 3 ay içinde parça parça ödenebilir mi?</p><p class="faq-a">İhya edilecek sürenin tamamı, tebligat tarihinden itibaren 3 ay içinde tek seferde ödenmelidir. 3 ay içinde tamamı ödenmezse tekrar ihya başvurusu yapılabilir.</p></div>
+    <div class="faq-item"><p class="faq-q">5 puanlık teşvikten geç ödeme nedeniyle yararlanamadım, tekrar yararlanmak için süre var mı?</p><p class="faq-a">Borcun tamamının ödendiği ay itibarıyla tekrar teşvikten yararlanılabilir.</p></div>
+    <div class="faq-item"><p class="faq-q">BAĞ-KUR'da sanal terk uyarısı alınırsa ne yapılmalı?</p><p class="faq-a">ALO 170 üzerinden başvuru oluşturularak kuruma yönlendirme yapılabilir.</p></div>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Notlar</h2>
+    <ul class="law-list">
+      <li>Prim borçları ödendiğinde önce cari döneme, sonrasında en eski borçtan itibaren mahsup edilir.</li>
+      <li>Borç kodları: 43-geçmiş dönem, 1-cari dönem, 44-vadesi geçmiş olarak görüntülenir.</li>
+      <li>5 puanlık indirimden, şartları taşıyan kişi (zamanında ödeme, borcu olmaması) otomatik yararlanır.</li>
+      <li>Genç girişimci teşvikinden yararlanmak için vergi dairesinden "genç girişimcilerde kazanç istisnası" belgesi alıp kuruma başvurulması gerekir.</li>
+      <li>Borçlarda sürenin bittiği tarihten itibaren ilk 3 aylık sürede her ay için %3 gecikme cezası ve gecikme zammı uygulanır.</li>
+    </ul>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Tarımsal Faaliyette Dönemsel Prim Ödeme İmkânı</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">4/B'li tarımsal faaliyette bulunanların GSS ile kısa/uzun vadeli sigorta kolları primlerini, Ocak-Haziran dönemi için Temmuz sonuna, Temmuz-Aralık dönemi için takip eden yılın Ocak sonuna kadar ödemesine imkân sağlanmıştır. Bu düzenleme, tarım sigortalılarının ürün satışıyla gelir elde ettikleri dönemlerde primlerini gecikme cezası/zammı olmadan ödeyebilmesini sağlar.</p>
+    <div class="info-box"><strong>Kaynak:</strong> 18 Ağustos 2021 tarihli Sosyal Sigorta İşlemleri Yönetmeliğinde Değişiklik Yapılmasına İlişkin Yönetmelik</div>
+  </div>
+</div>
+
+<!-- EK-5 -->
+<div class="law-panel" id="hk-tab3">
+  <div class="law-card">
+    <h2 class="law-title">EK-5 Tarım BAĞ-KUR Nedir?</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0 0 10px 0;">Primler SGK ile anlaşmalı bankalar, PTT şubeleri veya <a href="https://onlinetahsilat.sgk.gov.tr/WebTahsilat" target="_blank" rel="noopener" style="color:#0b4f8a; font-weight:600;">onlinetahsilat.sgk.gov.tr</a> üzerinden ödenir.</p>
+    <div class="warning-box">
+      <strong>Dikkat:</strong> Primlerin eksik yatması ya da sigortalının işten çıkması hâlinde tarım BAĞ-KUR'u devreye girer. Devreye girmesini istemeyenlerin Ziraat Odası kaydını sildirmesi gerekir.
+    </div>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">2926 Sayılı Kanun (01.10.2008 Öncesi)</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">2926 sayılı Tarımda Kendi Adına ve Hesabına Çalışanlar Sosyal Sigortalar Kanunu, herhangi bir işverene hizmet akdiyle bağlı olmaksızın tarımsal faaliyette bulunan, 22 yaşını doldurmuş erkekler ve 22 yaşını doldurmuş aile reisi kadınları sigortalı sayar.</p>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Tarım/Orman İşlerinde Hizmet Akdiyle Süreksiz Çalışanlar (Ek 5)</h2>
+    <ul class="law-list">
+      <li>Kamu idarelerinde süreksiz çalıştırılanlar hariç; 4. madde ve isteğe bağlı sigortalılık kapsamında olmayan, gelir/aylık almayan, 18 yaşını doldurmuş kişilerden tarım/orman işlerinde hizmet akdiyle süreksiz çalışanlar, Kurumca hazırlanan ve muhtarlık/birlik/kuruluş/tarım müdürlüğünce onaylı belgeyle talep tarihinden itibaren sigortalı sayılır.</li>
+      <li>Bu sigortalılar 4/1-(a) bendi kapsamında sayılır; kısa vadede yalnızca iş kazası ve meslek hastalığı, uzun vadede malullük/yaşlılık/ölüm sigortası ile GSS hükümleri uygulanır.</li>
+      <li>Sürekli iş göremezlik geliri ya da malullük/yaşlılık/ölüm sigortalarından aylık bağlanabilmesi için prim ve prime ilişkin borçların ödenmiş olması şarttır.</li>
+    </ul>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Sigortalılığın Başlangıcı ve Sona Ermesi</h2>
+    <ul class="law-list">
+      <li>Sigortalı olarak çalışmaya başlayanlar için çalışmaya başladıkları tarihte başlar.</li>
+      <li>Sona erme: sona erdirme talebinde bulunanlar için talep tarihinde; prim borcu olup talepte bulunanlar için primi ödenmiş son günde; gelir/aylık talebinde bulunanlar için hak kazanmış olmak şartıyla talep tarihinde; ölen sigortalı için ölüm tarihinde sona erer.</li>
+      <li>4. madde kapsamında çalışmaya başlayanların Ek-5 sigortalılığı, çalışmaya başladıkları tarihten bir gün önce sona erer; 4. madde kapsamındaki çalışma sona erip Ek-5 çalışması devam ediyorsa, Ek-5 sigortalılığı çalışmanın sona erdiği tarihi takip eden günden kendiliğinden başlar.</li>
+      <li>Askerlik, gözaltı/tutukluluk/mahkûmiyet veya yurt dışına çıkış hâllerinde sigortalılık ilgili tarihten itibaren sona erdirilir; görev/durum sona erdiğinde veya yurda dönüşte kendiliğinden yeniden başlar, ayrıca giriş bildirgesi alınmaz.</li>
+    </ul>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Prim Oranı ve Ödeme Süresi</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0 0 10px 0;">Ek-5 sigortalıları, belirlenen günlük kazancın 30 katının %34,5'i oranında prim öder: %20 malullük/yaşlılık/ölüm, %12,5 genel sağlık sigortası, %2 iş kazası ve meslek hastalıkları sigortası.</p>
+    <table class="law-table">
+      <thead><tr><th>Dönem</th><th>Son Ödeme Tarihi</th></tr></thead>
+      <tbody>
+        <tr><td>Ocak-Haziran primleri</td><td>Temmuz ayı sonu</td></tr>
+        <tr><td>Temmuz-Aralık primleri</td><td>Takip eden yılın Ocak ayı sonu</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box"><strong>Bilgi:</strong> Uygulama başlangıç tarihi 01.01.2022'dir. Yasal süresinde ödenmeyen primlere Madde 89 gereği gecikme cezası ve zammı uygulanır; ödeme süresinin son günü resmi tatile denk gelirse ödeme izleyen ilk iş gününde yapılır. (Kaynak: 18 Ağustos 2021, 31572 Sayılı Resmî Gazete)</div>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Kimler Ek-5'li Olabilir ve Onay Süreci</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0 0 10px 0;">4. madde ve isteğe bağlı sigortalılık kapsamında sigortalı olmayan, gelir/aylık almayan, 18 yaşını doldurmuş kişilerden tarım/orman işlerinde süreksiz çalışanlar başvurabilir.</p>
+    <div class="warning-box">
+      <strong>2016/20 Sayılı Genelge:</strong> Giriş bildirgesi başvurularında tarım müdürlüğü onayı yanında ziraat odası onayı da aranır; ikamet ve çalışma yeri farklıysa her iki ildeki ziraat odası onayı gerekir. Onaylardan biri eksikse talep reddedilir.
+    </div>
+    <div class="example-box"><strong>Örnek:</strong> Şanlıurfa'da ikamet edip Rize'de süreksiz tarım işinde çalışan sigortalının, yalnızca çalıştığı yerin ziraat odası onayı varsa ve ikamet yerinin onayı yoksa, başvurusu reddedilir; yeniden başvuruda her iki onayın da bulunması gerektiği bildirilir.</div>
+  </div>
+</div>
+
+<!-- EK-6 -->
+<div class="law-panel" id="hk-tab4">
+  <div class="law-card">
+    <h2 class="law-title">Sanatçıların Sigortalılığı (Ek-6)</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0 0 10px 0;">6111 sayılı Kanunun 51. maddesiyle eklenen Ek 6. madde ile 1/3/2011'den itibaren, Kültür ve Turizm Bakanlığınca belirlenen alanlarda kısmi süreli iş sözleşmesiyle çalışan film, tiyatro, sahne, gösteri, ses ve saz sanatçıları ile güzel sanat kollarında çalışanlar, düşünürler ve yazarlardan ay içinde çalışma gün sayısı 10 günden az olanlar, kendileri prim ödeyerek sigortalı olabilir. Bu sigortalılar hizmet akdi kapsamında sayılır.</p>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Yararlanma Şartları (Sanatçılar)</h2>
+    <ul class="law-list">
+      <li>Hizmet akdi, kendi nam ve hesabına bağımsız çalışma (tarım dahil) veya kamu görevlisi olarak çalışma durumu bulunmama.</li>
+      <li>İsteğe bağlı sigortalı olmama; banka sandıklarına tabi çalışmama; gelir veya aylık almama.</li>
+      <li>18 yaşını doldurmuş olma.</li>
+    </ul>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Müracaat Şekli (Sanatçılar)</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">"Sanatçı Olarak Kısmi Süreli Çalışanlara Ait İşe Giriş Bildirgesi", bağlı bulunulan meslek birliği/sendika veya Kültür ve Turizm Bakanlığı birimlerince onaylanarak, sanatçı-işveren arasında imzalanan kısmi süreli iş sözleşmesiyle birlikte ikamet edilen ildeki sosyal güvenlik il müdürlüğüne/merkezine sunulur. Birden fazla işverenle çalışılıyorsa, her sözleşme ayrı ayrı Kuruma verilir.</p>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Ticari Taksi Şoförlerinin Sigortalılığı (Ek-6)</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0 0 10px 0;">Aynı Ek 6. madde ile 1/3/2011'den itibaren, ticari taksi, dolmuş ve benzeri şehir içi toplu taşıma araçlarında bir veya birden fazla kişi yanında kısmi iş sözleşmesiyle ayda 10 günden az çalışanlar, kendileri prim ödeyerek sigortalı olabilir.</p>
+    <ul class="law-list">
+      <li><strong>Yararlanma şartları:</strong> Hizmet akdi, bağımsız çalışma veya kamu görevliliği bulunmama; isteğe bağlı sigortalı olmama; banka sandıklarına tabi çalışmama; gelir/aylık almama; 18 yaşını doldurmuş olma.</li>
+      <li><strong>Müracaat:</strong> "Şehir İçi Toplu Taşıma Araçlarında Kısmi Süreli Çalışanlara Ait İşe Giriş Bildirgesi", araç sahibiyle şoför arasındaki kısmi süreli iş sözleşmesi ve meslek odası/kooperatifi onayıyla birlikte, şoförlük yapılan yerin sosyal güvenlik il müdürlüğüne/merkezine sunulur. Araç sahibi beyanı ve oda onayı olmayan bildirgeler işleme alınmaz; birden fazla araç sahibiyle çalışılıyorsa her sözleşme ayrı verilir.</li>
+    </ul>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Sağlanan Haklar (Her İki Grup İçin)</h2>
+    <p style="font-size:15px; line-height:1.6; margin:0;">Şartları yerine getirenlere malullük ve yaşlılık aylığı, ölümleri hâlinde hak sahiplerine ölüm aylığı bağlanır; kendileri veya bakmakla yükümlü oldukları kişiler genel sağlık sigortasından sağlanan sağlık yardımlarından yararlanır.</p>
+  </div>
+</div>
+
+<!-- İsteğe Bağlı -->
+<div class="law-panel" id="hk-tab5">
+  <div class="law-card">
+    <h2 class="law-title">E-Devlet Üzerinden Başvuru</h2>
+    <div class="info-box">
+      <strong>4B İsteğe Bağlı İlk Tescil:</strong> <a href="https://www.turkiye.gov.tr/4b-istege-bagli-ilk-tescil-kaydi" target="_blank" rel="noopener">turkiye.gov.tr — 4B İsteğe Bağlı İlk Tescil Kaydı</a>
+    </div>
+    <ul class="law-list" style="margin-top:14px;">
+      <li>İsteğe bağlı sigortalıların primlerinin, ait olduğu ayı takip eden ayın sonuna kadar ödenmesi gerekir.</li>
+      <li>Ait olduğu aydan itibaren en geç 12 ay içinde gecikme cezası ve zammıyla birlikte ödenmeyen süreler, hizmet olarak değerlendirilmez.</li>
+    </ul>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Kimler İsteğe Bağlı Sigortaya Başvurabilir?</h2>
+    <ul class="law-list">
+      <li>Türkiye'de ikamet edenler ile Türkiye'de ikamet ederken sosyal güvenlik sözleşmesi imzalanmamış ülkelerdeki Türk vatandaşları.</li>
+      <li>5510 sayılı Kanuna tabi zorunlu sigortalı olmayı gerektirecek şekilde çalışmayanlar.</li>
+      <li>Sigortalı olarak çalışmakla birlikte ay içinde 30 günden az veya tam gün çalışmayanlar.</li>
+      <li>Kendi sigortalılıkları nedeniyle Türkiye'de malullük/yaşlılık aylığı almayanlar.</li>
+      <li>18 yaşını doldurmuş olanlar.</li>
+    </ul>
+    <div class="info-box"><strong>Bilgi:</strong> Kanunun yürürlük tarihinden önce mülga kanunlara göre isteğe bağlı sigortaya devam edenlerin sigortalılığı, herhangi bir işleme gerek kalmaksızın devam ettirilir.</div>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Nereye ve Nasıl Başvurulur?</h2>
+    <ul class="law-list">
+      <li>İlk defa başvuranlar, "İsteğe Bağlı Sigorta Giriş Bildirgesi" ile ikametgahlarının bulunduğu sosyal güvenlik il müdürlüğüne/merkezine başvurur.</li>
+      <li>Tekrar isteğe bağlı sigortalı olmak isteyenler için talep dilekçesiyle müracaat yeterlidir.</li>
+      <li>5434 sayılı Kanunun mülga 12. maddesi uyarınca isteğe bağlı iştirakçilik başvuruları, Sosyal Sigortalar Genel Müdürlüğü Sigortalı Tescil ve Hizmet Daire Başkanlığı'na (Mithatpaşa Cad. No:7 Sıhhıye/Ankara) yapılır.</li>
+    </ul>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Başlangıç, Prim Oranı ve Sona Erme</h2>
+    <ul class="law-list">
+      <li>İsteğe bağlı sigortalılık, müracaatın Kurum kayıtlarına intikal ettiği tarihi takip eden günden itibaren başlar.</li>
+      <li>Prim, prime esas kazancın alt-üst sınırı arasında belirlenen aylık kazancın %32'sidir (%20 malullük/yaşlılık/ölüm, %12 genel sağlık sigortası).</li>
+      <li>Belirli süre prim ödememe hâlinde sigortalılığın sona ermesi uygulaması kaldırılmıştır; ait olduğu ayın primini 12 ay içinde ödemeyen sigortalı o aya ait primini artık ödeyemez, ancak 12 ay geçmedikçe diğer aylara ait primlerini gecikme zammıyla ödeyebilir. Talep veya ölüm dışında isteğe bağlı sigortalılık sonlandırılmaz.</li>
+      <li>Sona erme: sona erdirme talebinde bulunanlar için primi ödenmiş son günü takip eden günden; aylık talebinde bulunanlar için hak kazanmış olmak şartıyla talep tarihinden; ölen sigortalı için ölüm tarihinden itibaren.</li>
+    </ul>
+  </div>
+
+  <div class="law-card">
+    <h2 class="law-title">Sürenin Değerlendirilmesi ve Sağlık Hizmetleri</h2>
+    <ul class="law-list">
+      <li>01/10/2008'den itibaren ilk defa isteğe bağlı sigortalı olanlar ile 506, 1479, 2926 sayılı kanunlara tabi olup 01/10/2008 sonrası prim ödeyenlerin süreleri, 5510/4-(b) bendi kapsamında sigortalılık süresi sayılır.</li>
+      <li>Sağlık hizmetlerinden yararlanabilmek için prim ve prime ilişkin borcun bulunmaması gerekir.</li>
+    </ul>
+  </div>
+</div>
+
+<p class="law-footer-note">5510 Sayılı Kanun Madde 4, 9, 31, 36, 50, Ek 5, Ek 6 · 2926 Sayılı Kanun · 6111 Sayılı Kanun · 6645 Sayılı Kanun</p>
+
+<script>
+(function() {
+  var container = document.getElementById('hizmetkollari');
+  var btns = container.querySelectorAll('.law-tab-btn');
+  var panels = container.querySelectorAll('.law-panel');
+  var tabBar = container.querySelector('.law-tabs');
+  var searchInput = document.getElementById('hizmetkollariSearch');
+  var emptyMsg = document.getElementById('hizmetkollariSearchEmpty');
+  var cards = container.querySelectorAll('.law-card');
+
+  cards.forEach(function(card) {
+    card.dataset.original = card.innerHTML;
+  });
+
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      btns.forEach(function(b) { b.classList.remove('active'); });
+      panels.forEach(function(p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      container.querySelector('#' + btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  function escapeRegExp(str) {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function highlight(root, term) {
+    var regex = new RegExp('(' + escapeRegExp(term) + ')', 'gi');
+    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    var nodes = [];
+    var node;
+    while ((node = walker.nextNode())) { nodes.push(node); }
+    nodes.forEach(function(textNode) {
+      if (!regex.test(textNode.nodeValue)) return;
+      regex.lastIndex = 0;
+      var span = document.createElement('span');
+      span.innerHTML = textNode.nodeValue.replace(regex, '<mark>$1</mark>');
+      textNode.parentNode.replaceChild(span, textNode);
+    });
+  }
+
+  searchInput.addEventListener('input', function() {
+    var term = searchInput.value.trim();
+
+    if (!term) {
+      cards.forEach(function(card) {
+        card.innerHTML = card.dataset.original;
+        card.style.display = '';
+      });
+      tabBar.style.display = '';
+      emptyMsg.style.display = 'none';
+      panels.forEach(function(p) { p.classList.remove('active'); });
+      container.querySelector('.law-tab-btn.active').click();
+      return;
+    }
+
+    tabBar.style.display = 'none';
+    panels.forEach(function(p) { p.classList.add('active'); });
+
+    var anyMatch = false;
+    cards.forEach(function(card) {
+      card.innerHTML = card.dataset.original;
+      var text = card.textContent.toLowerCase();
+      if (text.indexOf(term.toLowerCase()) !== -1) {
+        card.style.display = '';
+        highlight(card, term);
+        anyMatch = true;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    emptyMsg.style.display = anyMatch ? 'none' : 'block';
+  });
+})();
+</script>
+</section>
 
 
 
