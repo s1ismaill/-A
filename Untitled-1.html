@@ -307,7 +307,7 @@
         }
 
 
-        /* MOLA HESAPLAYICI - sade / profesyonel */
+        /* MOLA HESAPLAYICI */
         .mola-calculator {
             margin-top: 20px;
             padding: 18px 20px;
@@ -344,8 +344,14 @@
             font-weight: 800;
         }
 
-        .mola-total {
+        .mola-header-right {
+            display: flex;
+            align-items: center;
+            gap: 14px;
             flex-shrink: 0;
+        }
+
+        .mola-total {
             display: flex;
             align-items: baseline;
             gap: 5px;
@@ -361,9 +367,30 @@
             font-weight: 700;
         }
 
+        .mola-kalan {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+            color: var(--success);
+            font-size: 20px;
+            font-weight: 900;
+            font-variant-numeric: tabular-nums;
+            transition: color 0.2s ease;
+        }
+
+        .mola-kalan.danger {
+            color: var(--danger);
+        }
+
+        .mola-kalan small {
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
         .mola-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(3, 1fr);
             gap: 12px;
         }
 
@@ -407,9 +434,15 @@
             box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 800px) {
             .mola-header {
                 align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .mola-header-right {
+                width: 100%;
+                justify-content: space-between;
             }
 
             .mola-grid {
@@ -531,7 +564,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="gecmisEksikSure">Geçmişten Kalan Eksik Süre (dk)</label>
+                    <label for="gecmisEksikSure">Geçmişten Kalan Eksik Veya Fazla Süre (dk)</label>
                     <div class="gecmis-input-wrap">
                         <input type="text" id="gecmisEksikSure" placeholder="Sadece dakika, örn: 45" inputmode="numeric"
                             maxlength="4" autocomplete="off">
@@ -562,7 +595,10 @@
                         <span class="mola-kicker">Süre aracı</span>
                         <div class="mola-title">Mola Hesaplayıcısı</div>
                     </div>
-                    <div class="mola-total"><span id="molaSonuc">0</span><small>dk toplam</small></div>
+                    <div class="mola-header-right">
+                        <div class="mola-total"><span id="molaSonuc">0</span><small>dk toplam</small></div>
+                        <div class="mola-kalan" id="molaKalanWrap"><span id="molaKalanSonuc">100</span><small>dk kaldı</small></div>
+                    </div>
                 </div>
 
                 <div class="mola-grid">
@@ -576,6 +612,12 @@
                         <label for="yemekMola">Yemek Molası</label>
                         <input type="text" id="yemekMola" placeholder="00:10"
                             inputmode="numeric" maxlength="5" autocomplete="off">
+                    </div>
+
+                    <div class="mola-box">
+                        <label for="gunlukMola">Günlük Kullanılacak Mola</label>
+                        <input type="text" id="gunlukMola" value="100"
+                            inputmode="numeric" maxlength="4" autocomplete="off">
                     </div>
                 </div>
             </div>
@@ -837,7 +879,10 @@
         // MOLA HESAPLAYICI
         const kisaMolaInput = document.getElementById("kisaMola");
         const yemekMolaInput = document.getElementById("yemekMola");
+        const gunlukMolaInput = document.getElementById("gunlukMola");
         const molaSonucElement = document.getElementById("molaSonuc");
+        const molaKalanSonucElement = document.getElementById("molaKalanSonuc");
+        const molaKalanWrap = document.getElementById("molaKalanWrap");
 
         function molaSuresiniDakikayaCevir(deger) {
             const temiz = deger.replace(/\D/g, "");
@@ -877,11 +922,27 @@
             const yemekDakika = molaSuresiniDakikayaCevir(yemekMolaInput.value);
             const toplam = kisaDakika + yemekDakika;
 
+            const gunlukDeger = Number(gunlukMolaInput.value.replace(/\D/g, "")) || 0;
+            const kalan = gunlukDeger - toplam;
+
             molaSonucElement.textContent = toplam;
+            molaKalanSonucElement.textContent = kalan;
+
+            // Kalan mola eksiye düştüğünde kırmızı renge çevirme kontrolü
+            if (kalan < 0) {
+                molaKalanWrap.classList.add("danger");
+            } else {
+                molaKalanWrap.classList.remove("danger");
+            }
         }
 
         kisaMolaInput.addEventListener("input", () => molaInputFormatla(kisaMolaInput));
         yemekMolaInput.addEventListener("input", () => molaInputFormatla(yemekMolaInput));
+        gunlukMolaInput.addEventListener("input", () => {
+            let val = gunlukMolaInput.value.replace(/\D/g, "").substring(0, 4);
+            gunlukMolaInput.value = val;
+            molaHesapla();
+        });
 
         function temizle() {
             vardiyaInput.value = "08:00";
@@ -890,7 +951,10 @@
             gecmisEksikInput.value = "";
             kisaMolaInput.value = "";
             yemekMolaInput.value = "";
+            gunlukMolaInput.value = "100";
             molaSonucElement.textContent = "0";
+            molaKalanSonucElement.textContent = "100";
+            molaKalanWrap.classList.remove("danger");
             gecmisFazlaMi = false;
             plusToggleBtn.classList.remove("active");
             hesaplamaAktif = false;
@@ -910,6 +974,7 @@
 
         setInterval(saatiGuncelle, 1000);
         saatiGuncelle();
+        molaHesapla();
     </script>
 
 </body>
