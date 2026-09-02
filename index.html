@@ -2300,14 +2300,14 @@
         </div>
       </div>
 
-      <div class="filters-row row-4">
+      <div class="filters-row row-3" id="primRow">
         <div class="filter-group">
           <label title="Mevcut Prim Gününüz">5. Mevcut Prim</label>
           <input type="text" id="inpMevcutPrim" placeholder="Örn: 4500" autocomplete="off">
         </div>
 
-        <div class="filter-group">
-          <label title="Erkek: 08.09.1976-08.09.1999, Bayan: 08.09.1981-08.09.1999 arası girişliler için. 15 yıl + yaş şartınız zaten sağlanmış varsayılır, sadece 3600 günü doldurduğunuz tarihi girin." style="white-space: normal; overflow: visible;">Kısmi: 3600 Gün Tarihi (Opsiyonel)</label>
+        <div class="filter-group" id="araTarihGroup" style="display:none;">
+          <label title="Erkek: 08.09.1976-08.09.1999, Bayan: 08.09.1981-08.09.1999 arası girişliler için. 15 yıl + yaş şartınız zaten sağlanmış varsayılır, sadece 3600 günü doldurduğunuz tarihi girin." style="white-space: normal; overflow: visible;">3600 Günün ne zaman dolduğu</label>
           <input type="text" id="inpAraTarih" placeholder="GG.AA.YIL" autocomplete="off">
         </div>
 
@@ -2475,7 +2475,40 @@
       checkSelections();
     });
 
+    function checkAraDonemVisibility() {
+      const cns = selCinsiyet.value;
+      const giris = parseDateString(inpTarih.value);
+      const primVal = parseInt(inpMevcutPrim.value.replace(/\D/g, ''), 10);
+      const group = document.getElementById('araTarihGroup');
+      const row = document.getElementById('primRow');
+
+      let uygun = false;
+      if (cns && giris && !isNaN(primVal) && primVal >= 3600) {
+        if (cns === "Erkek") {
+          uygun = giris >= new Date('1976-09-08') && giris <= new Date('1999-09-08');
+        } else if (cns === "Kadin") {
+          uygun = giris >= new Date('1981-09-08') && giris <= new Date('1999-09-08');
+        }
+      }
+
+      if (uygun) {
+        group.style.display = '';
+        row.classList.remove('row-3');
+        row.classList.add('row-4');
+      } else {
+        group.style.display = 'none';
+        inpAraTarih.value = '';
+        row.classList.remove('row-4');
+        row.classList.add('row-3');
+      }
+
+      return uygun;
+    }
+
     function checkSelections() {
+      const araUygun = checkAraDonemVisibility();
+      const araTarihDolu = !araUygun || parseDateString(inpAraTarih.value) !== null;
+
       const dgmDate = parseDateString(inpDogum.value);
       const trhDate = parseDateString(inpTarih.value);
       const primVal = parseInt(inpMevcutPrim.value.replace(/\D/g, ''), 10);
@@ -2488,7 +2521,7 @@
         if (isNaN(bGun) || bGun <= 0) borclanmaGecerli = false;
       }
 
-      if (selKurum.value && selCinsiyet.value && dgmDate && trhDate && !isNaN(primVal) && selEngel.value && talepGecerli && borclanmaGecerli) {
+      if (selKurum.value && selCinsiyet.value && dgmDate && trhDate && !isNaN(primVal) && selEngel.value && talepGecerli && borclanmaGecerli && araTarihDolu) {
         btnHesapla.disabled = false;
       } else {
         btnHesapla.disabled = true;
@@ -2496,7 +2529,26 @@
       }
     }
 
-    [selKurum, selCinsiyet, inpDogum, inpTarih, inpMevcutPrim, selTalep, selBorclanma, inpBorclanmaGun, selGirisOnce].forEach(el => {
+    function formatTarihGirisi(e) {
+      let imlecSonda = e.target.selectionStart === e.target.value.length;
+      let digits = e.target.value.replace(/\D/g, '').slice(0, 8);
+      let formatted = digits;
+      if (digits.length > 4) {
+        formatted = digits.slice(0, 2) + '.' + digits.slice(2, 4) + '.' + digits.slice(4);
+      } else if (digits.length > 2) {
+        formatted = digits.slice(0, 2) + '.' + digits.slice(2);
+      }
+      e.target.value = formatted;
+      if (imlecSonda) {
+        e.target.setSelectionRange(formatted.length, formatted.length);
+      }
+    }
+
+    [inpDogum, inpTarih, inpAraTarih].forEach(el => {
+      el.addEventListener('input', formatTarihGirisi);
+    });
+
+    [selKurum, selCinsiyet, inpDogum, inpTarih, inpMevcutPrim, selTalep, selBorclanma, inpBorclanmaGun, selGirisOnce, inpAraTarih].forEach(el => {
       el.addEventListener('input', checkSelections);
       el.addEventListener('change', checkSelections);
     });
@@ -2941,8 +2993,6 @@
       return cinsiyet === "Erkek" ? "60 Yaş" : "58 Yaş";
     }
   </script>
-
-
 
 
 
@@ -56203,5 +56253,4 @@ UYARI
 
 
 </body>
-
 </html>

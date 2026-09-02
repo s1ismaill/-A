@@ -92,6 +92,13 @@
             margin-bottom: 25px;
         }
 
+        .sistem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
         .form-group {
             display: flex;
             flex-direction: column;
@@ -125,39 +132,6 @@
 
         .form-group input::placeholder {
             color: var(--text-muted);
-        }
-
-        .gecmis-input-wrap {
-            display: flex;
-            gap: 8px;
-        }
-
-        .gecmis-input-wrap input {
-            flex: 1;
-        }
-
-        .plus-toggle-btn {
-            flex-shrink: 0;
-            width: 52px;
-            height: 52px;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            background: var(--bg-input);
-            color: var(--text-secondary);
-            font-size: 22px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .plus-toggle-btn:hover {
-            border-color: #94a3b8;
-        }
-
-        .plus-toggle-btn.active {
-            background: var(--success);
-            border-color: var(--success);
-            color: #ffffff;
         }
 
         .result-section {
@@ -524,6 +498,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .sistem-grid {
+                grid-template-columns: 1fr;
+            }
+
             .result-section {
                 grid-template-columns: 1fr;
             }
@@ -556,7 +534,9 @@
                     <label for="vardiyaBitis">Vardiya Bitiş Saati</label>
                     <input type="time" id="vardiyaBitis" value="18:00">
                 </div>
+            </div>
 
+            <div class="sistem-grid">
                 <div class="form-group">
                     <label for="sistemSuresi">Sistemde Görünen Çalışma Süresi</label>
                     <input type="text" id="sistemSuresi" placeholder="Örn: 724 yazmanız yeterlidir" inputmode="numeric"
@@ -564,12 +544,15 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="gecmisEksikSure">Geçmişten Kalan Eksik Veya Fazla Süre (dk)</label>
-                    <div class="gecmis-input-wrap">
-                        <input type="text" id="gecmisEksikSure" placeholder="Sadece dakika, örn: 45" inputmode="numeric"
-                            maxlength="4" autocomplete="off">
-                        <button type="button" class="plus-toggle-btn" id="plusToggleBtn" title="Basılıysa fazla süre, basılı değilse eksik süre sayılır">+</button>
-                    </div>
+                    <label for="gecmisEksikSure">Geçmişten Kalan Eksik Süre (dk)</label>
+                    <input type="text" id="gecmisEksikSure" placeholder="Sadece dakika, örn: 45" inputmode="numeric"
+                        maxlength="4" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="gecmisFazlaSure">Geçmişten Kalan Fazla Süre (dk)</label>
+                    <input type="text" id="gecmisFazlaSure" placeholder="Sadece dakika, örn: 45" inputmode="numeric"
+                        maxlength="4" autocomplete="off">
                 </div>
             </div>
 
@@ -645,8 +628,9 @@
                 <div class="info-icon">💡</div>
                 <p>
                     İki nokta koşturmadan direkt rakamları yazın (örn: <strong>724</strong>). Yazdığınız an hesaplama
-                    otomatik başlar ve saniyeler bazında canlı güncellenir. Geçmişten kalan eksik süre alanına ise
-                    sadece dakika olarak sayı girin (örn: <strong>45</strong>), bu süre toplam farka eklenir.
+                    otomatik başlar ve saniyeler bazında canlı güncellenir. Geçmişten kalan eksik/fazla süre
+                    alanlarına ise sadece dakika olarak sayı girin (örn: <strong>45</strong>); eksik süre toplam
+                    farka eklenir, fazla süre ise farktan düşülür.
                 </p>
             </div>
         </main>
@@ -659,8 +643,7 @@
         const bitisInput = document.getElementById("vardiyaBitis");
         const sistemInput = document.getElementById("sistemSuresi");
         const gecmisEksikInput = document.getElementById("gecmisEksikSure");
-        const plusToggleBtn = document.getElementById("plusToggleBtn");
-        let gecmisFazlaMi = false;
+        const gecmisFazlaInput = document.getElementById("gecmisFazlaSure");
         const currentTimeElement = document.getElementById("currentTime");
         const gercekSureElement = document.getElementById("gercekSure");
         const sistemSureElement = document.getElementById("sistemSure");
@@ -695,12 +678,14 @@
         }
 
         function gecmisEksikSaniyeAl() {
-            const deger = gecmisEksikInput.value.replace(/\D/g, "");
-            if (!deger) return 0;
-            const dakika = Number(deger);
-            if (!Number.isInteger(dakika) || dakika < 0) return 0;
-            const saniye = dakika * 60;
-            return gecmisFazlaMi ? -saniye : saniye;
+            const eksikDeger = gecmisEksikInput.value.replace(/\D/g, "");
+            const fazlaDeger = gecmisFazlaInput.value.replace(/\D/g, "");
+
+            const eksikDakika = eksikDeger ? Number(eksikDeger) : 0;
+            const fazlaDakika = fazlaDeger ? Number(fazlaDeger) : 0;
+
+            const netDakika = eksikDakika - fazlaDakika;
+            return netDakika * 60;
         }
 
         function saniyeToSure(saniye) {
@@ -867,11 +852,19 @@
             }
         });
 
-        plusToggleBtn.addEventListener("click", function () {
-            gecmisFazlaMi = !gecmisFazlaMi;
-            plusToggleBtn.classList.toggle("active", gecmisFazlaMi);
+        gecmisFazlaInput.addEventListener("input", function () {
+            let val = this.value.replace(/\D/g, "");
+            if (val.length > 4) val = val.substring(0, 4);
+            this.value = val;
+
             if (hesaplamaAktif) {
                 hesapla();
+            }
+        });
+
+        gecmisFazlaInput.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                this.blur();
             }
         });
 
@@ -949,14 +942,13 @@
             bitisInput.value = "18:00";
             sistemInput.value = "";
             gecmisEksikInput.value = "";
+            gecmisFazlaInput.value = "";
             kisaMolaInput.value = "";
             yemekMolaInput.value = "";
             gunlukMolaInput.value = "100";
             molaSonucElement.textContent = "0";
             molaKalanSonucElement.textContent = "100";
             molaKalanWrap.classList.remove("danger");
-            gecmisFazlaMi = false;
-            plusToggleBtn.classList.remove("active");
             hesaplamaAktif = false;
 
             gercekSureElement.textContent = "00:00:00";
