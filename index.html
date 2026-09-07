@@ -520,10 +520,10 @@
 
 
 
-  <style>
+<div id="ia-bilgi-portali-widget">
+<style>
     .container1 {
       width: 100%;
-      margin: 0 auto;
       background: #E6F0FA;
       padding: 25px;
       border-radius: 8px;
@@ -608,6 +608,46 @@
       background-color: #E6F0FA;
       cursor: not-allowed;
       color: #1f88c7;
+    }
+
+    /* =========================================================
+       HIZLI ERİŞİM PORTAL SEKMELERİ (yan yana butonlar)
+       ========================================================= */
+    .portal-tabs {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 8px;
+      margin-bottom: 4px;
+      overflow-x: auto;
+    }
+
+    .portal-tab-btn {
+      flex: 1 1 0;
+      min-width: 0;
+      text-align: center;
+      padding: 6px 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #154474;
+      background: #ffffff;
+      border: 1.5px solid #1f88c7;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.18s ease, color 0.18s ease;
+      user-select: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .portal-tab-btn:hover {
+      background: #f0f7fd;
+    }
+
+    .portal-tab-btn.active-tab {
+      background: #1f88c7;
+      color: #ffffff;
+      border-color: #1f88c7;
     }
 
     .custom-dropdown-list2 {
@@ -768,8 +808,8 @@
       background-color: #e8f0fe !important;
       border: 1px solid #1f88c7;
     }
-  </style>
 
+</style>
 
   <div class="container1">
     <h2 class="h2"><a href="https://www.instagram.com/s1ismail" target="_blank"
@@ -778,10 +818,8 @@
     <div class="portal-section-title2">I. Kopyala Yapıştır</div>
     <div class="selectors-wrapper2">
       <div class="selector-group2">
-        <label class="label2" for="portalSelect">1. Portal Seçiniz (Kategori):</label>
-        <select id="portalSelect">
-          <option value="">Lütfen listeden bir portal seçin...</option>
-        </select>
+        <label class="label2">1. Portal Seçiniz (Kategori):</label>
+        <div class="portal-tabs" id="portalTabs"></div>
       </div>
 
       <div class="selector-group2">
@@ -791,7 +829,6 @@
       </div>
     </div>
 
-    <!-- BÖLÜM I: Tonu düşürülmüş yeşil arka plan -->
     <div id="resultContainer1" class="results-grid2" style="display: none;">
       <div class="result-box2 full-width copyable2" id="boxKonuDetay" title="Kopyalamak için tıklayın"
         onclick="let txt = document.getElementById('resMetin1').innerText.trim(); if(txt && txt !== '-') { navigator.clipboard.writeText(txt).then(() => { let bd = document.getElementById('badgeKonu'); let old = bd.innerText; bd.innerText = 'Kopyalandı!'; this.style.backgroundColor = '#e8f5e9'; setTimeout(() => { bd.innerText = old; this.style.backgroundColor = ''; }, 1500); }); }">
@@ -815,7 +852,6 @@
       </div>
     </div>
 
-    <!-- BÖLÜM II: Tonu düşürülmüş yeşil arka plan -->
     <div id="resultContainer3" class="results-grid2" style="display: none;">
       <div class="result-box2 full-width copyable2" id="boxTutarDetay" style="border-left-color: #795548;"
         title="Kopyalamak için tıklayın"
@@ -840,7 +876,6 @@
       </div>
     </div>
 
-    <!-- BÖLÜM III: Tonu düşürülmüş yeşil arka plan -->
     <div id="resultContainer2" class="results-grid2" style="display: none;">
       <div class="result-box2 copyable2" id="boxKirilim"
         onclick="let txt = document.getElementById('resKirilim').innerText.trim(); if(txt && txt !== '-') { navigator.clipboard.writeText(txt).then(() => { let bd = document.getElementById('badgeK'); let old = bd.innerText; bd.innerText = 'Kopyalandı!'; this.style.backgroundColor = '#e8f5e9'; setTimeout(() => { bd.innerText = old; this.style.backgroundColor = ''; }, 1500); }); }">
@@ -908,7 +943,6 @@
         badge.style.color = "#5d4a38";
       }, 1500);
     }
-
     // =========================================================================
     // PORTAL 1 VE 3 DATA TANIMLAMALARI (Mevcut Verileriniz)
     // =========================================================================
@@ -1010,7 +1044,6 @@
         { konu: "Okul ve hastane alımı", metin: `Okullara ve hastanelere temizlik ile güvenlik görevlisi alımıyla ilgili herhangi bir resmi açıklama yapılmadığı bilgisi verildi.` },
       ]
     };
-
     const scriptData = [
       { konu: `3 VE ÜZERİ ÇALIŞANI OLMASINA RAĞMEN ÜCRETLERİ BANKADAN ÖDENMEYEN İŞÇİ ŞİKAYETLERİ`, kirilim: `ŞİKÂYET > SGK > İHBAR > EKSİK PRİM YATIRMA`, sorular: `ÇALIŞAN İŞÇİ SAYISI:\nÜCRETLERİ ELDEN ÖDENEN KİŞİLER ÇALIŞMAYA DEVAM EDİYOR MU?:\nİŞ YERİ ÜNVANI:\nİŞ YERİ ADRESİ:\nİŞ YERİ TELEFON NUMARASI:`, metin: `ADRESİ VERİLEN İŞYERİNDE ÇALIŞAN İŞÇİ SAYISI 3 VE ÜZERİNDE OLMASINA RAĞMEN, ÇALIŞANLARIN ÇALIŞMA ÜCRETLERİNİN BANKA ARACILIĞIYLA ÖDENSESİ GEREKİRKEN, İŞVEREN ÇALIŞMA ÜCRETLERİNİ ELDEN ÖDEMEKTEDİR. ŞİKAYETÇİYİM.` },
       { konu: `ALERJİ AŞI ÖDEMELERİ`, kirilim: `EVRAK TAKİBİ > SGK > GENEL SAĞLIK SİGORTASI > TIBBİ MALZEMELER`, sorular: `SİGORTALI AD-SOYAD:\nSİGORTALI TC KİMLİK NO:\nAŞI İSMİ:\nAŞIYI KULLANAN KİŞİ AD-SOYAD:\nAŞIYI KULLANAN KİŞİ TC KİMLİK NO:\nMÜRACAAT TARİHİ:\nBAĞLU OLDUĞU SGK:`, metin: `ALERJİ AŞI ÖDENEĞİMİ NE ZAMAN ALABİLECEĞİM KONUSUNDA BİLGİ ALMAK İSTİYORUM.` },
@@ -1075,10 +1108,6 @@
       { konu: `SGK TARAFINDAN ATILAN SMS HAKKINDA HASTANEYE GİDİLMEDİĞİNE DAİR ŞİKAYET`, kirilim: `ŞİKAYET > SGK > İHBAR > HASTANE İLAVE ÜCRETLERİ`, sorular: `ADI SOYADI:\nTCKN:\nHASTANE:`, metin: ` (TARİH) TARİHİNDE HASTANEYE HİÇ GİTMEMİŞ VE RANDEVU ALMAMIŞ OLMAMA RAĞMEN KURUM TARAFINDAN (ÜCRET) TL KARŞILANMIŞTIR GİDEN BEN DEĞİLİM İŞLEM YAPILMASINI TALEP EDİYORUM. ` },
       { konu: `DIŞ ARAMA HATALI BİLGİ`, kirilim: `DIŞ ARAMA HATALI BİLGİ`, sorular: `VATANDAŞIN ADI SOYADI :\nTC KİMLİK NO:\nARAMA TARİHİ:\nARAMA KONUSU:\nHATALI OLARAK VERİLEN BİLGİ:\nVERİLMESİ GEREKEN BİLGİ:`, metin: ` ` },
     ];
-
-    // =========================================================================
-    // PORTAL 2 DATA TANIMLAMASI (GÜNCEL TUTARLAR 2026)
-    // =========================================================================
     const guncelTutarlarData = [
       { konu: "1005 Sayılı Kanunun 1 İnci Maddesi Kapsamında Gazi Aylıkları", metin: `<div class="table-responsive"><table class="bilgi-tablosu"><thead><tr><th colspan="5" class="center-text">01.01.2026-31.12.2026 TARİHLER ARASI ÖDENECEK OLAN GAZİ AYLIĞI</th></tr><tr><th>AÇIKLAMA</th><th>ASGARİ ÜCRET</th><th>EK ÖDEME (% 4)</th><th>TOPLAM AYLIK</th><th>DUL EŞ TUTARI</th></tr></thead><tbody><tr><td>“Milli mücadeleye iştirak eden ve bu sebeple kendilerine İstiklal Madalyası verilmiş bulunan Türk vatandaşları ile 1950 yılında Türk Tugayı’nın Kore’ye ayak bastığı... (v.b. vatani hizmet tertibinden 30 günlük net asgari ücret tutarında aylık bağlanır)</td><td class="center-text">28.075,50</td><td class="center-text">1.123,02</td><td class="center-text"><strong>29.198,52</strong></td><td class="center-text">21.898,89</td></tr></tbody></table><table class="bilgi-tablosu"><thead><tr><th colspan="5" class="center-text">01.01.2025-31.12.2025 TARİHLER ARASI ÖDENECEK OLAN GAZİ AYLIĞI</th></tr><tr><th>AÇIKLAMA</th><th>ASGARİ ÜCRET</th><th>EK ÖDEME (% 4)</th><th>TOPLAM AYLIK</th><th>DUL EŞ TUTARI</th></tr></thead><tbody><tr><td>“Milli mücadeleye iştirak eden ve bu sebeple kendilerine İstiklal Madalyası verilmiş bulunan Türk vatandaşları ile 1950 yılında Türk Tugayı’nın Kore’ye ayak bastığı...</td><td class="center-text">22.104,67</td><td class="center-text">884,19</td><td class="center-text"><strong>22.988,86</strong></td><td class="center-text">17.241,64</td></tr></tbody></table></div>` },
       { konu: "2925 Sayılı Kanuna Tabi Sigortaların Prime Esas Kazanç Ve Prim Tutarı", metin: `<div class="table-responsive"><span class="bilgi-metni">2925 SAYILI KANUN MADDESİNE TABİ OLARAK TARIM VEYA ORMAN İŞLERİNDE HİZMET AKDİYLE SÜREKSİZ OLARAK ÇALIŞANLAR</span><table class="bilgi-tablosu"><thead><tr><th colspan="2" class="center-text">1/1/2026 - 31/12/2026 TARİHLERİ ARASINDA;</th></tr></thead><tbody><tr><td><strong>AYLIK KAZANÇ ALT SINIRINA GÖRE :</strong></td><td>5.367,38 TL</td></tr></tbody></table></div>` },
@@ -1116,9 +1145,9 @@
     ];
 
     // =========================================================================
-    // PORTAL 1 İŞLEMLERİ
+    // PORTAL 1 İŞLEMLERİ (YAN YANA HIZLI ERİŞİM SEKMELERİ)
     // =========================================================================
-    const portalSelect = document.getElementById('portalSelect');
+    const portalTabs = document.getElementById('portalTabs');
     const konuSearchInput = document.getElementById('konuSearchInput');
     const customDropdownList = document.getElementById('customDropdownList');
     const resultContainer1 = document.getElementById('resultContainer1');
@@ -1126,36 +1155,40 @@
     const resMetin1 = document.getElementById('resMetin1');
 
     let currentPortalData = [];
+    let currentPortalName = "";
 
     Object.keys(portalData).forEach(portalKey => {
       portalData[portalKey].sort((a, b) => a.konu.localeCompare(b.konu, 'tr'));
     });
 
-    Object.keys(portalData).forEach(portalAdi => {
-      const option = document.createElement('option');
-      option.value = portalAdi;
-      option.textContent = portalAdi;
-      portalSelect.appendChild(option);
+    const portalTabOrder = ["SGK Kopyala yapıştır", "İŞKUR Kopyala yapıştır", "ÇAĞRI KAYIT", "MYK BİLGİ PORTALI", "İSG BİLGİ PORTALI"];
+    portalTabOrder.forEach(portalAdi => {
+      const btn = document.createElement('div');
+      btn.className = "portal-tab-btn";
+      btn.textContent = portalAdi;
+      btn.dataset.portal = portalAdi;
+      btn.addEventListener('click', function () {
+        selectPortal(portalAdi, btn);
+      });
+      portalTabs.appendChild(btn);
     });
 
-    portalSelect.addEventListener('change', function () {
-      const secilenPortal = this.value;
+    function selectPortal(portalAdi, btnEl) {
+      currentPortalName = portalAdi;
+      currentPortalData = portalData[portalAdi];
+
+      document.querySelectorAll('.portal-tab-btn').forEach(b => b.classList.remove('active-tab'));
+      btnEl.classList.add('active-tab');
+
       konuSearchInput.value = "";
       customDropdownList.innerHTML = "";
       resultContainer1.style.display = 'none';
-
-      if (!secilenPortal) {
-        konuSearchInput.disabled = true;
-        konuSearchInput.placeholder = "Önce portal seçiniz...";
-        currentPortalData = [];
-        return;
-      }
-
       konuSearchInput.disabled = false;
       konuSearchInput.placeholder = "Aramak istediğiniz konuyu yazın veya listeyi açmak için tıklayın...";
-      currentPortalData = portalData[secilenPortal];
+      konuSearchInput.focus();
       renderPortalDropdownItems(currentPortalData);
-    });
+      customDropdownList.style.display = 'block';
+    }
 
     function renderPortalDropdownItems(items) {
       customDropdownList.innerHTML = "";
@@ -1179,7 +1212,7 @@
     }
 
     konuSearchInput.addEventListener('focus', function () {
-      if (portalSelect.value) {
+      if (currentPortalName) {
         renderPortalDropdownItems(currentPortalData);
         customDropdownList.style.display = 'block';
       }
@@ -1320,7 +1353,7 @@
     // KAPATMA KONTROLLERİ (Dışarı tıklama durumları)
     // =========================================================================
     document.addEventListener('click', function (e) {
-      if (!konuSearchInput.contains(e.target) && !customDropdownList.contains(e.target)) {
+      if (!konuSearchInput.contains(e.target) && !customDropdownList.contains(e.target) && !portalTabs.contains(e.target)) {
         customDropdownList.style.display = 'none';
       }
       if (!searchInput2.contains(e.target) && !dropdownList2.contains(e.target)) {
@@ -1332,14 +1365,10 @@
     });
 
 
-
-
     // =========================================================================
     // KLAVYE VE MOUSE'U BİRLEŞTİREN GÜNCEL FONKSİYON
     // =========================================================================
-
     function klavyeDestegiEkle(inputElement, dropdownElement) {
-      // 1. Ok tuşları ve Enter ile seçim mantığı
       inputElement.addEventListener('keydown', function (e) {
         const items = dropdownElement.querySelectorAll('.custom-dropdown-item2');
         if (dropdownElement.style.display !== 'block' || items.length === 0) return;
@@ -1368,25 +1397,21 @@
         }
       });
 
-      // 2. MOUSE HAREKET ETTİKÇE KLAVYE SEÇİMİNİ GÜNCELLE
       dropdownElement.addEventListener('mouseover', function (e) {
         const target = e.target.closest('.custom-dropdown-item2');
         if (target) {
-          // Önceki aktif sınıfı temizle
           const currentActive = dropdownElement.querySelector('.active-item');
           if (currentActive) currentActive.classList.remove('active-item');
-
-          // Mouse'un geldiği öğeye active-item ekle
           target.classList.add('active-item');
         }
       });
     }
 
-    // Tüm arama alanlarını bu yeni fonksiyona bağlıyoruz
     klavyeDestegiEkle(konuSearchInput, customDropdownList);
     klavyeDestegiEkle(guncelSearchInput, dropdownList3);
     klavyeDestegiEkle(searchInput2, dropdownList2);
   </script>
+</div>
 
 
 
