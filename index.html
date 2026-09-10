@@ -2030,7 +2030,6 @@
 
 
 
-
 <style>
     /* Tablo panelinin başlangıçta gizli kalmasını sağlar ve iç boşluğu korur */
     .dsdswexxvzx {
@@ -2332,7 +2331,7 @@
         </div>
 
         <div class="filter-group" id="araTarihGroup" style="display:none;">
-          <label title="Erkek: 08.09.1976-08.09.1999, Bayan: 08.09.1981-08.09.1999 arası girişliler için. 15 yıl + yaş şartınız zaten sağlanmış varsayılır, sadece 3600 günü doldurduğunuz tarihi girin." style="white-space: normal; overflow: visible;">3600 Günün ne zaman dolduğu</label>
+          <label title="Erkek: 08.09.1976-08.09.1999, Bayan: 08.09.1981-08.09.1999 arası girişliler için. 15 yıl + yaş şartınız zaten sağlanmış varsayılır, sadece 3600 günü doldurduğunuz tarihi girin." style="white-space: normal; overflow: visible;">Kısmi: 3600 Gün Tarihi (Opsiyonel)</label>
           <input type="text" id="inpAraTarih" placeholder="GG.AA.YIL" autocomplete="off">
         </div>
 
@@ -2531,8 +2530,7 @@
     }
 
     function checkSelections() {
-      const araUygun = checkAraDonemVisibility();
-      const araTarihDolu = !araUygun || parseDateString(inpAraTarih.value) !== null;
+      checkAraDonemVisibility();
 
       const dgmDate = parseDateString(inpDogum.value);
       const trhDate = parseDateString(inpTarih.value);
@@ -2546,7 +2544,7 @@
         if (isNaN(bGun) || bGun <= 0) borclanmaGecerli = false;
       }
 
-      if (selKurum.value && selCinsiyet.value && dgmDate && trhDate && !isNaN(primVal) && selEngel.value && talepGecerli && borclanmaGecerli && araTarihDolu) {
+      if (selKurum.value && selCinsiyet.value && dgmDate && trhDate && !isNaN(primVal) && selEngel.value && talepGecerli && borclanmaGecerli) {
         btnHesapla.disabled = false;
       } else {
         btnHesapla.disabled = true;
@@ -2555,22 +2553,28 @@
     }
 
     function formatTarihGirisi(e) {
-      let imlecSonda = e.target.selectionStart === e.target.value.length;
       let digits = e.target.value.replace(/\D/g, '').slice(0, 8);
       let formatted = digits;
-      if (digits.length > 4) {
-        formatted = digits.slice(0, 2) + '.' + digits.slice(2, 4) + '.' + digits.slice(4);
-      } else if (digits.length > 2) {
-        formatted = digits.slice(0, 2) + '.' + digits.slice(2);
+      if (digits.length === 8) {
+        // GGAAYYYY -> GG.AA.YYYY
+        let gun = digits.slice(0, 2), ay = digits.slice(2, 4), yil = digits.slice(4);
+        formatted = gun + '.' + ay + '.' + yil;
+      } else if (digits.length === 7) {
+        // GGAYYYY -> GG.0A.YYYY (tek haneli ay)
+        let gun = digits.slice(0, 2), ay = digits.slice(2, 3), yil = digits.slice(3);
+        formatted = gun + '.' + ay.padStart(2, '0') + '.' + yil;
+      } else if (digits.length === 6) {
+        // GAYYYY -> 0G.0A.YYYY (tek haneli gün ve ay)
+        let gun = digits.slice(0, 1), ay = digits.slice(1, 2), yil = digits.slice(2);
+        formatted = gun.padStart(2, '0') + '.' + ay.padStart(2, '0') + '.' + yil;
       }
+      // 5 hane ve altında (örn. sadece yıl yazılıyorsa) nokta konmaz, ham rakam kalır
       e.target.value = formatted;
-      if (imlecSonda) {
-        e.target.setSelectionRange(formatted.length, formatted.length);
-      }
+      checkSelections();
     }
 
     [inpDogum, inpTarih, inpAraTarih].forEach(el => {
-      el.addEventListener('input', formatTarihGirisi);
+      el.addEventListener('blur', formatTarihGirisi);
     });
 
     [selKurum, selCinsiyet, inpDogum, inpTarih, inpMevcutPrim, selTalep, selBorclanma, inpBorclanmaGun, selGirisOnce, inpAraTarih].forEach(el => {
@@ -2743,6 +2747,8 @@
       else if (d_effective <= new Date('2039-12-31')) return Math.min(65, base + 2) + " Yaş";
       else if (d_effective <= new Date('2041-12-31')) return Math.min(65, base + 3) + " Yaş";
       else if (d_effective <= new Date('2043-12-31')) return Math.min(65, base + 4) + " Yaş";
+      else if (d_effective <= new Date('2045-12-31')) return Math.min(65, base + 5) + " Yaş";
+      else if (d_effective <= new Date('2047-12-31')) return Math.min(65, base + 6) + " Yaş";
       else return "65 Yaş";
     }
 
@@ -2837,7 +2843,7 @@
             } else {
               not = baslangicMetni + "<br><br><b>15.01.2025 (Dahil) Sonrasında</b> aylık talebinde bulunduğunuz için 2008/Ekim öncesi sigortalı olsanız dahi yeni SGK (Çalışma Gücü Kaybı Tespiti) şartlarına tabisiniz.";
               sure = eng === "Agir" ? "15 Yıl" : (eng === "Orta" ? "16 Yıl" : "18 Yıl");
-              prim = eng === "Agir" ? "3960 Gün" : (eng === "Orta" ? "4320 Gün" : "4680 Gün");
+              prim = eng === "Agir" ? "3600 Gün" : (eng === "Orta" ? "3700 Gün" : "4100 Gün");
             }
           } else {
             not = baslangicMetni + "<br><br>01.10.2008 sonrası işe giren engelli sigortalılar için çalışma gücü kayıp oranına göre yaş şartsız emeklilik tablosu uygulanır.";
@@ -2905,10 +2911,18 @@
               else prim = "5975 Gün";
             }
             k_prim = "3600 Gün";
-            k_yas = getKismiYas(krm, cns, dgm, d_effective, trueBaslangic, toplamPrim);
-
-            if (!k_yas.includes('60 Yaş') && !k_yas.includes('58 Yaş')) {
-              uyariMetinleri.push("<b>Önemli Uyarı:</b> 24.05.2014 tarihinden önce 3600 gün şartını tamamladığınız (veya tamamlayacağınız öngörüldüğü) için, kısmi emeklilik yaşınız tablodan detaylı kontrol edilmelidir.");
+            {
+              const erkenEsik4A = cns === "Erkek" ? new Date('1976-09-08') : new Date('1981-09-08');
+              if (d_effective < erkenEsik4A) {
+                // Erken Dönem: 08.09.1976 (Erkek) / 08.09.1981 (Bayan) öncesi girişliler için sabit yaş şartı
+                k_yas = cns === "Erkek" ? "55 Yaş" : "50 Yaş";
+              } else {
+                // Ara Dönem: 3600 gün + 15 yıl + yaş şartının tamamlandığı tarihe göre kayan tablo
+                k_yas = getKismiYas(krm, cns, dgm, d_effective, trueBaslangic, toplamPrim);
+                if (!k_yas.includes('60 Yaş') && !k_yas.includes('58 Yaş')) {
+                  uyariMetinleri.push("<b>Önemli Uyarı:</b> 24.05.2014 tarihinden önce 3600 gün şartını tamamladığınız (veya tamamlayacağınız öngörüldüğü) için, kısmi emeklilik yaşınız tablodan detaylı kontrol edilmelidir.");
+                }
+              }
             }
           }
           else if (isBeforeOrEqual(d_effective, '2008-04-30')) {
@@ -2926,7 +2940,7 @@
             sure = "Süre Şartı Yok";
             k_sure = "Süre Şartı Yok";
             k_prim = getSonrasiKismiPrim(d_effective);
-            k_yas = getSonrasiYas(cns, d_effective, true);
+            k_yas = cns === "Erkek" ? "63 Yaş" : "61 Yaş";
             not = baslangicMetni + `<br><br><b>01.05.2008 Sonrası Emeklilik Kademesi:</b> İşe giriş tarihinize göre belirlenmiş olan tablolara tabisiniz. Normal emeklilikte ${yas} ve 7200 prim günü, kısmi emeklilikte ise ${k_yas} yaş ve ${k_prim} prim şartını sağlamanız gerekmektedir.`;
           }
         }
@@ -2938,11 +2952,18 @@
           if (isBeforeOrEqual(d_effective, '1999-09-08')) {
             yas = "YAŞ ŞARTI YOK (EYT)";
             k_prim = "5400 Gün";
-            k_yas = getKismiYas(krm, cns, dgm, d_effective, trueBaslangic, toplamPrim);
             not = baslangicMetni + "<br><br>EYT yasası kapsamında normal emeklilikte yaş şartından muafsınız.";
-
-            if (!k_yas.includes('63 Yaş') && !k_yas.includes('61 Yaş')) {
-              uyariMetinleri.push("<b>Önemli Uyarı:</b> 01.10.2008 tarihinden önce 5400 gün şartını tamamladığınız (veya tamamlayacağınız öngörüldüğü) için, kısmi emeklilik yaşınız tablodan detaylı kontrol edilmelidir.");
+            {
+              const erkenEsikBK = cns === "Erkek" ? new Date('1976-09-08') : new Date('1981-09-08');
+              if (d_effective < erkenEsikBK) {
+                // Erken Dönem: sabit yaş şartı
+                k_yas = cns === "Erkek" ? "55 Yaş" : "50 Yaş";
+              } else {
+                k_yas = getKismiYas(krm, cns, dgm, d_effective, trueBaslangic, toplamPrim);
+                if (!k_yas.includes('63 Yaş') && !k_yas.includes('61 Yaş')) {
+                  uyariMetinleri.push("<b>Önemli Uyarı:</b> 01.10.2008 tarihinden önce 5400 gün şartını tamamladığınız (veya tamamlayacağınız öngörüldüğü) için, kısmi emeklilik yaşınız tablodan detaylı kontrol edilmelidir.");
+                }
+              }
             }
           } else if (isBeforeOrEqual(d_effective, '2008-04-30')) {
             yas = cns === "Erkek" ? "60 Yaş" : "58 Yaş";
@@ -2957,7 +2978,7 @@
             prim = cns === "Kadin" ? "7200 Gün" : "9000 Gün";
             k_sure = "Süre Şartı Yok";
             k_prim = getSonrasiKismiPrim(d_effective);
-            k_yas = getSonrasiYas(cns, d_effective, true);
+            k_yas = cns === "Erkek" ? "63 Yaş" : "61 Yaş";
             not = baslangicMetni + `<br><br><b>01.05.2008 Sonrası Emeklilik Kademesi:</b> İşe giriş tarihinize göre belirlenmiş olan tablolara tabisiniz. Normal emeklilikte ${yas} ve erkeklerde 9000 / kadınlarda 7200 prim günü, kısmi emeklilikte ise ${k_yas} yaş ve ${k_prim} prim şartını sağlamanız gerekmektedir.`;
           }
         }
@@ -3018,8 +3039,6 @@
       return cinsiyet === "Erkek" ? "60 Yaş" : "58 Yaş";
     }
   </script>
-
-
 
 
 
