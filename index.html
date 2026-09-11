@@ -2677,11 +2677,10 @@
         let date3600 = new Date();
         if (toplamPrim < 3600) {
           date3600.setDate(date3600.getDate() + (3600 - toplamPrim));
-        } else {
-          date3600 = new Date(baslangic);
-          date3600.setDate(date3600.getDate() + 3600);
-          if (date3600 > new Date()) date3600 = new Date();
         }
+        // toplamPrim >= 3600 ise: tam olarak hangi tarihte dolduğu bilinmediğinden
+        // (geçmişe dönük kesintisiz çalışma varsayımı yanlış sonuç verebiliyor),
+        // en güvenli varsayım olarak "bugün itibarıyla zaten dolmuş" kabul edilir.
 
         let dolmaTarihi = new Date(Math.max(date15.getTime(), date3600.getTime(), dateAge.getTime()));
 
@@ -2707,11 +2706,8 @@
         let date5400 = new Date();
         if (toplamPrim < 5400) {
           date5400.setDate(date5400.getDate() + (5400 - toplamPrim));
-        } else {
-          date5400 = new Date(baslangic);
-          date5400.setDate(date5400.getDate() + 5400);
-          if (date5400 > new Date()) date5400 = new Date();
         }
+        // toplamPrim >= 5400 ise aynı gerekçeyle bugün baz alınır.
 
         let dolmaTarihi = new Date(Math.max(date5400.getTime(), dateAge.getTime()));
 
