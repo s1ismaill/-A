@@ -333,6 +333,44 @@
           İA
         </a>
       </div>
+        <!-- Site geneli arama (menünün yanında) -->
+        <div class="ssx-host">
+            <style>
+              .ssx-host { display: flex; align-items: center; margin-left: auto; margin-right: 24px; }
+              .ssx-wrap { position: relative; display: flex; align-items: center; }
+              .ssx-box { display: flex; align-items: center; gap: 6px; height: 34px; width: 210px; padding: 0 8px 0 10px; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .35); border-radius: 8px; color: #fff; transition: background .15s, border-color .15s; }
+              .ssx-box:focus-within { background: #fff; border-color: #fff; color: #1b263b; }
+              .ssx-icon { display: flex; flex: 0 0 auto; }
+              .ssx-input { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: transparent; font: inherit; font-size: 14px; color: inherit; }
+              #siteSearch .ssx-input, #siteSearch .ssx-input:focus { border: 0 !important; outline: 0 !important; box-shadow: none !important; background: transparent !important; padding: 0 !important; margin: 0 !important; color: inherit !important; width: auto; height: 100%; }
+              .ssx-input::placeholder { color: rgba(255, 255, 255, .75); opacity: 1; }
+              .ssx-box:focus-within .ssx-input::placeholder { color: #5a6b80; }
+              .ssx-clear { flex: 0 0 auto; padding: 0 4px; border: 0; background: transparent; font-size: 18px; line-height: 1; color: inherit; cursor: pointer; }
+              .ssx-clear[hidden], .ssx-results[hidden] { display: none !important; }
+              .ssx-results { position: fixed; top: 66px; left: 50%; transform: translateX(-50%); width: min(460px, calc(100vw - 24px)); max-height: 60vh; overflow-y: auto; padding: 6px; z-index: 110; background: #fff; border: 1px solid #b9cde3; border-radius: 10px; box-shadow: 0 12px 28px rgba(0, 0, 0, .25); text-align: left; }
+              .ssx-item { padding: 10px 12px; border-radius: 8px; cursor: pointer; color: #1b263b; white-space: normal; }
+              .ssx-item:hover, .ssx-item.ssx-active { background: #E6F0FA; }
+              .ssx-item-top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+              .ssx-cat { padding: 2px 6px; border-radius: 4px; background: #1b263b; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .04em; }
+              .ssx-title { font-size: 14px; font-weight: 700; color: #1b263b; }
+              .ssx-count { margin-left: auto; font-size: 12px; color: #5a6b80; }
+              .ssx-snip { margin-top: 4px; font-size: 13px; line-height: 1.45; color: #3d4a5c; }
+              .ssx-snip mark, .ssx-mark { padding: 0 1px; border-radius: 3px; background: #ffe27a; color: inherit; }
+              .ssx-empty { padding: 12px; font-size: 14px; color: #5a6b80; }
+              .ssx-mark.ssx-mark-first { background: #ffb020; }
+              @media (max-width: 1118px) { .ssx-host { margin-left: auto; margin-right: 0; } .ssx-box { width: 150px; } .c-nav__menu { margin-left: 0; } }
+            </style>
+            <div class="ssx-wrap" id="siteSearch">
+              <div class="ssx-box">
+                <span class="ssx-icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </span>
+                <input type="text" id="siteSearchInput" class="ssx-input" placeholder="Sitede ara..." autocomplete="off" aria-label="Sitede ara" aria-autocomplete="list" aria-controls="siteSearchResults" aria-expanded="false">
+                <button type="button" id="siteSearchClear" class="ssx-clear" aria-label="Aramayı temizle" hidden>&times;</button>
+              </div>
+              <div id="siteSearchResults" class="ssx-results" role="listbox" hidden></div>
+            </div>
+        </div>
       <div class="c-nav__menu" id="nav-menu">
         <ul class="c-nav__list">
 
@@ -56291,6 +56329,292 @@ UYARI
 
 
 
+
+  <script>
+  (function () {
+    var input = document.getElementById('siteSearchInput');
+    var box = document.getElementById('siteSearchResults');
+    var clearBtn = document.getElementById('siteSearchClear');
+    var wrap = document.getElementById('siteSearch');
+    if (!input || !box || !wrap) return;
+
+    var MAX_RESULTS = 30;
+    var MAX_MARKS = 300;
+    var index = null;
+    var results = [];
+    var activeIdx = -1;
+    var marks = [];
+    var debounceT = null;
+
+    function norm(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
+    function low(s) { return s.toLocaleLowerCase('tr-TR'); }
+
+    // Bir bölümün görünür metnini (script/style hariç) al
+    function textOf(el) {
+      if (!el) return '';
+      var clone = el.cloneNode(true);
+      clone.querySelectorAll('script, style').forEach(function (n) { n.remove(); });
+      return norm(clone.textContent);
+    }
+
+    // Arama dizinini bir kez oluştur: menü başlıkları, dış linkler ve ana sayfa
+    function buildIndex() {
+      if (index) return index;
+      index = [];
+
+      document.querySelectorAll('.c-dropdown .ia-serit-baslik[data-panel]').forEach(function (item) {
+        var li = item.closest('.li111111');
+        var catEl = li ? li.querySelector('.c-nav__link') : null;
+        var panelId = item.getAttribute('data-panel');
+        index.push({
+          kind: 'panel',
+          title: norm(item.textContent),
+          category: catEl ? norm(catEl.textContent) : '',
+          panelId: panelId,
+          text: textOf(document.getElementById(panelId))
+        });
+      });
+
+      document.querySelectorAll('.c-dropdown a.ia-dropdown-link').forEach(function (a) {
+        index.push({
+          kind: 'link',
+          title: norm(a.textContent),
+          category: 'LİNKLER',
+          href: a.getAttribute('href'),
+          text: ''
+        });
+      });
+
+      index.push({
+        kind: 'home',
+        title: 'Ana sayfa (Kopyala Yapıştır)',
+        category: '',
+        text: textOf(document.querySelector('.container1'))
+      });
+
+      index.forEach(function (e) {
+        e.lowTitle = low(e.title);
+        e.lowText = low(e.text);
+      });
+      return index;
+    }
+
+    function search(q) {
+      var ql = low(q);
+      var out = [];
+      buildIndex().forEach(function (e) {
+        var titleHit = e.lowTitle.indexOf(ql) !== -1;
+        var first = e.lowText.indexOf(ql);
+        var count = 0;
+        var p = first;
+        while (p !== -1) {
+          count++;
+          p = e.lowText.indexOf(ql, p + ql.length);
+        }
+        if (titleHit || count) {
+          out.push({ e: e, first: first, count: count, score: (titleHit ? 1000 : 0) + count });
+        }
+      });
+      out.sort(function (a, b) { return b.score - a.score; });
+      return out.slice(0, MAX_RESULTS);
+    }
+
+    function el(tag, cls, text) {
+      var n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;
+      return n;
+    }
+
+    // Sonucun altındaki kısa metin parçası; eşleşme vurgulu
+    function snippet(r, q) {
+      var text = r.e.text;
+      var pos = r.first;
+      if (pos === -1 || text.length !== r.e.lowText.length) return null;
+      var start = Math.max(0, pos - 60);
+      var end = Math.min(text.length, pos + q.length + 100);
+      var div = el('div', 'ssx-snip');
+      div.appendChild(document.createTextNode((start > 0 ? '…' : '') + text.slice(start, pos)));
+      div.appendChild(el('mark', null, text.slice(pos, pos + q.length)));
+      div.appendChild(document.createTextNode(text.slice(pos + q.length, end) + (end < text.length ? '…' : '')));
+      return div;
+    }
+
+    function closeResults() {
+      box.hidden = true;
+      box.innerHTML = '';
+      results = [];
+      activeIdx = -1;
+      input.setAttribute('aria-expanded', 'false');
+    }
+
+    function render(q) {
+      results = search(q);
+      box.innerHTML = '';
+      activeIdx = -1;
+      if (!results.length) {
+        box.appendChild(el('div', 'ssx-empty', 'Sonuç bulunamadı.'));
+      } else {
+        results.forEach(function (r, i) {
+          var item = el('div', 'ssx-item');
+          item.setAttribute('role', 'option');
+          item.id = 'ssx-opt-' + i;
+          var top = el('div', 'ssx-item-top');
+          if (r.e.category) top.appendChild(el('span', 'ssx-cat', r.e.category));
+          top.appendChild(el('span', 'ssx-title', r.e.title));
+          if (r.count) top.appendChild(el('span', 'ssx-count', r.count + ' eşleşme'));
+          item.appendChild(top);
+          var s = snippet(r, q);
+          if (s) item.appendChild(s);
+          item.addEventListener('mousedown', function (ev) {
+            ev.preventDefault();
+            choose(i);
+          });
+          box.appendChild(item);
+        });
+      }
+      box.hidden = false;
+      input.setAttribute('aria-expanded', 'true');
+    }
+
+    function setActive(i) {
+      var items = box.querySelectorAll('.ssx-item');
+      if (!items.length) return;
+      if (i < 0) i = items.length - 1;
+      if (i >= items.length) i = 0;
+      items.forEach(function (n, k) { n.classList.toggle('ssx-active', k === i); });
+      activeIdx = i;
+      items[i].scrollIntoView({ block: 'nearest' });
+    }
+
+    function clearMarks() {
+      marks.forEach(function (m) {
+        var parent = m.parentNode;
+        if (!parent) return;
+        parent.replaceChild(document.createTextNode(m.textContent), m);
+        parent.normalize();
+      });
+      marks = [];
+    }
+
+    // Açılan bölümde tüm eşleşmeleri işaretle
+    function markAll(root, q) {
+      clearMarks();
+      var ql = low(q);
+      if (!root || ql.length < 2) return;
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+        acceptNode: function (n) {
+          var p = n.parentNode;
+          if (!p || /^(SCRIPT|STYLE|TEXTAREA|OPTION|SELECT|INPUT|BUTTON|NOSCRIPT)$/.test(p.nodeName)) return NodeFilter.FILTER_REJECT;
+          if (!n.nodeValue || low(n.nodeValue).indexOf(ql) === -1) return NodeFilter.FILTER_REJECT;
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+      var nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(function (node) {
+        while (node && marks.length < MAX_MARKS) {
+          var s = low(node.nodeValue);
+          if (s.length !== node.nodeValue.length) break;
+          var pos = s.indexOf(ql);
+          if (pos === -1) break;
+          var mid = pos > 0 ? node.splitText(pos) : node;
+          var after = mid.nodeValue.length > ql.length ? mid.splitText(ql.length) : null;
+          var mark = document.createElement('mark');
+          mark.className = 'ssx-mark';
+          mid.parentNode.insertBefore(mark, mid);
+          mark.appendChild(mid);
+          marks.push(mark);
+          node = after;
+        }
+      });
+      if (marks[0]) marks[0].classList.add('ssx-mark-first');
+    }
+
+    function choose(i) {
+      var r = results[i];
+      if (!r) return;
+      var e = r.e;
+      var q = input.value.trim();
+      closeResults();
+
+      if (e.kind === 'link') {
+        window.open(e.href, '_blank', 'noopener');
+        return;
+      }
+      if (e.kind === 'home') {
+        clearMarks();
+        var home = document.getElementById('iaHomeLink');
+        if (home) home.click();
+        return;
+      }
+
+      // Mevcut menü mantığını kullan: ilgili başlığa tıklamak paneli açar
+      var trigger = document.querySelector('.ia-serit-baslik[data-panel="' + e.panelId + '"]');
+      if (trigger) trigger.click();
+      var panel = document.getElementById(e.panelId);
+      if (!panel) return;
+
+      markAll(panel, q);
+      var target = marks[0] || panel;
+      var y = target.getBoundingClientRect().top + window.pageYOffset - 90;
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+    }
+
+    input.addEventListener('input', function () {
+      var v = input.value;
+      clearBtn.hidden = !v;
+      clearTimeout(debounceT);
+      var q = v.trim();
+      if (q.length < 2) {
+        closeResults();
+        return;
+      }
+      debounceT = setTimeout(function () { render(q); }, 120);
+    });
+
+    input.addEventListener('focus', function () {
+      var q = input.value.trim();
+      if (q.length >= 2) render(q);
+    });
+
+    input.addEventListener('keydown', function (ev) {
+      if (ev.key === 'ArrowDown') {
+        ev.preventDefault();
+        if (box.hidden) {
+          var q = input.value.trim();
+          if (q.length < 2) return;
+          render(q);
+        }
+        setActive(activeIdx + 1);
+      } else if (ev.key === 'ArrowUp') {
+        ev.preventDefault();
+        setActive(activeIdx - 1);
+      } else if (ev.key === 'Enter') {
+        ev.preventDefault();
+        if (!box.hidden && results.length) choose(activeIdx >= 0 ? activeIdx : 0);
+      } else if (ev.key === 'Escape') {
+        closeResults();
+        input.blur();
+      }
+    });
+
+    clearBtn.addEventListener('click', function () {
+      input.value = '';
+      clearBtn.hidden = true;
+      closeResults();
+      clearMarks();
+      input.focus();
+    });
+
+    document.addEventListener('mousedown', function (ev) {
+      if (!wrap.contains(ev.target)) closeResults();
+    });
+
+    // İlk aramada gecikme olmasın diye dizini sayfa yüklendikten sonra hazırla
+    window.addEventListener('load', function () { setTimeout(buildIndex, 0); });
+  })();
+  </script>
 
 </body>
 </html>
